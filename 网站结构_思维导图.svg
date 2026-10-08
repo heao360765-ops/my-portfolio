@@ -1,0 +1,111 @@
+<svg viewBox="0 0 680 486" width="100%" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>游戏网站模板思维导图</title>
+<desc>中心为游戏网站，分出九个分支：网站类型、视觉风格、首屏、01媒体、02游戏介绍、03角色、04新闻、05下载、06关于，每个分支挂三个要点。</desc>
+<text x="40" y="26" font-size="14" font-weight="500" fill="#2C2C2A">游戏网站模板 · 结构思维导图</text>
+<text x="40" y="44" font-size="12" fill="#5F5E5A">中心 → 一级栏目 → 每个栏目放什么</text>
+
+<rect x="40" y="237" width="150" height="52" rx="10" fill="#1A1A18" stroke="#1A1A18" stroke-width="0.5"/>
+<text x="115" y="255" font-size="14" font-weight="500" fill="#F5F1E8" text-anchor="middle" dominant-baseline="central">游戏网站</text>
+<text x="115" y="273" font-size="12" fill="#B4B2A9" text-anchor="middle" dominant-baseline="central">单页 · 静态 · 可上线</text>
+<path d="M190 263 L222 263" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<path d="M222 83 L222 451" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+
+<path d="M222 83 L234 83" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="68" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="83" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">网站类型</text>
+<path d="M344 83 L360 83" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="68" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="83" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">单页滚动</text>
+<rect x="452" y="68" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="83" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">锚点导航</text>
+<rect x="544" y="68" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="83" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">静态页</text>
+
+<path d="M222 129 L234 129" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="114" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="129" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">视觉风格</text>
+<path d="M344 129 L360 129" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="114" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="129" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">暗色沉浸</text>
+<rect x="452" y="114" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="129" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">纸墨构成</text>
+<rect x="544" y="114" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="129" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">轻量明快</text>
+
+<path d="M222 175 L234 175" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="160" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="175" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">首屏 HERO</text>
+<path d="M344 175 L360 175" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="160" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="175" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">全屏 KV</text>
+<rect x="452" y="160" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="175" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">一句话标语</text>
+<rect x="544" y="160" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="175" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">CTA 按钮</text>
+
+<path d="M222 221 L234 221" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="206" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="221" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">01 媒体</text>
+<path d="M344 221 L360 221" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="206" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="221" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">预告片</text>
+<rect x="452" y="206" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="221" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">截图灯箱</text>
+<rect x="544" y="206" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="221" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">3D 模型</text>
+
+<path d="M222 267 L234 267" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="252" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="267" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">02 游戏介绍</text>
+<path d="M344 267 L360 267" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="252" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="267" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">世界观</text>
+<rect x="452" y="252" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="267" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">核心玩法</text>
+<rect x="544" y="252" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="267" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">特色系统</text>
+
+<path d="M222 313 L234 313" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="298" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="313" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">03 角色</text>
+<path d="M344 313 L360 313" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="298" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="313" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">主角大卡</text>
+<rect x="452" y="298" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="313" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">头像网格</text>
+<rect x="544" y="298" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="313" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">详情面板</text>
+
+<path d="M222 359 L234 359" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="344" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="359" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">04 新闻</text>
+<path d="M344 359 L360 359" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="344" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="359" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">公告</text>
+<rect x="452" y="344" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="359" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">版本更新</text>
+<rect x="544" y="344" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="359" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">开发手记</text>
+
+<path d="M222 405 L234 405" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="390" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="405" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">05 下载</text>
+<path d="M344 405 L360 405" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="390" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="405" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">平台按钮</text>
+<rect x="452" y="390" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="405" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">试玩 Demo</text>
+<rect x="544" y="390" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="405" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">配置表</text>
+
+<path d="M222 451 L234 451" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="234" y="436" width="110" height="30" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="289" y="451" font-size="13" font-weight="500" fill="#2C2C2A" text-anchor="middle" dominant-baseline="central">06 关于</text>
+<path d="M344 451 L360 451" fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+<rect x="360" y="436" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="402" y="451" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">制作团队</text>
+<rect x="452" y="436" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="494" y="451" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">素材包</text>
+<rect x="544" y="436" width="84" height="30" rx="6" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+<text x="586" y="451" font-size="12" fill="#712B13" text-anchor="middle" dominant-baseline="central">联系方式</text>
+</svg>

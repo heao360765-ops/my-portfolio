@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[ 游戏名 ] · 2.5D 社会生存推理游戏</title>
+<style>
+:root{
+  --bg:#F5F1E8; --surface:#FFFFFF; --text:#1A1A18; --muted:#5F5E5A;
+  --accent:#C0392B; --accent-soft:#FAECE7; --border:#D8D4C8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:16px/1.75 "PingFang SC","Microsoft YaHei","Segoe UI",sans-serif}
+.mono{font-family:Consolas,"Courier New",monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:96px 0 24px}
+h1{font-size:56px;font-weight:600;letter-spacing:-1px;line-height:1.2}
+h2{font-size:34px;font-weight:600;letter-spacing:-0.5px;margin-bottom:8px}
+h2 small{font-size:15px;font-weight:400;color:var(--accent);margin-left:12px;letter-spacing:1px}
+h3{font-size:20px;font-weight:600;margin:40px 0 12px}
+.lead{font-size:18px;color:var(--muted);max-width:640px}
+.num{font-size:13px;letter-spacing:2px;color:var(--accent);font-weight:600}
+
+/* 顶栏 */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(245,241,232,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+nav .brand{font-weight:600;font-size:15px}
+nav a{color:var(--text);text-decoration:none;font-size:14px;margin-left:28px;opacity:.75;transition:.15s}
+nav a:hover{opacity:1;color:var(--accent)}
+
+/* 首屏 */
+.hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:56px}
+.hero-bg{position:absolute;inset:0;background:url("素材/截图_昼夜/时刻5_17.5点.png") center/cover;opacity:.28}
+.hero .wrap{position:relative}
+.tagline{font-size:21px;color:var(--muted);margin:20px 0 36px;max-width:560px}
+.stat-row{display:flex;gap:14px;flex-wrap:wrap}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 22px}
+.stat b{display:block;font-size:22px;font-weight:600}
+.stat span{font-size:12.5px;color:var(--muted)}
+.cta{display:inline-block;margin-top:36px;background:var(--accent);color:#fff;text-decoration:none;padding:13px 34px;border-radius:10px;font-size:15px;font-weight:600;transition:.15s}
+.cta:hover{transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:3px;color:var(--muted)}
+
+/* 图片网格 */
+.grid{display:grid;gap:16px}
+.grid.g3{grid-template-columns:repeat(3,1fr)}
+.grid.g2{grid-template-columns:repeat(2,1fr)}
+.grid.g6{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:.15s}
+.card:hover{transform:translateY(-3px)}
+.card img{width:100%;display:block;cursor:zoom-in}
+.card .cap{padding:10px 14px;font-size:13px;color:var(--muted)}
+.pixelated{image-rendering:pixelated}
+
+/* 角色动画播放器 */
+.anim-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+.anim-stage{width:256px;height:256px;display:flex;align-items:flex-end;justify-content:center;background:repeating-conic-gradient(#EFEBE0 0 25%,#F8F5EC 0 50%) 0 0/32px 32px;border-radius:10px}
+.anim-stage img{width:192px;height:192px;image-rendering:pixelated}
+.dir-btns{display:grid;grid-template-columns:repeat(4,64px);gap:8px}
+.dir-btns button{height:44px;border:1px solid var(--border);background:var(--bg);border-radius:8px;font-size:14px;cursor:pointer;transition:.12s}
+.dir-btns button.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* three.js 容器 */
+.model-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px}
+#model-canvas{width:100%;height:420px;display:block;border-radius:8px;background:#ECE7DA;cursor:grab;touch-action:none}
+.model-box .hint{font-size:12.5px;color:var(--muted);margin-top:10px;text-align:center}
+
+/* 玩法卡片 */
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat .card{padding:22px}
+.feat .card b{display:block;font-size:17px;margin-bottom:6px}
+.feat .card p{font-size:14px;color:var(--muted)}
+table{border-collapse:collapse;width:100%;background:var(--surface);border-radius:12px;overflow:hidden;font-size:14.5px}
+th,td{padding:11px 16px;border-bottom:1px solid var(--border);text-align:left}
+th{background:var(--accent-soft);color:#7A2E22;font-weight:600;font-size:13.5px}
+tr:last-child td{border-bottom:none}
+
+/* 灯箱 */
+.lightbox{position:fixed;inset:0;background:rgba(20,18,14,.9);z-index:99;display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.lightbox img{max-width:92vw;max-height:92vh;image-rendering:pixelated}
+.lightbox.show{display:flex}
+
+/* 淡入 */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+
+/* 关于 */
+.spec{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+footer{border-top:1px solid var(--border);margin-top:80px;padding:28px 0 40px;font-size:13px;color:var(--muted)}
+.ghost-btn{display:inline-block;border:1.5px dashed var(--border);border-radius:10px;padding:13px 34px;color:var(--muted);font-size:15px}
+
+@media(max-width:860px){
+  h1{font-size:38px}
+  .grid.g3,.grid.g6,.feat{grid-template-columns:1fr 1fr}
+  .spec{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .grid.g3,.grid.g6,.feat{grid-template-columns:1fr}
+  .dir-btns{grid-template-columns:repeat(4,56px)}
+}
+</style>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">[ 游戏名 ]</span>
+    <div>
+      <a href="#hero">首页</a>
+      <a href="#media">实机演示</a>
+      <a href="#game">玩法·世界观</a>
+      <a href="#about">关于</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 首屏 -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="num">2.5D SOCIAL SURVIVAL DEDUCTION</div>
+    <h1>[ 游戏名 ]</h1>
+    <p class="tagline">6 个人必须合作才能活下来，但没人能确定别人是否值得信任。</p>
+    <div class="stat-row">
+      <div class="stat"><b>6 人</b><span>3 派系 × 2</span></div>
+      <div class="stat"><b>48–50<span style="font-size:14px"> min</span></b><span>单局时长</span></div>
+      <div class="stat"><b>min(4, 存活−1)</b><span>逃生名额</span></div>
+      <div class="stat"><b>无语音</b><span>动作 / 短句 / 纸条交流</span></div>
+    </div>
+    <a class="cta" href="#media">看实机演示 ↓</a>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</section>
+
+<!-- 01 实机演示 -->
+<section id="media">
+  <div class="wrap">
+    <div class="num">01 · MEDIA</div>
+    <h2>实机演示 <small>引擎内实拍，无后期</small></h2>
+
+    <h3>昼夜六时刻</h3>
+    <p class="lead" style="margin-bottom:18px">同一视角，从清晨 6:30 到夜晚 20:30。光源就是生存空间——夜晚的危险写在天空里。</p>
+    <div class="grid g3">
+      <div class="card"><img class="pixelated shot" src="素材/截图_昼夜/时刻1_6.5点.png" loading="lazy"><div class="cap">06:30 · 清晨</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_昼夜/时刻2_9.0点.png" loading="lazy"><div class="cap">09:00 · 上午</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_昼夜/时刻3_12.0点.png" loading="lazy"><div class="cap">12:00 · 正午</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_昼夜/时刻4_15.0点.png" loading="lazy"><div class="cap">15:00 · 午后</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_昼夜/时刻5_17.5点.png" loading="lazy"><div class="cap">17:30 · 黄昏</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_昼夜/时刻6_20.5点.png" loading="lazy"><div class="cap">20:30 · 夜晚</div></div>
+    </div>
+
+    <h3>角色八向动画</h3>
+    <p class="lead" style="margin-bottom:18px">纸片角色在 3D 场景中八向行走，帧率 8fps。切换方向看动画。</p>
+    <div class="anim-box">
+      <div class="anim-stage"><img id="anim-img" class="pixelated" src="资产/2D/角色帧图/walk_s_0.png" alt="角色行走动画"></div>
+      <div>
+        <div class="dir-btns" id="dir-btns"></div>
+        <p style="font-size:13px;color:var(--muted);margin-top:14px">八向 SpriteFrames 自动装配，<br>缺帧自检 + 脚底空行自动检测</p>
+      </div>
+    </div>
+
+    <h3>建筑 3D 交互</h3>
+    <p class="lead" style="margin-bottom:18px">都铎小楼，406 顶点 5 组 PBR 材质（石基 / 抹灰 / 木框 / 茅草 / 门）。</p>
+    <div class="model-box">
+      <canvas id="model-canvas"></canvas>
+      <div class="hint">按住拖动旋转</div>
+    </div>
+
+    <h3>场景截图</h3>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card"><img class="pixelated shot" src="素材/截图_草地/1_edge_wide.png" loading="lazy"><div class="cap">风草与裸地交界（9.4 万株 MultiMesh）</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_草地/2_edge_close.png" loading="lazy"><div class="cap">近景密度过渡</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_草地/4_outer_edge.png" loading="lazy"><div class="cap">草场边缘淡出</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_房屋/yaw_0.png" loading="lazy"><div class="cap">建筑四向 · 正面</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_房屋/yaw_90.png" loading="lazy"><div class="cap">建筑四向 · 侧面</div></div>
+      <div class="card"><img class="pixelated shot" src="素材/截图_相机对比/D_透视f40_p22(地平线).png" loading="lazy"><div class="cap">透视方案 · 看到地平线</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 玩法 · 世界观 -->
+<section id="game">
+  <div class="wrap">
+    <div class="num">02 · GAMEPLAY & WORLD</div>
+    <h2>玩法 · 世界观 <small>系统制造压力，玩家制造故事</small></h2>
+
+    <h3>这个世界</h3>
+    <p class="lead">灾变之后，幸存者聚集在这座孤岛。唯一的离开方式是渡船——但渡船的名额，永远比活着的人少一个。环境逼迫你们合作，利益迫使你们互相猜疑。合作是必要条件，信任不是。</p>
+
+    <h3>三条指引</h3>
+    <div class="feat">
+      <div class="card"><b>火焰</b><p>留下来的人，才能守住火。<br>光 / 秩序 / 聚集 —— 掌握光源与工具，掌握安全区的信息。</p></div>
+      <div class="card"><b>森林</b><p>离开道路，你才能找到真正需要的东西。<br>食物 / 自然 / 探索 —— 掌握食物与药草，掌握地图资源的信息。</p></div>
+      <div class="card"><b>乌鸦</b><p>死亡留下的信息，比活人说的话更诚实。<br>死亡 / 秘密 / 信息 —— 掌握特殊物品，掌握 NPC 与死亡的信息。</p></div>
+    </div>
+
+    <h3>一局 48 分钟</h3>
+    <table>
+      <tr><th>阶段</th><th>时长</th><th>核心问题</th></tr>
+      <tr><td>开局 · 信仰选择</td><td>2 min</td><td>选择指引，认识派系</td></tr>
+      <tr><td>Day 1</td><td>7 min</td><td>这些人是谁？我能不能和他们合作？</td></tr>
+      <tr><td>Night 1</td><td>4 min</td><td>我是否愿意和别人一起待在安全区？</td></tr>
+      <tr><td>Day 2</td><td>7 min</td><td>我该怎么处理我掌握的信息？</td></tr>
+      <tr><td>Night 2</td><td>4 min</td><td>强制合作事件随机触发，我能不能找到信任的人？</td></tr>
+      <tr><td>Day 3</td><td>7 min</td><td>资源枯竭，派系矛盾公开化——我们谁能走？</td></tr>
+      <tr><td>Final Escape</td><td>9 min</td><td>渡船倒计时，我该抢还是不抢？</td></tr>
+    </table>
+
+    <h3>沉默中的交流</h3>
+    <p class="lead" style="margin-bottom:18px">没有语音，没有自由文字。所有交流只有五种：动作、短句轮盘（怀疑类限 3 次）、展示物品、纸条（每局 4 张），以及——沉默。你说的每句话都有代价，也都可能是谎言。</p>
+    <div class="feat">
+      <div class="card"><b>强制合作事件</b><p>每局随机刷新。电闸停电：零件散在地图各处，一个人修不好，所有人都会死。隐瞒、偷窃、交换、欺骗——从修电闸开始。</p></div>
+      <div class="card"><b>痕迹与信息</b><p>2.5D 视角即机制：A 看到 B 进了仓库，C 看到 B 拿走了东西，但 A 不知道 C 看到了一切。伤害必留痕迹，死亡即信息断裂。</p></div>
+      <div class="card"><b>谁能上船</b><p>逃生位 = min(4, 存活人数 − 1)。永远至少有一个活人走不了。第三天的冲突，是第一天选择的结果。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 关于 -->
+<section id="about">
+  <div class="wrap">
+    <div class="num">03 · ABOUT</div>
+    <h2>关于 <small>制作与技术</small></h2>
+    <div class="spec" style="margin-top:24px">
+      <div class="card" style="padding:26px">
+        <b style="font-size:17px">制作信息</b>
+        <p style="color:var(--muted);font-size:14.5px;margin-top:8px">
+          策划 / 程序 / 美术：贺敖<br>
+          西安欧亚学院 · 数字媒体艺术 2402 班<br>
+          智能产品交互工作室
+        </p>
+      </div>
+      <div class="card" style="padding:26px">
+        <b style="font-size:17px">技术规格</b>
+        <p style="color:var(--muted);font-size:14.5px;margin-top:8px" class="mono">
+          Godot 4.7.2 · GDScript<br>
+          3D 场景 + 纸片角色（HD-2D）<br>
+          渲染 640×360 → 窗口整数倍放大<br>
+          自研像素 PBR 贴图库（albedo / normal / ORM）<br>
+          MultiMesh 风草 · 昼夜循环 · 三平面地面材质
+        </p>
+      </div>
+    </div>
+    <h3>试玩 / 下载</h3>
+    <span class="ghost-btn">Demo 暂未开放 — 敬请期待</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 贺敖 · Made with Godot 4 · 本站素材均为引擎内实拍</div>
+</footer>
+
+<div class="lightbox" id="lightbox"><img id="lightbox-img" alt=""></div>
+
+<script>
+// 方向帧表（walk 每向帧数不同，idle 各 1 帧）
+const FRAMES = {e:15,n:11,ne:13,nw:14,s:10,se:11,sw:10,w:7};
+const DIR_LABEL = {n:"北",ne:"东北",e:"东",se:"东南",s:"南",sw:"西南",w:"西",nw:"西北"};
+let curDir = "s", curFrame = 0;
+const animImg = document.getElementById("anim-img");
+const btnBox = document.getElementById("dir-btns");
+["n","ne","e","se","s","sw","w","nw"].forEach(d=>{
+  const b = document.createElement("button");
+  b.textContent = DIR_LABEL[d];
+  b.dataset.dir = d;
+  if(d===curDir) b.classList.add("on");
+  b.onclick = ()=>{ curDir=d; curFrame=0;
+    btnBox.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x.dataset.dir===d)); };
+  btnBox.appendChild(b);
+});
+setInterval(()=>{
+  curFrame = (curFrame+1) % FRAMES[curDir];
+  animImg.src = "资产/2D/角色帧图/walk_" + curDir + "_" + curFrame + ".png";
+}, 125);
+
+// 灯箱
+const lb = document.getElementById("lightbox"), lbImg = document.getElementById("lightbox-img");
+document.querySelectorAll(".shot").forEach(img=>{
+  img.addEventListener("click", ()=>{ lbImg.src = img.src; lb.classList.add("show"); });
+});
+lb.addEventListener("click", ()=> lb.classList.remove("show"));
+
+// 滚动淡入
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}),{threshold:.08});
+document.querySelectorAll("h3,.card,.anim-box,.model-box,table").forEach(el=>{
+  el.classList.add("reveal"); io.observe(el);
+});
+</script>
+
+<script type="module">
+// three.js 懒加载：进入视口才初始化
+import * as THREE from "three";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+const canvas = document.getElementById("model-canvas");
+let started = false;
+
+function init(){
+  if(started) return; started = true;
+  const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, 2, 0.1, 100);
+  camera.position.set(7, 5.2, 8.5);
+  camera.lookAt(0, 2.2, 0);
+  scene.add(new THREE.HemisphereLight(0xfff4e0, 0x8a8070, 1.1));
+  const sun = new THREE.DirectionalLight(0xffe8c0, 1.6);
+  sun.position.set(4, 8, 5);
+  scene.add(sun);
+
+  let model = null;
+  new GLTFLoader().load("资产/3D/模型_GLB/house_a.glb", g=>{
+    model = g.scene;
+    scene.add(model);
+  });
+
+  let dragging = false, px = 0, rotY = 0.6, rotX = 0.12;
+  canvas.addEventListener("pointerdown", e=>{ dragging=true; px=e.clientX; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener("pointerup",   ()=> dragging=false);
+  canvas.addEventListener("pointermove", e=>{ if(dragging){ rotY += (e.clientX-px)*0.008; px=e.clientX; } });
+
+  function resize(){
+    const w = canvas.clientWidth, h = canvas.clientHeight;
+    if(canvas.width !== w || canvas.height !== h){
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+    }
+  }
+  renderer.setAnimationLoop(()=>{
+    resize();
+    if(model){ model.rotation.y = rotY; model.rotation.x = rotX; }
+    else { /* 未加载完时空转 */ }
+    renderer.render(scene, camera);
+  });
+}
+new IntersectionObserver((es,ob)=>{ if(es[0].isIntersecting){ init(); ob.disconnect(); } },{threshold:.15}).observe(canvas);
+</script>
+
+</body>
+</html>

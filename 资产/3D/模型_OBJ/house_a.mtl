@@ -1,0 +1,35 @@
+newmtl stone
+Kd 0.550 0.530 0.480
+Ka 0 0 0
+Ks 0 0 0
+d 1.0
+illum 1
+
+newmtl plaster
+Kd 0.860 0.830 0.750
+Ka 0 0 0
+Ks 0 0 0
+d 1.0
+illum 1
+
+newmtl wood
+Kd 0.360 0.260 0.180
+Ka 0 0 0
+Ks 0 0 0
+d 1.0
+illum 1
+
+newmtl straw
+Kd 0.780 0.660 0.380
+Ka 0 0 0
+Ks 0 0 0
+d 1.0
+illum 1
+
+newmtl door
+Kd 0.320 0.220 0.150
+Ka 0 0 0
+Ks 0 0 0
+d 1.0
+illum 1
+
