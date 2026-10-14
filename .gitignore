@@ -1,0 +1,6 @@
+node_modules/
+artifacts/
+assets/screens/*.png
+assets/fonts/fusion-pixel.otf
+__pycache__/
+*.pyc
