@@ -7,5 +7,3 @@
 - `fonts/fusion-pixel-subset.woff2`：游戏同款 Fusion Pixel 12px 简体中文字体的网页字形子集，来源为 TakWolf/fusion-pixel-font，许可随附于 `fonts/OFL.txt` 及 `fonts/LICENSES/`。
 - `lantern.svg`：为网页绘制的像素几何灯笼标记。
 - 原站的 `素材/`、`资产/` 文件保持不变，继续用于 `studies.html` 的早期场景、建筑和角色记录。
-
-布局参考采用场景式入口与昼夜背景变化，不使用《明日方舟》的美术、音乐或商标资产。

@@ -18,7 +18,7 @@ GitHub Pages 静态站点，所有页面可直接打开，无需运行时依赖�
 
 ## 编辑与验证
 
-- HTML 源内容在 `tools/build_site.py`，执行 `python tools/build_site.py` 可重新输出七个静态页面。
+- HTML 源内容在 `tools/build_site.py`，执行 `python tools/build_site.py` 可重新输出八个静态页面。
 - `styles.css` 为共享样式，`app.js` 管理交互；没有外部 CDN、第三方统计或自动播放媒体。
 - `tools/check_site.cjs` 使用 Playwright + Edge 检查 375/768/1440 像素布局、入口、菜单、角色、影像大图及图片加载；可通过 `SITE_URL` 和 `SITE_ARTIFACTS` 设置地址与检查结果目录。
 - `python tools/check_links.py` 检查页面内的本地页面、图像及脚本链接。
@@ -27,4 +27,7 @@ GitHub Pages 静态站点，所有页面可直接打开，无需运行时依赖�
 
 本次版本基于远程 `9824fec`，保留已有 `素材/`、`资产/` 和原始创作内容，不恢复此前去掉的姓名、学校、邮箱或个人账号链接。
 
-本项目用于展示开发中内容，不提供虚构下载、预约或已完成联机的承诺。
+下载页提供 Windows 64 位完整运行包（当前开发版），在 downloads/ 中附 SHA-256 校验文件。六人在线联机尚未完成。
+
+- `download.html`：Windows 游戏下载、解压启动说明与运行要求。
+- 发布包 `downloads/WuxiTown-v0.1.1-Windows-x64.zip` 可直接由 GitHub Pages 下载；游戏不依赖网页服务运行。
