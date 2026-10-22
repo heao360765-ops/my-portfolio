@@ -43,14 +43,15 @@
     const soundtrack=new Audio(new URL('assets/audio/intro/system-voice-zh.mp3',document.baseURI).href);
     soundtrack.preload='auto';soundtrack.volume=.75;
     const sound=dialog.querySelector('[data-sound]');
-    let soundWanted=true,soundAvailable=true,playRequest=0;
+    let soundWanted=true,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
+    function syncSound(){const target=elapsed/1000;if(soundtrack.seeking||!soundtrack.seekable.length)return;const end=soundtrack.seekable.end(soundtrack.seekable.length-1);if(target<end){try{soundtrack.currentTime=target;lastAudioSync=elapsed}catch{}}}
     try{soundWanted=sessionStorage.getItem('portfolio-voice-muted')!=='1'}catch{}
-    function soundLabel(state){dialog.dataset.voice=state;sound.textContent=state==='on'?'播报已开':state==='unavailable'?'播报不可用':'开启播报';sound.setAttribute('aria-pressed',String(state==='on'))}
+    function soundLabel(state){dialog.dataset.voice=state;sound.textContent=state==='on'?'播报已开':state==='loading'?'播报加载中':state==='unavailable'?'播报不可用':'开启播报';sound.setAttribute('aria-pressed',String(state==='on'))}
     function stopSound(){playRequest++;soundtrack.pause()}
     function startSound(){
       if(!soundWanted||!soundAvailable||paused||document.hidden||exiting)return;
-      const request=++playRequest;
-      try{soundtrack.currentTime=elapsed/1000}catch{}
+      const request=++playRequest;soundLabel('loading');
+      syncSound();
       soundtrack.play().then(()=>{if(request!==playRequest)return;if(active!==dialog||exiting||paused||!soundWanted){soundtrack.pause();return}soundLabel('on')}).catch(error=>{
         if(request!==playRequest||exiting)return;
         if(error.name==='NotAllowedError'){soundWanted=false;soundLabel('blocked')}
@@ -58,7 +59,7 @@
       });
     }
     soundtrack.addEventListener('error',()=>{soundAvailable=false;sound.disabled=true;soundLabel('unavailable')});
-    sound.onclick=()=>{soundWanted=!soundWanted;try{sessionStorage.setItem('portfolio-voice-muted',soundWanted?'0':'1')}catch{}if(soundWanted){soundLabel('on');startSound()}else{stopSound();soundLabel('off')}};
+    sound.onclick=()=>{soundWanted=!soundWanted;try{sessionStorage.setItem('portfolio-voice-muted',soundWanted?'0':'1')}catch{}if(soundWanted){if(paused)soundLabel('on');else startSound()}else{stopSound();soundLabel('off')}};
     const visibility=()=>{if(document.hidden)stopSound();else startSound()};
     document.addEventListener('visibilitychange',visibility);
     const release=()=>{stopSound();soundtrack.removeAttribute('src');soundtrack.load();document.removeEventListener('visibilitychange',visibility);cancelAnimationFrame(raf);observer.disconnect();dialog.close();dialog.remove();clearPending();if(active===dialog){active=null;document.body.classList.remove('intro-open')}};
@@ -125,7 +126,7 @@
       dialog.querySelector('[data-stage-label]').textContent=scene.label;dialog.querySelector('[data-counter]').textContent=(time/1000).toFixed(2).padStart(5,'0')+' / SYS';
       field(time,scene.name);
     }
-    function tick(now){if(active!==dialog||exiting)return;if(!paused&&!document.hidden)elapsed+=Math.min(now-last,80);last=now;if(soundWanted&&!soundtrack.paused&&Math.abs(soundtrack.currentTime-elapsed/1000)>.25){try{soundtrack.currentTime=elapsed/1000}catch{}}render(elapsed);if(elapsed>=duration)finish();else raf=requestAnimationFrame(tick)}
+    function tick(now){if(active!==dialog||exiting)return;if(!paused&&!document.hidden)elapsed+=Math.min(now-last,80);last=now;if(soundWanted&&!soundtrack.paused&&soundtrack.readyState>=3&&elapsed-lastAudioSync>1200&&Math.abs(soundtrack.currentTime-elapsed/1000)>.35)syncSound();render(elapsed);if(elapsed>=duration)finish();else raf=requestAnimationFrame(tick)}
     dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});raf=requestAnimationFrame(tick);
     dialog._release=release;
   }
