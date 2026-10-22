@@ -15,3 +15,11 @@ Rate: -8%; pitch: -6 Hz. Natural phrasing retained.
 Original generated texture, short transition sounds, and ending interval.
 No reference-video audio, dialogue, or character voice was sampled or cloned.
 Cue positions: confirmation 2.72 s; welcome 9.13 s.
+
+Revision v6: entry-voice-zh-v6.mp3
+Text: 身份已确认。欢迎进入。
+Voice: zh-CN-XiaoyiNeural, generated via Microsoft Edge TTS (edge-tts).
+Original voice pace and pitch; light EQ, no time stretch or pitch shifting.
+Original synthesized air bed, mechanical closures and resolving harmonics.
+No source-video samples or cloned character voice.
+Cue positions: confirmation 2.77 s; welcome 9.04 s.

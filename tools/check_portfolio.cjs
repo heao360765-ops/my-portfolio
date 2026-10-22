@@ -6,7 +6,7 @@ fs.mkdirSync(out,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'msedge'});
  const page=await browser.newPage();
- await page.addInitScript(()=>sessionStorage.setItem('portfolio-prologue-v5','1'));
+ await page.addInitScript(()=>sessionStorage.setItem('portfolio-prologue-v6','1'));
  const errors=[],results=[];
  const check=(name,value)=>{results.push({name,passed:!!value});if(!value)throw Error(name)};
  page.on('pageerror',e=>errors.push(e.message));
