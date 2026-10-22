@@ -7,3 +7,11 @@ No voices or audio samples extracted from Arknights or reference videos.
 
 Timeline (seconds): initialize 0.18; confirmed 2.78; loading 4.55; ready 8.25; welcome 9.75.
 Animation progress is a visual sequence, not OS verification.
+
+Revision v5: entry-voice-zh-v5.mp3
+Text: 访问者已确认。欢迎进入。
+Voice: zh-CN-XiaoxiaoNeural, generated via Microsoft Edge TTS (edge-tts).
+Rate: -8%; pitch: -6 Hz. Natural phrasing retained.
+Original generated texture, short transition sounds, and ending interval.
+No reference-video audio, dialogue, or character voice was sampled or cloned.
+Cue positions: confirmation 2.72 s; welcome 9.13 s.

@@ -1,7 +1,7 @@
 const {chromium}=require('playwright');
 const fs=require('node:fs');
 const base=process.env.SITE_URL||'http://127.0.0.1:4190/';
-const out=process.env.SITE_ARTIFACTS||'D:/AI-Work/artifacts/portfolio-industrial-light-20261022/startup-qa';
+const out=process.env.SITE_ARTIFACTS||'D:/AI-Work/artifacts/portfolio-cinematic-20261022/startup-qa';
 fs.mkdirSync(out,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'msedge'});
@@ -36,7 +36,7 @@ fs.mkdirSync(out,{recursive:true});
   check('Without JavaScript portfolio remains readable',await np.locator('#intro-title').isVisible());
   const audioContext=await browser.newContext();const ap=await audioContext.newPage();
   let releaseAudio;const audioGate=new Promise(resolve=>releaseAudio=resolve);
-  await ap.route('**/system-voice-zh.mp3',async r=>{await audioGate;await r.continue()});
+  await ap.route('**/entry-voice-zh-v5.mp3',async r=>{await audioGate;await r.continue()});
   await ap.addInitScript(()=>{
    const NativeAudio=window.Audio;window.Audio=function(...args){const a=new NativeAudio(...args);window.__testAudio=a;return a};
    const play=HTMLMediaElement.prototype.play;let blocked=false;

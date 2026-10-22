@@ -1,7 +1,7 @@
 const {chromium}=require('playwright');
 const fs=require('node:fs');
 const base=process.env.SITE_URL||'http://127.0.0.1:4190/';
-const out=process.env.SITE_ARTIFACTS||'D:/AI-Work/artifacts/portfolio-industrial-light-20261022/qa';
+const out=process.env.SITE_ARTIFACTS||'D:/AI-Work/artifacts/portfolio-cinematic-20261022/qa';
 fs.mkdirSync(out,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'msedge'});
@@ -33,7 +33,8 @@ fs.mkdirSync(out,{recursive:true});
  await page.waitForTimeout(800);
  check('Loading percentage advances',Number(await dialog.locator('[data-load-number]').innerText())>Number(loadBefore));
  check('Wire field moves during loading',geometryBefore!==await dialog.locator('canvas').evaluate(c=>c.toDataURL()));
- check('Modules become ready',await dialog.locator('[data-module].is-done').count()>0);
+ check('No step dashboard or module checklist',await dialog.locator('.intro-rail,[data-module],.intro-boot-log').count()===0);
+ check('A continuous frame joins the scenes',await dialog.locator('.intro-aperture').count()===1);
  await page.screenshot({path:out+'/02-archive.png'});
  check('Automatically advances to archive',await dialog.getAttribute('data-stage')==='archive');
  await page.waitForFunction(()=>document.querySelector('.portfolio-intro')?.dataset.stage==='authorize');
