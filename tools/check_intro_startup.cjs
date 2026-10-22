@@ -36,7 +36,7 @@ fs.mkdirSync(out,{recursive:true});
   check('Without JavaScript portfolio remains readable',await np.locator('#intro-title').isVisible());
   const audioContext=await browser.newContext();const ap=await audioContext.newPage();
   let releaseAudio;const audioGate=new Promise(resolve=>releaseAudio=resolve);
-  await ap.route('**/entry-voice-zh-v6.mp3',async r=>{await audioGate;await r.continue()});
+  await ap.route('**/entry-voice-zh-v7.mp3',async r=>{await audioGate;await r.continue()});
   await ap.addInitScript(()=>{
    const NativeAudio=window.Audio;window.Audio=function(...args){const a=new NativeAudio(...args);window.__testAudio=a;return a};
    const play=HTMLMediaElement.prototype.play;let blocked=false;

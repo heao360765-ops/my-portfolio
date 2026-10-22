@@ -6,14 +6,14 @@
 html.intro-pending{background:#e8e9e4}html.intro-pending body{background:#e8e9e4}html.intro-pending body>:not(.portfolio-intro){visibility:hidden}html.intro-pending:before{content:"FIELD ARCHIVE / INITIALIZING";position:fixed;inset:0;display:grid;place-items:center;color:#59645b;font:10px monospace;letter-spacing:.15em;background:#e8e9e4;z-index:9999}
 </style>
 <script>
-(()=>{const boot=window.__portfolioBoot={key:'portfolio-prologue-v6',expired:false};try{const supported=typeof HTMLDialogElement!=='undefined'&&HTMLDialogElement.prototype.showModal;let seen=false;try{seen=sessionStorage.getItem(boot.key)==='1'}catch{}if(supported&&!seen&&!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-pending');boot.timer=setTimeout(()=>{boot.expired=true;document.documentElement.classList.remove('intro-pending')},4500)}}catch{document.documentElement.classList.remove('intro-pending')}})();
+(()=>{const boot=window.__portfolioBoot={key:'portfolio-prologue-v7',expired:false};try{const supported=typeof HTMLDialogElement!=='undefined'&&HTMLDialogElement.prototype.showModal;let seen=false;try{seen=sessionStorage.getItem(boot.key)==='1'}catch{}if(supported&&!seen&&!location.hash&&!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('intro-pending');boot.timer=setTimeout(()=>{boot.expired=true;document.documentElement.classList.remove('intro-pending')},4500)}}catch{document.documentElement.classList.remove('intro-pending')}})();
 </script>
 <title>个人作品集 · 游戏与硬件探索</title>
 <meta name="description" content="个人创作与开发记录：雾汐镇游戏开发、Mono-01 观察单元，以及从想法走向原型的探索。">
 <meta name="theme-color" content="#f4f3ed">
 <meta property="og:title" content="个人作品集 · 游戏与硬件探索"><meta property="og:description" content="从游戏里的世界，到现实中的观察单元。记录设计、开发与原型探索。"><meta property="og:type" content="website"><meta property="og:image" content="https://heao360765-ops.github.io/my-portfolio/assets/screens/town-day.webp"><meta property="og:url" content="https://heao360765-ops.github.io/my-portfolio/">
 <link rel="canonical" href="https://heao360765-ops.github.io/my-portfolio/"><link rel="stylesheet" href="portfolio.css"><link rel="icon" href="assets/lantern.svg" type="image/svg+xml">
-<link rel="stylesheet" href="intro.css?v=20261022-6"><script src="intro.js?v=20261022-6" defer></script></head>
+<link rel="stylesheet" href="intro.css?v=20261022-6"><script src="intro.js?v=20261022-7" defer></script></head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
 <header class="site-header"><div class="wrap header-inner"><a class="brand" href="./" aria-label="个人作品集首页"><span class="brand-mark" aria-hidden="true"></span><span>个人作品集<small>DESIGN / BUILD / EXPLORE</small></span></a><nav class="main-nav" aria-label="作品集导航"><a href="#games">游戏开发</a><a href="#hardware">硬件探索</a><a class="nav-about" href="#about">关于创作</a></nav></div></header>

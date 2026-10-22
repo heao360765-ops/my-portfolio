@@ -1,7 +1,7 @@
 /* A fictional visual boot sequence, isolated from the competition website. */
 (() => {
   'use strict';
-  const key='portfolio-prologue-v6';
+  const key='portfolio-prologue-v7';
   const clearPending=()=>{clearTimeout(window.__portfolioBoot?.timer);document.documentElement.classList.remove('intro-pending')};
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const replay=document.querySelector('[data-replay-intro]');
@@ -42,7 +42,7 @@
     let width=0,height=0,raf=0,elapsed=reduced.matches?8800:0,last=performance.now(),paused=false,exiting=false;
     const resize=()=>{width=dialog.clientWidth;height=dialog.clientHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx?.setTransform(dpr,0,0,dpr,0,0)};
     const observer=new ResizeObserver(resize);observer.observe(dialog);
-    const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-zh-v6.mp3',document.baseURI).href);
+    const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-zh-v7.mp3',document.baseURI).href);
     soundtrack.preload='auto';soundtrack.volume=.75;
     const sound=dialog.querySelector('[data-sound]');
     let soundWanted=true,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
