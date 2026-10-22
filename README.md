@@ -1,10 +1,14 @@
-# 雾汐镇游戏网站
+# 个人作品集与雾汐镇游戏官网
 
-网站：https://heao360765-ops.github.io/my-portfolio/
+个人作品集：https://heao360765-ops.github.io/my-portfolio/
+
+雾汐镇游戏官网（比赛投递使用此链接）：https://heao360765-ops.github.io/my-portfolio/games/wuxitown/
+
+根网址展示个人作品集，点击“游戏开发”中的雾汐镇进入独立游戏官网。比赛链接直接展示雾汐镇，不需要先经过作品集。游戏站内导航和试玩页返回链接均留在游戏栏目。
 
 网页试玩：https://heao360765-ops.github.io/my-portfolio/play/index.html
 
-Windows 下载：https://heao360765-ops.github.io/my-portfolio/download.html
+Windows 下载：https://heao360765-ops.github.io/my-portfolio/games/wuxitown/download.html
 
 这是可以直接提交和发布的静态网站。首页 `index.html` 在根目录，页面、样式、图片和已导出的网页游戏均已准备好。发布不需要运行 Python、npm 或 Godot，不需要填写构建命令。GitHub Pages 设置为 **Deploy from a branch → main → /(root)**。
 
@@ -12,7 +16,7 @@ Windows 下载：https://heao360765-ops.github.io/my-portfolio/download.html
 
 1. 在 VS Code 选择 File → Open Folder，打开 `D:\AI-Work\my-portfolio`。左下角分支应显示 `main`。
 2. 在开始编辑前，打开源代码管理面板（Ctrl+Shift+G），菜单“…” → Pull，取回其他设备的更新。
-3. 直接编辑根目录 HTML 中的文字，或修改 `styles.css`、`app.js`，按 Ctrl+S 保存。展示页面可双击 `index.html` 预览。
+3. 作品集编辑根目录 `index.html` 与 `portfolio.css`；游戏官网编辑 `games/wuxitown/` 内对应 HTML，共享样式和交互仍在根目录 `styles.css`、`app.js`。按 Ctrl+S 保存，展示页面可双击相应 `index.html` 预览。
 4. 在源代码管理面板检查修改，文件旁点“+”暂存，写清修改说明，点 Commit。
 5. 点 Sync Changes。等仓库 Actions 中 **pages build and deployment** 成功，在原网站按 Ctrl+F5 验证。
 
@@ -36,11 +40,13 @@ Windows 下载：https://heao360765-ops.github.io/my-portfolio/download.html
 
 ## 页面与资源
 
-- `index.html`：入镇、昼夜实景、网页试玩与 Windows 下载入口。
-- `download.html`：v0.1.2 Windows 开发版、解压说明和 SHA-256 校验。
+- `index.html`、`portfolio.css`：个人作品集首页，游戏开发与 Mono-01 硬件探索。
+- `games/wuxitown/index.html`：原游戏官网首页，内容与视觉保持一致。
+- `games/wuxitown/download.html`：v0.1.2 Windows 开发版、解压说明和 SHA-256 校验。
 - `play/`：已导出的单线程网页试玩。需通过 HTTP 或 HTTPS 打开；不能双击本地文件运行。推荐电脑、键盘与支持 WebGL2 的浏览器，首次资源约104 MiB。
-- `world.html`、`residents.html`、`rules.html`、`gallery.html`：世界、居民、玩法与实景影像。
-- `studies.html`、`credits.html`：制作记录与素材来源。
+- `games/wuxitown/` 内的 `world.html`、`residents.html`、`rules.html`、`gallery.html`：世界、居民、玩法与实景影像。
+- `games/wuxitown/` 内的 `studies.html`、`credits.html`：制作记录与素材来源。
+- 根目录原有七个游戏内页：保留为兼容跳转，旧链接的查询参数与锚点会带到对应新页面；不要再编辑这些跳转页的正文。
 - `assets/`、`素材/`、`资产/`：保留网站引用的画面、角色、字体及创作素材。
 - `downloads/`：Windows 游戏、版本信息与校验文件。
 
@@ -48,8 +54,8 @@ Windows 下载：https://heao360765-ops.github.io/my-portfolio/download.html
 
 ## 开发维护说明
 
-日常文字、图片和样式更新直接编辑静态文件即可，无需生成步骤。`tools/build_site.py` 是开发人员使用的批量生成工具，重新运行会覆盖八个 HTML 页面；使用该工具时须先同步自己的页面改动，并维护 `downloads/release-info.json`。它不是发布流程的前置步骤。
+日常文字、图片和样式更新直接编辑静态文件即可，无需生成步骤。`tools/build_site.py` 只生成 `games/wuxitown/` 下的八个游戏页面及根目录兼容跳转，不会覆盖个人作品集首页。使用该工具时须先同步自己的游戏页面改动，并维护 `downloads/release-info.json`。它不是发布流程的前置步骤。
 
-`tools/check_links.py` 检查本地引用；`tools/check_site.cjs` 使用 Playwright 检查桌面和手机布局及网站交互。游戏字体使用 Fusion Pixel，第三方许可保留在 `assets/fonts/OFL.txt`。2048 的 MIT 许可不适用于本网站的游戏、图片和其他素材；各素材遵循原有授权。
+`tools/check_links.py` 检查作品集、游戏官网与试玩页的本地引用；`tools/check_site.cjs` 使用 Playwright 检查游戏官网桌面和手机布局及交互，默认地址为 `http://127.0.0.1:4173/games/wuxitown/`；`tools/check_portfolio.cjs` 检查个人作品集、入口隔离、旧链接兼容和动态资源。游戏字体使用 Fusion Pixel，第三方许可保留在 `assets/fonts/OFL.txt`。2048 的 MIT 许可不适用于本网站的游戏、图片和其他素材；各素材遵循原有授权。
 
 官方说明：[Pages 发布来源](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [GitHub 上传文件限制](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)

@@ -2,7 +2,7 @@
 const { chromium } = require('playwright');
 const fs = require('node:fs');
 const path = require('node:path');
-const base = process.env.SITE_URL || 'http://127.0.0.1:4173/';
+const base = process.env.SITE_URL || 'http://127.0.0.1:4173/games/wuxitown/';
 const output = process.env.SITE_ARTIFACTS || 'D:/AI-Work/artifacts/wuxi-website';
 fs.mkdirSync(output, { recursive: true });
 const results = [], errors = [];
@@ -12,7 +12,7 @@ function check(name, value, detail = '') { results.push({ name, passed: !!value,
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
   const page = await context.newPage();
   page.on('pageerror', e => errors.push(e.message));
-  page.on('response', r => { if(r.url().startsWith(base) && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
+  page.on('response', r => { if(r.url().startsWith(new URL(base).origin) && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
   await page.goto(base, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
   check('First visit presents entrance', await page.locator('.arrival').isVisible());

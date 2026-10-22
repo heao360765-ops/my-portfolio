@@ -1,8 +1,22 @@
 """Build eight static pages; no runtime framework or external services."""
 import json
+import re
 from html import escape
 from pathlib import Path
+from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
+GAME_ROOT = ROOT / 'games' / 'wuxitown'
+GAME_ROOT.mkdir(parents=True, exist_ok=True)
+GAME_PAGES = {'index.html', 'world.html', 'residents.html', 'rules.html', 'gallery.html', 'download.html', 'credits.html', 'studies.html'}
+
+def game_paths(html):
+    def update(match):
+        attr, value = match.groups()
+        url = urlsplit(value)
+        if not url.path or url.scheme or url.netloc or url.path in GAME_PAGES:
+            return match.group(0)
+        return f'{attr}="../../{value}"'
+    return re.sub(r'(href|src)="([^"]+)"', update, html)
 RELEASE = json.loads((ROOT / 'downloads/release-info.json').read_text(encoding='utf-8-sig'))
 if not (ROOT / 'downloads' / RELEASE['filename']).is_file():
     raise FileNotFoundError('The download package declared in release-info.json is missing')
@@ -83,5 +97,12 @@ for slug,title,desc,body in [
  ('credits','素材与记录','雾汐镇网页的素材来源、字体许可与项目说明。',credits),
  ('studies','制作记录','从风草、昼夜光影到建筑与八向角色，保留雾汐镇逐步形成的实景创作档案。',studies),
 ]:
-    (ROOT/f'{slug}.html').write_text(shell(slug,title,desc,body),encoding='utf-8')
-print('Built eight static pages.')
+    html = game_paths(shell(slug,title,desc,body))
+    canonical = f'https://heao360765-ops.github.io/my-portfolio/games/wuxitown/{"" if slug == "index" else slug + ".html"}'
+    html = html.replace('</head>', f'<link rel="canonical" href="{canonical}"><meta property="og:url" content="{canonical}"></head>')
+    (GAME_ROOT/f'{slug}.html').write_text(html,encoding='utf-8')
+    if slug != 'index':
+        target = f'games/wuxitown/{slug}.html'
+        redirect = f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} · 雾汐镇</title><link rel="canonical" href="{canonical}"><script>location.replace({json.dumps(target)} + location.search + location.hash);</script><noscript><meta http-equiv="refresh" content="0;url={target}"></noscript></head><body><p>雾汐镇官网已迁至独立栏目。<a href="{target}">进入{title}</a></p></body></html>'''
+        (ROOT/f'{slug}.html').write_text(redirect, encoding='utf-8')
+print('Built eight game pages and seven legacy redirects; portfolio homepage unchanged.')

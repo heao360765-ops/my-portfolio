@@ -1,4 +1,6 @@
 'use strict';
+const siteRoot = new URL('.', document.currentScript.src);
+const assetUrl = path => new URL(path, siteRoot).href;
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -61,7 +63,7 @@ const places = {
 $$('[data-place]').forEach(button => button.addEventListener('click', () => {
   const [photo, code, title, description] = places[button.dataset.place];
   const img = $('.place-image');
-  img.src = `assets/screens/${photo}.webp`;
+  img.src = assetUrl(`assets/screens/${photo}.webp`);
   img.alt = title + '游戏实景';
   $('#place-code').textContent = code;
   $('#place-title').textContent = title;
@@ -78,7 +80,7 @@ const characters = {
 };
 $$('[data-character]').forEach(button => button.addEventListener('click', () => {
   const id = button.dataset.character, [name, subtitle, description, number] = characters[id];
-  $('#character-image').src = `assets/characters/${id}.png`;
+  $('#character-image').src = assetUrl(`assets/characters/${id}.png`);
   $('#character-image').alt = name + '像素形象';
   $('#character-name').textContent = name;
   $('#character-subtitle').textContent = subtitle;
@@ -94,7 +96,7 @@ const studyTimes = {
 };
 $$('[data-study]').forEach(button => button.addEventListener('click', () => {
   const [file, caption] = studyTimes[button.dataset.study];
-  $('#study-image').src = `素材/截图_昼夜/${file}`;
+  $('#study-image').src = assetUrl(`素材/截图_昼夜/${file}`);
   $('#study-image').alt = caption + '的草地与旅人';
   $('#study-caption').textContent = caption;
   $$('[data-study]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
@@ -108,7 +110,7 @@ if (lightbox) {
     const photos = visiblePhotos();
     currentIndex = (index + photos.length) % photos.length;
     const photo = photos[currentIndex];
-    $('img', lightbox).src = `assets/screens/${photo.dataset.photo}.webp`;
+    $('img', lightbox).src = assetUrl(`assets/screens/${photo.dataset.photo}.webp`);
     $('img', lightbox).alt = photo.dataset.title;
     $('figcaption', lightbox).textContent = `${photo.dataset.title}  /  ${currentIndex + 1} · ${photos.length}`;
   };
