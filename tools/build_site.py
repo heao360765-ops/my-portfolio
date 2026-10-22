@@ -69,9 +69,9 @@ download = (download
     .replace('运行 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载。',
              '双击解压后的 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载；手机可以浏览本站，当前下载包需要 Windows 电脑运行。'))
 
-play_link = '<a class="download-cta" href="play/index.html">网页试玩 <span aria-hidden="true">▶</span></a><p class="download-meta">电脑浏览器体验 · 首次加载约 104 MiB · 推荐使用键盘</p>'
-download = download.replace('<a class="download-cta" href="downloads/', play_link + '<a class="download-cta" href="downloads/')
-home = home.replace('<a class="download-cta" href="download.html">下载 Windows 游戏 <span aria-hidden="true">↓</span></a>', '<a class="download-cta" href="play/index.html">网页试玩 <span aria-hidden="true">▶</span></a><a class="text-link" href="download.html">下载 Windows 版 ↓</a>')
+play_link = '<a class="text-link" href="play/index.html">浏览器测试版 ▶</a><p class="download-meta">首次加载约 104 MiB · 仅推荐电脑与键盘<br>完整场景加载与性能仍在验证，优先体验 Windows 版。</p>'
+download = download.replace('<a class="text-link" href="downloads/SHA256SUMS.txt">', play_link + '<a class="text-link" href="downloads/SHA256SUMS.txt">')
+home = home.replace('<a class="download-cta" href="download.html">下载 Windows 游戏 <span aria-hidden="true">↓</span></a>', '<a class="download-cta" href="download.html">下载 Windows 游戏 <span aria-hidden="true">↓</span></a><a class="text-link" href="play/index.html">浏览器测试版 ▶</a>')
 
 for slug,title,desc,body in [
  ('download','下载游戏','下载雾汐镇 Windows 64位可运行游戏，解压后开启旅程，支持分辨率设置与自动存档。',download),
