@@ -1,33 +1,55 @@
-# 雾汐镇 · 游戏实景网站
+# 雾汐镇游戏网站
 
-GitHub Pages 静态站点，所有页面可直接打开，无需运行时依赖、账号或服务端。
+网站：https://heao360765-ops.github.io/my-portfolio/
 
-## 页面
+网页试玩：https://heao360765-ops.github.io/my-portfolio/play/index.html
 
-- `index.html`：可跳过的验票入场、白昼/暮色大厅和游戏介绍。
-- `world.html`：城镇、乡野、车站与室内。
-- `residents.html`：游戏中五种可选形象及居民。
-- `rules.html`：三派系、昼夜、有限交流与操作说明。
-- `gallery.html`：无 UI 实景图，分类浏览及键盘大图。
-- `credits.html`：素材、字体和参考来源。
-- `studies.html`：保留原站的风草昼夜、建筑与八向角色记录，并沿用新的像素版式。
+Windows 下载：https://heao360765-ops.github.io/my-portfolio/download.html
 
-## 本地预览
+这是可以直接提交和发布的静态网站。首页 `index.html` 在根目录，页面、样式、图片和已导出的网页游戏均已准备好。发布不需要运行 Python、npm 或 Godot，不需要填写构建命令。GitHub Pages 设置为 **Deploy from a branch → main → /(root)**。
 
-在项目目录运行 `python -m http.server 4173 --bind 127.0.0.1`，打开 `http://127.0.0.1:4173/`。
+## 现有网站日常更新 全程按钮
 
-## 编辑与验证
+1. 在 VS Code 选择 File → Open Folder，打开 `D:\AI-Work\my-portfolio`。左下角分支应显示 `main`。
+2. 在开始编辑前，打开源代码管理面板（Ctrl+Shift+G），菜单“…” → Pull，取回其他设备的更新。
+3. 直接编辑根目录 HTML 中的文字，或修改 `styles.css`、`app.js`，按 Ctrl+S 保存。展示页面可双击 `index.html` 预览。
+4. 在源代码管理面板检查修改，文件旁点“+”暂存，写清修改说明，点 Commit。
+5. 点 Sync Changes。等仓库 Actions 中 **pages build and deployment** 成功，在原网站按 Ctrl+F5 验证。
 
-- HTML 源内容在 `tools/build_site.py`，执行 `python tools/build_site.py` 可重新输出八个静态页面。
-- `styles.css` 为共享样式，`app.js` 管理交互；没有外部 CDN、第三方统计或自动播放媒体。
-- `tools/check_site.cjs` 使用 Playwright + Edge 检查 375/768/1440 像素布局、入口、菜单、角色、影像大图及图片加载；可通过 `SITE_URL` 和 `SITE_ARTIFACTS` 设置地址与检查结果目录。
-- `python tools/check_links.py` 检查页面内的本地页面、图像及脚本链接。
-- 实景原 PNG 存在开发工作区的截图档案；`assets/screens` 内 WebP 是同内容格式压缩。转换脚本 `tools/prepare_screens.cjs` 需要 Sharp。
-- 网站字体是游戏 Fusion Pixel 的字形子集，保留 `assets/fonts/OFL.txt` 及上游许可。增加文字时应重新生成字形子集，或加载游戏中的完整字体。
+不用重复 Initialize Repository 或 Publish to GitHub。新版 Windows 包和网页游戏都已包含在此次发布中。
 
-本次版本基于远程 `9824fec`，保留已有 `素材/`、`资产/` 和原始创作内容，不恢复此前去掉的姓名、学校、邮箱或个人账号链接。
+## 换电脑或发布一个新网站
 
-下载页提供 Windows 64 位完整运行包（当前开发版），在 downloads/ 中附 SHA-256 校验文件。六人在线联机尚未完成。
+**继续维护现有网站**：打开仓库 https://github.com/heao360765-ops/my-portfolio → Code → HTTPS 复制地址。在 VS Code 按 Ctrl+Shift+P → Git: Clone → 粘贴地址 → 选择空的目标目录 → Open。克隆后的 `main` 已关联远程仓库，以后按上面的更新流程操作。
 
-- `download.html`：Windows 游戏下载、解压启动说明与运行要求。
-- 发布包 `downloads/WuxiTown-v0.1.1-Windows-x64.zip` 可直接由 GitHub Pages 下载；游戏不依赖网页服务运行。
+**用发布包新建网站**：把网站发布 ZIP 完整解压到新的英文目录，确保打开的这一层直接能看到 `index.html`，而不是只看到另一个文件夹。VS Code 打开该目录 → 源代码管理 → Initialize Repository → 确认分支名称为 main（若不是，菜单“…” → Branch → Rename Branch）→ 文件旁“+” → 填说明 → Commit → Publish to GitHub → 选 public repository。浏览器登录授权后，到新仓库 Settings → Pages → Deploy from a branch → main → /(root) → Save。等待 Actions 部署成功后打开生成的网址。
+
+新建网站时再执行 Initialize 和 Publish；不要对现有已连接的项目重复执行。
+
+**文件大小注意**：完整游戏含约 83 MiB 的 Windows ZIP、66 MiB 的 PCK 和38 MiB 的 WASM，均小于 Git 的 100 MiB 单文件上限，但超过 GitHub 网页 Upload files 的25 MiB 单文件上限。因此完整网站必须使用手册的 VS Code Publish / Sync 上传，不要把发布 ZIP 整个拖到 GitHub 网页，也不要把 ZIP 当作网站首页。解压后的内容才是网站文件。
+
+## 克隆开源游戏学习
+
+练习项目：https://github.com/gabrielecirulli/2048
+
+先读 README 和 LICENSE.txt → Code → HTTPS 复制地址 → VS Code Ctrl+Shift+P → Git: Clone → 选择学习目录 → Open → 双击 index.html。方向键移动，New Game 重新开始。该项目采用 MIT，允许商用，分发时需保留版权和许可声明。克隆他人的仓库不会获得推送权限；要发布自己的修改，先 Fork 到自己账号。
+
+## 页面与资源
+
+- `index.html`：入镇、昼夜实景、网页试玩与 Windows 下载入口。
+- `download.html`：v0.1.2 Windows 开发版、解压说明和 SHA-256 校验。
+- `play/`：已导出的单线程网页试玩。需通过 HTTP 或 HTTPS 打开；不能双击本地文件运行。推荐电脑、键盘与支持 WebGL2 的浏览器，首次资源约104 MiB。
+- `world.html`、`residents.html`、`rules.html`、`gallery.html`：世界、居民、玩法与实景影像。
+- `studies.html`、`credits.html`：制作记录与素材来源。
+- `assets/`、`素材/`、`资产/`：保留网站引用的画面、角色、字体及创作素材。
+- `downloads/`：Windows 游戏、版本信息与校验文件。
+
+手机可以浏览展示页面；Windows 包不能在手机运行。网页试玩尚未针对手机触屏操作适配。六人在线联机仍未完成，GitHub Pages 不提供联机服务器。
+
+## 开发维护说明
+
+日常文字、图片和样式更新直接编辑静态文件即可，无需生成步骤。`tools/build_site.py` 是开发人员使用的批量生成工具，重新运行会覆盖八个 HTML 页面；使用该工具时须先同步自己的页面改动，并维护 `downloads/release-info.json`。它不是发布流程的前置步骤。
+
+`tools/check_links.py` 检查本地引用；`tools/check_site.cjs` 使用 Playwright 检查桌面和手机布局及网站交互。游戏字体使用 Fusion Pixel，第三方许可保留在 `assets/fonts/OFL.txt`。2048 的 MIT 许可不适用于本网站的游戏、图片和其他素材；各素材遵循原有授权。
+
+官方说明：[Pages 发布来源](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [GitHub 上传文件限制](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)
