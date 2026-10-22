@@ -31,3 +31,17 @@ GitHub Pages 静态站点，所有页面可直接打开，无需运行时依赖�
 
 - `download.html`：Windows 游戏下载、解压启动说明与运行要求。
 - 发布包 `downloads/WuxiTown-v0.1.1-Windows-x64.zip` 可直接由 GitHub Pages 下载；游戏不依赖网页服务运行。
+
+## 发布、更新与克隆
+
+网站：https://heao360765-ops.github.io/my-portfolio/
+
+仓库：https://github.com/heao360765-ops/my-portfolio
+
+1. **发布**：本站已初始化并发布，不必再次 Initialize 或 Publish。仓库 Settings → Pages 查看发布来源；访问上方网址确认上线。
+2. **更新**：先在 VS Code 源代码管理菜单选择 Pull，再修改并保存 → 文件旁“+”暂存 → 写明修改内容 → Commit → Sync Changes。仅在已确认跟踪 `origin/main`、没有其他待发布提交的工作副本中执行。Actions 中部署成功后，打开同一网址并用 Ctrl+F5 验证。
+3. **克隆学习**：打开 https://github.com/gabrielecirulli/2048 ，先读 README 与 LICENSE.txt，再点 Code → HTTPS 复制地址。VS Code 按 Ctrl+Shift+P → Git: Clone → 选择学习目录 → Open。双击克隆目录中的 index.html 即可运行；方向键合并方块。该项目采用 MIT，允许商用，分发时需保留版权与许可声明。
+
+页面可直接编辑预览，但生成器重新运行会覆盖 HTML。长期维护请同步修改 `tools/build_site.py`，发布包版本、文件名、大小与发布日期统一维护在 `downloads/release-info.json`，再生成并验证页面。图形界面的保存、暂存、提交、同步流程不变。
+
+GitHub Pages 只能托管本站的静态展示及浏览器资源，不会自动把 Windows 游戏变成网页游戏，也不提供多人联机服务器。本站公开源代码不代表游戏画面和其他素材自动采用 MIT；第三方素材遵循各自许可。

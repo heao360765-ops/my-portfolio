@@ -31,7 +31,7 @@ function check(name, value, detail = '') { results.push({ name, passed: !!value,
   await page.reload({ waitUntil: 'networkidle' });
   check('Session return does not repeat entrance', await page.locator('.arrival').isHidden());
 
-  const pages = ['index', 'world', 'residents', 'rules', 'gallery', 'credits', 'studies'];
+  const pages = ['index', 'world', 'residents', 'rules', 'gallery', 'credits', 'studies', 'download'];
   for (const width of [375, 768, 1440]) {
     await page.setViewportSize({ width, height: width < 500 ? 812 : 1000 });
     for (const slug of pages) {

@@ -1,6 +1,11 @@
-"""Build the five static pages; no runtime framework or external services."""
+"""Build eight static pages; no runtime framework or external services."""
+import json
+from html import escape
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
+RELEASE = json.loads((ROOT / 'downloads/release-info.json').read_text(encoding='utf-8-sig'))
+if not (ROOT / 'downloads' / RELEASE['filename']).is_file():
+    raise FileNotFoundError('The download package declared in release-info.json is missing')
 PAGES = [('index', '入镇', '00'), ('world', '镇与乡野', '01'), ('residents', '来客与居民', '02'), ('rules', '旅途手记', '03'), ('gallery', '实景影像', '04'), ('download', '下载游戏', '05')]
 
 def image(name, alt, classes='', eager=False):
@@ -52,6 +57,17 @@ credits='''<main id="main" class="subpage"><div class="page-heading"><div><p cla
 studies='''<main id="main" class="subpage"><div class="page-heading"><div><p class="section-label">CREATIVE ARCHIVE / WORLD IN PROGRESS</p><h1>制作记录</h1></div><p>从一片随风起伏的草地，<br>到一个值得探索的世界。</p></div><section class="place-stage"><img class="place-image" src="素材/截图_相机对比/F_透视f60_p18(天多).png" alt="早期场景记录：暮光下起伏的山丘与风草" width="960" height="540"><div class="place-caption"><p class="section-label">FIELD STUDY / 001</p><h2>风经过的地方</h2><p>让想象成为世界。草地、天空和光影，是这个世界最初的几笔。</p></div></section><section class="daynight-section"><div class="section-top"><div><p class="section-label">SCENE RECORD / THE CHANGING LIGHT</p><h2>同一片草地，不同的时刻。</h2></div><p>保留最初的场景记录。选择清晨、正午或黄昏，看看一天之中光线的变化。</p></div><div class="study-scene"><div class="study-times" role="group" aria-label="早期场景时刻"><button type="button" data-study="dawn" aria-pressed="true">清晨</button><button type="button" data-study="day" aria-pressed="false">正午</button><button type="button" data-study="dusk" aria-pressed="false">黄昏</button></div><img id="study-image" src="素材/截图_昼夜/时刻1_6.5点.png" alt="清晨06:30的草地与旅人" width="960" height="540" loading="lazy"><p id="study-caption" aria-live="polite">06:30 / 清晨</p></div></section><section class="paper-section"><div class="section-top"><div><p class="section-label">SPACE / CHARACTER / INTERACTION</p><h2>世界，从细节开始。</h2></div><p>关于世界的构筑，<br>也关于人与世界的关系。</p></div><div class="daynight-grid"><figure class="study-entry"><img src="资产/2D/贴图_城镇/landmarks/previews/ClockChapel_front.png" alt="钟楼礼拜堂的早期建筑原型" width="640" height="360" loading="lazy"><figcaption><h3>有故事的空间</h3><p>建筑原型 / 场景构成 / 像素材质</p></figcaption></figure><figure class="study-entry"><div class="motion-study"><span aria-hidden="true">N · NE · E · SE · S · SW · W · NW</span><img src="资产/2D/角色帧图/walk_s_0.png" alt="旅人的像素行走帧" width="64" height="64" loading="lazy"></div><figcaption><h3>像素，也有生命</h3><p>八向角色 / 帧动画 / 交互表达</p></figcaption></figure></div></section><section class="rules-section"><p class="section-label">GAME / SPACE / INTERACTION</p><h2 class="large-heading">在设计与技术的交界处，<br>探索想法成为现实的可能。</h2><p>从规则到画面，从概念到原型，尝试把每个细节连接成完整的体验。</p><a class="text-link" href="gallery.html">看看如今的小镇</a></section></main>'''
 
 download = '''<main id="main" class="subpage"><div class="page-heading"><div><p class="section-label">05 / YOUR JOURNEY STARTS HERE</p><h1>把车票，带进小镇。</h1></div><p>下载、解压，然后启程。<br>无需安装 Godot 编辑器。</p></div><section class="download-stage"><div class="download-image">IMAGE_DOWNLOAD</div><div class="download-sheet"><p class="eyebrow">WINDOWS / 64 BIT</p><h2>雾汐镇</h2><p>v0.1.1 · 可运行开发版</p><p>包含当前城镇与乡村、可进入建筑、角色选择、昼夜探索及自动存档。六人在线联机仍在开发中。</p><a class="download-cta" href="downloads/WuxiTown-v0.1.1-Windows-x64.zip" download>下载 Windows 游戏 <span aria-hidden="true">↓</span></a><p class="download-meta">ZIP · 84.6 MB · 2026.10.14</p><a class="text-link" href="downloads/SHA256SUMS.txt">SHA-256 校验文件</a></div></section><section class="paper-section"><p class="section-label">BEFORE YOU SET OFF</p><h2 class="large-heading">三个步骤，开启旅程。</h2><div class="rule-timeline"><article class="timeline-item"><small>01 / EXTRACT</small><h3>完整解压</h3><p>下载 ZIP 后先解压到普通文件夹，保留程序与资源包在同一目录。</p></article><article class="timeline-item"><small>02 / START</small><h3>双击启程</h3><p>运行 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载。</p></article><article class="timeline-item"><small>03 / RETURN</small><h3>随时回来</h3><p>退出自动保存，下次选择继续旅程。按 Esc 调整分辨率、全屏和音量。</p></article></div><p class="download-requirements">运行环境：Windows 10 / 11（64 位），支持 Vulkan 的显卡。默认 1280 × 720，可在开始界面或 Esc 设置中调整；低配置设备优先选择 960 × 540 或 1280 × 720。当前为开发版本，尚未完成广泛硬件兼容测试。</p></section></main>'''.replace('IMAGE_DOWNLOAD', image('station','列车停靠雾汐镇车站','',True))
+
+# Keep generated download details aligned with the package manifest.
+download = (download
+    .replace('WuxiTown-v0.1.1-Windows-x64.zip', escape(RELEASE['filename'], quote=True))
+    .replace('v0.1.1 ·', f"v{escape(RELEASE['version'])} ·")
+    .replace('84.6 MB · 2026.10.14', f"{RELEASE['size_mib']:.1f} MiB · {escape(RELEASE['released_at'])}")
+    .replace('下载、解压，然后启程。', '先下载到电脑，完整解压后再启程。')
+    .replace('下载 ZIP 后先解压到普通文件夹，保留程序与资源包在同一目录。',
+             '下载完成后，右键 ZIP 选择“全部解压”。不要直接在压缩包里启动；请把 WuxiTown.exe 与 WuxiTown.pck 保留在同一文件夹。')
+    .replace('运行 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载。',
+             '双击解压后的 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载；手机可以浏览本站，当前下载包需要 Windows 电脑运行。'))
 
 for slug,title,desc,body in [
  ('download','下载游戏','下载雾汐镇 Windows 64位可运行游戏，解压后开启旅程，支持分辨率设置与自动存档。',download),
