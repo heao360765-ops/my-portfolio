@@ -12,6 +12,16 @@ Windows 下载：https://heao360765-ops.github.io/my-portfolio/games/wuxitown/do
 
 这是可以直接提交和发布的静态网站。首页 `index.html` 在根目录，页面、样式、图片和已导出的网页游戏均已准备好。发布不需要运行 Python、npm 或 Godot，不需要填写构建命令。GitHub Pages 设置为 **Deploy from a branch → main → /(root)**。
 
+## 工作台交付与流程核验
+
+2026-10-22：按《GitHub三大流程图形界面操作手册》路线 A 核验发布、更新、克隆学习三条流程。网站继续使用原仓库的 `main` 与 `/(root)` 发布，比赛入口仍为 `games/wuxitown/`。
+
+原始手册、执行记录和可直接解压发布的网站 ZIP 存在本地项目 `_ai_teamwork/`，并登记到共作工作台“个人作品集与雾汐镇官网”。该目录不推送到公开仓库。发布 ZIP 不含 `.git`；要继续维护原网站，应使用 Git: Clone 获取仓库，避免新建重复远程仓库。
+
+手册里的图形界面按钮路径用于人工接手；本次自动化执行通过 Git、GitHub API 与浏览器验证完成，不记录为已经实际点击过 VS Code 的 Initialize / Publish 按钮。已有仓库不重复初始化，不重新创建仓库。Cloudflare 私有发布是可选的另一条路线，当前网站不切换该路线。
+
+原文“MIT 不允许拿去卖”不准确：[MIT 允许商业使用](https://choosealicense.com/licenses/mit/)，须保留版权和许可声明。学习项目 2048 的 MIT 授权不扩展到本作品集素材，本次未为网站统一授予新许可。
+
 ## 现有网站日常更新 全程按钮
 
 1. 在 VS Code 选择 File → Open Folder，打开 `D:\AI-Work\my-portfolio`。左下角分支应显示 `main`。

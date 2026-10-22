@@ -4,3 +4,6 @@ assets/screens/*.png
 assets/fonts/fusion-pixel.otf
 __pycache__/
 *.pyc
+
+# Local workbench documents and deliveries stay off the public website.
+_ai_teamwork/
