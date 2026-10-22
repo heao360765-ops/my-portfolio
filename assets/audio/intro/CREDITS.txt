@@ -1,0 +1,9 @@
+FIELD ARCHIVE - original system announcement
+
+Text: 系统初始化。访问者已确认。正在载入创作档案。加载完成。欢迎进入。
+Voice: Microsoft Huihui Desktop, synthesized locally with Windows System.Speech.
+Processing: band limiting, short delay, original generated electronic tones.
+No voices or audio samples extracted from Arknights or reference videos.
+
+Timeline (seconds): initialize 0.18; confirmed 2.78; loading 4.55; ready 8.25; welcome 9.75.
+Animation progress is a visual sequence, not OS verification.

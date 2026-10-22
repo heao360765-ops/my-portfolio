@@ -1,7 +1,7 @@
 const {chromium}=require('playwright');
 const fs=require('node:fs');
 const base=process.env.SITE_URL||'http://127.0.0.1:4190/';
-const out=process.env.SITE_ARTIFACTS||'D:/AI-Work/artifacts/portfolio-system-intro-20261022/qa';
+const out=process.env.SITE_ARTIFACTS||'D:/AI-Work/artifacts/portfolio-industrial-light-20261022/qa';
 fs.mkdirSync(out,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'msedge'});
