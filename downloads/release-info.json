@@ -1,8 +1,11 @@
 {
-  "filename": "WuxiTown-v0.1.2-Windows-x64.zip",
-  "version": "0.1.2",
-  "released_at": "2026.10.22",
-  "bytes": 87357499,
-  "size_mib": 83.3,
-  "sha256": "cbfac65ec98d2f8986c75c860f5c3fdb342bd13e7a84845951d9ef5740b85711"
+  "filename": "WuxiTown-v0.4.0-Windows-x64.zip",
+  "version": "0.4.0",
+  "released_at": "2026.10.26",
+  "bytes": 167969323,
+  "size_mib": 160.2,
+  "sha256": "9c2fc513e3994be5c55f1aeb977b5d584b2b3dc35c9843078fff1cf8504ad6c3",
+  "download_url": "https://github.com/heao360765-ops/my-portfolio/releases/download/wuxitown-v0.4.0/WuxiTown-v0.4.0-Windows-x64.zip",
+  "checks": 66,
+  "web_version": "0.4.0"
 }

@@ -18,7 +18,7 @@ def game_paths(html):
         return f'{attr}="../../{value}"'
     return re.sub(r'(href|src)="([^"]+)"', update, html)
 RELEASE = json.loads((ROOT / 'downloads/release-info.json').read_text(encoding='utf-8-sig'))
-if not (ROOT / 'downloads' / RELEASE['filename']).is_file():
+if not RELEASE.get('download_url') and not (ROOT / 'downloads' / RELEASE['filename']).is_file():
     raise FileNotFoundError('The download package declared in release-info.json is missing')
 PAGES = [('index', '入镇', '00'), ('world', '镇与乡野', '01'), ('residents', '来客与居民', '02'), ('rules', '旅途手记', '03'), ('gallery', '实景影像', '04'), ('download', '下载游戏', '05')]
 
@@ -83,9 +83,19 @@ download = (download
     .replace('运行 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载。',
              '双击解压后的 WuxiTown.exe，在开始界面选择角色与派系。首次进入场景需要等待加载；手机可以浏览本站，当前下载包需要 Windows 电脑运行。'))
 
-play_link = '<a class="text-link" href="play/index.html">浏览器测试版 ▶</a><p class="download-meta">首次加载约 104 MiB · 仅推荐电脑与键盘<br>完整场景加载与性能仍在验证，优先体验 Windows 版。</p>'
+play_link = '<a class="text-link" href="play/index.html">浏览器测试版 ▶</a><p class="download-meta">首次加载约 214 MiB · 仅推荐电脑与键盘<br>完整场景加载与性能仍在验证，优先体验 Windows 版。</p>'
 download = download.replace('<a class="text-link" href="downloads/SHA256SUMS.txt">', play_link + '<a class="text-link" href="downloads/SHA256SUMS.txt">')
 home = home.replace('<a class="download-cta" href="download.html">下载 Windows 游戏 <span aria-hidden="true">↓</span></a>', '<a class="download-cta" href="download.html">下载 Windows 游戏 <span aria-hidden="true">↓</span></a><a class="text-link" href="play/index.html">浏览器测试版 ▶</a>')
+
+# v0.4.0: both sites point at one tested, immutable release asset.
+download = download.replace('downloads/' + escape(RELEASE['filename'], quote=True), escape(RELEASE.get('download_url', 'downloads/' + RELEASE['filename']), quote=True))
+download = download.replace('可运行开发版', '完整单人 Demo')
+download = download.replace('包含当前城镇与乡村、可进入建筑、角色选择、昼夜探索及自动存档。六人在线联机仍在开发中。', '收录当前城镇与乡野、十处室内、角色与派系选择、调查任务、五名 AI 竞争者、昼夜探索及自动存档。当前为开发中单人 Demo，不含在线联机。')
+download = download.replace('退出自动保存，下次选择继续旅程。按 Esc 调整分辨率、全屏和音量。', '退出自动保存，下次选择继续旅程。按 Esc 调整分辨率、全屏和音量。标题设置和游戏内设置均可删除旅程存档，确认后同时清除备份并返回标题；取消不会删除。')
+release_notes = '<section class="paper-section" id="release-notes"><p class="section-label">2026.10.26 / VERSION 0.4.0</p><h2 class="large-heading">这一版，安心启程。</h2><div class="rule-timeline"><article class="timeline-item"><small>01 / SAVE MANAGEMENT</small><h3>存档由你管理</h3><p>新增删除存档与二次确认。删除包含备份，声音和显示设置保留。</p></article><article class="timeline-item"><small>02 / PLAYER DEMO</small><h3>专注这段旅程</h3><p>完整保留当前单人玩法，移除创作者模式、密码入口与模块搭建工作台。</p></article><article class="timeline-item"><small>03 / OPEN DOORS</small><h3>走进教堂与工坊</h3><p>修正两处入口位置与朝向，让门口的 F 键进入提示与操作一致。</p></article></div><p>Windows 打包版通过 66 项回归检查。完整解压即可游玩；本包包含当前已制作内容，游戏仍在持续开发。</p></section>'
+download = download.replace('</main>', release_notes + '</main>')
+home = home.replace('</main>', '<section class="paper-section"><p class="section-label">NEW DEMO / 2026.10.26</p><h2 class="large-heading">v0.4.0 完整单人 Demo</h2><p>探索城镇与乡野、十处室内与调查任务。新增存档删除，修复教堂和铁匠铺入口，移除创作者模式。</p><a class="text-link" href="download.html#release-notes">查看更新与下载 →</a></section></main>')
+studies = studies.replace('</main>', release_notes + '</main>')
 
 for slug,title,desc,body in [
  ('download','下载游戏','下载雾汐镇 Windows 64位可运行游戏，解压后开启旅程，支持分辨率设置与自动存档。',download),

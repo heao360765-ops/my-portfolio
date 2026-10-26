@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-		<title>网页试玩 · 雾汐镇</title>
-		<meta name="description" content="雾汐镇浏览器试玩，推荐电脑与键盘。首次加载约104 MiB。">
+		<title>网页试玩 v0.4.0 · 雾汐镇</title>
 		<style>
 html, body, #canvas {
 	margin: 0;
@@ -18,18 +17,9 @@ body {
 	overflow: hidden;
 	touch-action: none;
 }
-.play-nav { position:fixed;top:8px;left:12px;z-index:20;display:flex;gap:16px;padding:8px 12px;background:#101c1ae8;font:14px sans-serif;border-radius:4px; }
-.play-nav a { color:#ead8a1;text-decoration:none; }
-.play-nav a:focus-visible { outline:2px solid #ead8a1;outline-offset:3px; }
 
 #canvas {
 	display: block;
-	width: min(100vw, 177.7778vh);
-	height: min(56.25vw, 100vh);
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
 }
 
 #canvas:focus {
@@ -105,8 +95,9 @@ body {
 
 	</head>
 	<body>
-		<nav class="play-nav" aria-label="试玩导航"><a href="../games/wuxitown/">← 返回雾汐镇</a><a href="../games/wuxitown/download.html">下载 Windows 版</a></nav>
-		<canvas id="canvas" width="1280" height="720">
+<a href="../games/wuxitown/" style="position:fixed;left:12px;top:12px;z-index:30;padding:8px 12px;color:#f1e9d3;background:#14211de8;border:1px solid #8d8463;text-decoration:none;font:14px sans-serif">← 返回游戏官网</a>
+<span style="position:fixed;right:12px;top:12px;z-index:30;color:#f1e9d3;background:#14211de8;padding:8px;font:12px sans-serif">v0.4.0 · 电脑键盘试玩</span>
+		<canvas id="canvas">
 			Your browser does not support the canvas tag.
 		</canvas>
 
@@ -122,9 +113,37 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":69324552,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":185216168,"index.wasm":39514754},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
+
+async function startPackedGame(options) {
+    const response = await fetch('pack-manifest.json');
+    if (!response.ok) throw new Error('资源清单加载失败，请刷新重试。');
+    const manifest = await response.json();
+    const pack = new Uint8Array(manifest.bytes);
+    let offset = 0;
+    for (const part of manifest.parts) {
+        const result = await fetch(part.name);
+        if (!result.ok) throw new Error('游戏资源下载失败，请刷新重试。');
+        const reader = result.body.getReader();
+        let received = 0;
+        while (true) {
+            const {done, value} = await reader.read();
+            if (done) break;
+            if (received + value.byteLength > part.bytes) throw new Error('游戏资源长度不匹配。');
+            pack.set(value, offset + received);
+            received += value.byteLength;
+            options.onProgress(offset + received, manifest.bytes);
+        }
+        if (received !== part.bytes) throw new Error('游戏资源未下载完整，请刷新重试。');
+        offset += received;
+    }
+    await engine.init(GODOT_CONFIG.executable);
+    await engine.preloadFile(pack.buffer, 'index.pck');
+    return engine.start({...options, args: ['--main-pack', 'index.pck', ...GODOT_CONFIG.args]});
+}
+
 
 (function () {
 	const statusOverlay = document.getElementById('status');
@@ -210,7 +229,7 @@ const engine = new Engine(GODOT_CONFIG);
 		}
 	} else {
 		setStatusMode('progress');
-		engine.startGame({
+		startPackedGame({
 			'onProgress': function (current, total) {
 				if (current > 0 && total > 0) {
 					statusProgress.value = current;
@@ -221,7 +240,6 @@ const engine = new Engine(GODOT_CONFIG);
 				}
 			},
 		}).then(() => {
-			document.title = '网页试玩 · 雾汐镇';
 			setStatusMode('hidden');
 		}, displayFailureNotice);
 	}

@@ -1,0 +1,17 @@
+{
+  "version": "0.4.0",
+  "bytes": 185216168,
+  "sha256": "c609aa3bae81c9499dbe0f7ad872f347b7b97a8ccd2d88d8a85562d561d30078",
+  "parts": [
+    {
+      "name": "game-v0.4.0.part1.bin",
+      "bytes": 94371840,
+      "sha256": "74f3386a6aa687e554637fd58919157c61d3259e9e469134a2728f25244608d2"
+    },
+    {
+      "name": "game-v0.4.0.part2.bin",
+      "bytes": 90844328,
+      "sha256": "61df6ff656ba15057b34bde8464bd577e5251396c5c59b1c6b87ca30fea26135"
+    }
+  ]
+}

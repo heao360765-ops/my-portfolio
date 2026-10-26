@@ -1,6 +1,1 @@
-# 雾汐镇 v0.1.2 发布包校验值（Windows 64 位）
-# 用法：certutil -hashfile 文件名 SHA256
-
-cbfac65ec98d2f8986c75c860f5c3fdb342bd13e7a84845951d9ef5740b85711  WuxiTown-v0.1.2-Windows-x64.zip
-d34d36f3be1a6c49c56525ae86469b92e4f417ddf0b43cf00dd80c385c4b0562  WuxiTown.exe
-40b14691ec94547d3651bd9a844bad2bc3585400a22f158ee235f20a3282227b  WuxiTown.pck
+9c2fc513e3994be5c55f1aeb977b5d584b2b3dc35c9843078fff1cf8504ad6c3  WuxiTown-v0.4.0-Windows-x64.zip

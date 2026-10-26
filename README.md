@@ -62,8 +62,8 @@ Windows 下载：https://heao360765-ops.github.io/my-portfolio/games/wuxitown/do
 
 - `index.html`、`portfolio.css`：个人作品集首页，游戏开发与 Mono-01 硬件探索。
 - `games/wuxitown/index.html`：原游戏官网首页，内容与视觉保持一致。
-- `games/wuxitown/download.html`：v0.1.2 Windows 开发版、解压说明和 SHA-256 校验。
-- `play/`：已导出的单线程网页试玩。需通过 HTTP 或 HTTPS 打开；不能双击本地文件运行。推荐电脑、键盘与支持 WebGL2 的浏览器，首次资源约104 MiB。
+- `games/wuxitown/download.html`：v0.4.0 Windows 完整单人 Demo、解压说明和 SHA-256 校验。
+- `play/`：已导出的单线程网页试玩。需通过 HTTP 或 HTTPS 打开；不能双击本地文件运行。推荐电脑、键盘与支持 WebGL2 的浏览器，首次资源约214 MiB。
 - `games/wuxitown/` 内的 `world.html`、`residents.html`、`rules.html`、`gallery.html`：世界、居民、玩法与实景影像。
 - `games/wuxitown/` 内的 `studies.html`、`credits.html`：制作记录与素材来源。
 - 根目录原有七个游戏内页：保留为兼容跳转，旧链接的查询参数与锚点会带到对应新页面；不要再编辑这些跳转页的正文。
@@ -79,3 +79,11 @@ Windows 下载：https://heao360765-ops.github.io/my-portfolio/games/wuxitown/do
 `tools/check_links.py` 检查作品集、游戏官网与试玩页的本地引用；`tools/check_site.cjs` 使用 Playwright 检查游戏官网桌面和手机布局及交互，默认地址为 `http://127.0.0.1:4173/games/wuxitown/`；`tools/check_portfolio.cjs` 检查个人作品集、入口隔离、旧链接兼容和动态资源。游戏字体使用 Fusion Pixel，第三方许可保留在 `assets/fonts/OFL.txt`。2048 的 MIT 许可不适用于本网站的游戏、图片和其他素材；各素材遵循原有授权。
 
 官方说明：[Pages 发布来源](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) · [GitHub 上传文件限制](https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository)
+
+## v0.4.0 完整 Demo（2026-10-26）
+
+Windows 下载使用 GitHub Release `wuxitown-v0.4.0`，实际包为 160.2 MiB，校验与版本信息保存在 `downloads/`。发布包包含 EXE、PCK、中文说明和素材许可。历史 v0.1.2 仅保留旧链接兼容，当前页面统一指向新包。
+
+本版增加标题/游戏内删除存档（含确认、备份和临时文件清理），移除创作者模式，修复教堂与铁匠铺入口。打包版 66/66 回归通过。
+
+网页试玩同步至 v0.4.0。`tools/prepare_web.py <Godot Web导出目录>` 将资源拆为两个小于 100 MiB 的静态分片，并生成加载器与 `play/pack-manifest.json`；用户无须手动合并。Windows 完整版仍是推荐体验。Web 存档属于当前浏览器，不与 Windows 同步。
