@@ -62,5 +62,6 @@ page = page.replace('engine.startGame({', 'startPackedGame({')
 page = page.replace("const engine = new Engine(GODOT_CONFIG);", "const engine = new Engine(GODOT_CONFIG);\n" + loader)
 assert 'async function startPackedGame' in page
 page = page.replace("document.title = 'Survival25D'", "document.title = '网页试玩 v0.4.0 · 雾汐镇'")
+page = page.replace("setStatusMode('hidden');", "document.title = '网页试玩 v0.4.0 · 雾汐镇';\n\t\t\tsetStatusMode('hidden');")
 (dest / 'index.html').write_text(page, encoding='utf-8')
 print(json.dumps({'web_bytes': len(pack), 'parts': len(parts), 'sha256': manifest['sha256']}))
