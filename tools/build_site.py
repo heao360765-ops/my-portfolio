@@ -16,7 +16,7 @@ def game_paths(html):
         if not url.path or url.scheme or url.netloc or url.path in GAME_PAGES:
             return match.group(0)
         return f'{attr}="../../{value}"'
-    return re.sub(r'(href|src)="([^"]+)"', update, html)
+    return re.sub(r'(href|src|poster)="([^"]+)"', update, html)
 RELEASE = json.loads((ROOT / 'downloads/release-info.json').read_text(encoding='utf-8-sig'))
 if not RELEASE.get('download_url') and not (ROOT / 'downloads' / RELEASE['filename']).is_file():
     raise FileNotFoundError('The download package declared in release-info.json is missing')
@@ -96,6 +96,8 @@ release_notes = '<section class="paper-section" id="release-notes"><p class="sec
 download = download.replace('</main>', release_notes + '</main>')
 home = home.replace('</main>', '<section class="paper-section"><p class="section-label">NEW DEMO / 2026.10.26</p><h2 class="large-heading">v0.4.0 完整单人 Demo</h2><p>探索城镇与乡野、十处室内与调查任务。新增存档删除，修复教堂和铁匠铺入口，移除创作者模式。</p><a class="text-link" href="download.html#release-notes">查看更新与下载 →</a></section></main>')
 studies = studies.replace('</main>', release_notes + '</main>')
+
+home = home.replace('</main>', '<section class="devlog-section" id="devlog" aria-labelledby="devlog-title"><p class="section-label">DEVELOPMENT JOURNAL / 2026.10</p><h2 id="devlog-title">雾汐镇 · 开发日志</h2><p>走进小镇，看看这一段旅程如何成形。轻柔配乐版 · 64 秒。</p><video controls playsinline preload="none" width="1920" height="1080" poster="assets/video/wuxitown-devlog-poster.webp" aria-label="雾汐镇开发日志，轻柔配乐版"><source src="assets/video/wuxitown-devlog-light-1080p.mp4" type="video/mp4">你的浏览器暂不支持视频播放，请使用下方链接观看。</video><a class="text-link" href="assets/video/wuxitown-devlog-light-1080p.mp4">打开完整视频 ↗</a></section>' + '</main>')
 
 for slug,title,desc,body in [
  ('download','下载游戏','下载雾汐镇 Windows 64位可运行游戏，解压后开启旅程，支持分辨率设置与自动存档。',download),

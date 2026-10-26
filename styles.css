@@ -21,3 +21,11 @@
 .download-cta:hover,.download-cta:focus-visible{background:#f7e8bb;color:#15241b;outline:3px solid #d8ae62;outline-offset:4px}.hero-copy .hero-world-link{display:table;margin-top:20px}.download-stage{display:grid;grid-template-columns:1.2fr 1fr;margin:0 8vw 80px;background:#1e3028;border-top:1px solid #7a785a}.download-image img{width:100%;height:100%;min-height:440px;object-fit:cover}.download-sheet{padding:48px;display:flex;align-items:flex-start;flex-direction:column;gap:16px}.download-sheet h2{font-size:48px;margin:0}.download-sheet p{line-height:1.9}.download-meta{font-size:12px;color:#b6b397}.download-requirements{max-width:960px;line-height:2;margin-top:32px}.download-sheet .text-link{font-size:12px}@media(max-width:900px){.download-stage{grid-template-columns:1fr;margin:0 6vw 48px}.download-image img{min-height:0;aspect-ratio:16/9;height:auto}.download-sheet{padding:28px}.download-sheet h2{font-size:36px}.hero-copy .download-cta{padding:13px 17px;font-size:14px}.hero-copy .hero-world-link{margin-top:14px}}
 
 body[data-page="download"] .paper-section .timeline-item p{color:#655337}
+
+/* Shared development film: native controls, no automatic playback. */
+.devlog-section{padding:clamp(28px,5vw,72px) 0;scroll-margin-top:100px}
+.devlog-section h2{font-size:clamp(24px,3vw,40px);margin:12px 0}
+.devlog-section p{line-height:1.8}
+.devlog-section video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#101c1a;margin:24px 0 16px;border-radius:4px}
+
+main>.devlog-section{padding-left:clamp(20px,6vw,100px);padding-right:clamp(20px,6vw,100px)}
