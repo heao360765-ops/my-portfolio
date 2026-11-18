@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FILE 06 · 独立游戏策划《人类戈壁项目》 · 个人作品集</title>
+<meta name="description" content="《人类戈壁项目》独立游戏完整策划案：三世代世界观、外三层×内三层叙事结构、六项交互机制与里世界 Boss 设计。">
+<meta name="theme-color" content="#f4f3ed">
+<link rel="canonical" href="https://heao360765-ops.github.io/my-portfolio/works/gobi.html">
+<link rel="icon" href="../assets/lantern.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../portfolio.css"><link rel="stylesheet" href="../works.css">
+<style>
+.detail-hero{padding:64px 0 40px;display:grid;grid-template-columns:1.6fr 1fr;gap:56px;align-items:end}
+.detail-hero h1{font-size:clamp(38px,4.6vw,60px);font-weight:600;line-height:1.3;letter-spacing:-.05em;margin:0}
+.detail-hero h1 span{color:var(--accent)}
+.detail-hero-copy{max-width:330px;padding-bottom:4px}
+.detail-hero-copy p{font-size:14px;color:var(--muted);margin:0 0 18px}
+.detail-meta{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font:10px/1.7 monospace;letter-spacing:.12em;color:var(--muted)}
+.detail-block{padding:52px 0 0}
+.detail-block>h2{font-size:22px;font-weight:500;letter-spacing:-.02em;margin:0 0 6px}
+.detail-block>.block-label{font:10px/1.6 monospace;letter-spacing:.16em;color:var(--muted);margin:0 0 18px}
+.detail-block>p{font-size:13px;line-height:1.9;color:var(--muted);max-width:640px;margin:0 0 22px}
+.modules{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 10px}
+.modules figure{margin:0;border:1px solid var(--line);background:#e9e8e0;min-height:150px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.modules figure b{font-size:14px;font-weight:600}
+.modules figure small{font:9px/1.7 monospace;letter-spacing:.1em;color:var(--muted)}
+.modules figure p{font-size:11px;line-height:1.7;color:var(--muted);margin:0}
+.modules .no{font:11px monospace;letter-spacing:.15em;color:var(--accent)}
+.modules-3{grid-template-columns:repeat(3,1fr)}
+.schema{border:1px solid var(--line);background:#e9e8e0;padding:18px;display:grid;place-items:center}
+.schema svg{width:min(100%,880px);height:auto}
+.quote{border-left:3px solid var(--accent);padding:14px 20px;background:#e9e8e0;max-width:640px;margin:0 0 22px}
+.quote p{font-size:14px;line-height:1.8;color:var(--ink);margin:0}
+.gen-row{display:grid;grid-template-columns:110px 1fr 1fr;gap:0;border:1px solid var(--line)}
+.gen-row>div{padding:14px 16px;border-bottom:1px solid var(--line);font-size:12px;line-height:1.8;color:var(--muted)}
+.gen-row>div:first-child{border-right:1px solid var(--line);font:12px monospace;letter-spacing:.1em;color:var(--ink);display:flex;flex-direction:column;justify-content:center}
+.gen-row>div:nth-child(3n+2){border-right:1px solid var(--line)}
+.gen-row .gen-b{background:#e9e8e0}
+.gen-row .gen-feel{color:var(--accent);font-weight:600}
+.char-card{display:grid;grid-template-columns:200px 1fr;border:1px solid var(--line);background:#e9e8e0;margin:0 0 12px}
+.char-card .char-side{padding:18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.char-card .char-side b{font-size:18px;font-weight:600}
+.char-card .char-side small{font:9px/1.7 monospace;letter-spacing:.12em;color:var(--muted)}
+.char-card .char-body{padding:18px 22px}
+.char-card .char-body p{font-size:12px;line-height:1.9;color:var(--muted);margin:0 0 8px}
+.backlink{display:inline-block;margin:56px 0 64px}
+@media(max-width:900px){.modules,.modules-3{grid-template-columns:1fr 1fr}.gen-row{grid-template-columns:1fr}.gen-row>div{border-right:none!important}}
+@media(max-width:600px){.detail-hero{grid-template-columns:1fr;padding:40px 0 26px}.detail-hero h1{font-size:42px}.modules,.modules-3{grid-template-columns:1fr}.char-card{grid-template-columns:1fr}.char-card .char-side{border-right:none;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header class="site-header"><div class="wrap header-inner"><a class="brand" href="../" aria-label="个人作品集首页"><span class="brand-mark" aria-hidden="true"></span><span>个人作品集<small>DESIGN / BUILD / EXPLORE</small></span></a><nav class="main-nav" aria-label="作品集导航"><a href="../">首页</a><a href="../works.html">作品档案</a><a href="../#hardware">硬件探索</a></nav></div></header>
+<main id="main" class="wrap">
+
+<section class="detail-hero" aria-labelledby="g-title">
+<div><p class="eyebrow">FILE 06 / GAME DESIGN DOC</p><h1 id="g-title">人类戈壁项目<br><span>这世界还值不值得在乎？</span></h1></div>
+<div class="detail-hero-copy"><p>毕业设计独立游戏完整策划案：三世代互动叙事，生态 × 性别 × 青年三个主题贯穿始终。世界观、叙事结构、交互机制、Boss 设计全案自主完成。</p><a class="text-link" href="../works.html">← 返回作品档案</a></div>
+</section>
+<div class="detail-meta wrap"><span>NARRATIVE / INTERACTION / WORLD-BUILDING</span><span>UE 5.5 · 毕业设计 · 全案约 3 万字</span></div>
+
+<section class="detail-block" aria-labelledby="g1">
+<h2 id="g1">世界观时间线</h2><p class="block-label">01 / WORLD TIMELINE · 八个阶段</p>
+<p>核心概念对：<b>反熵计划（乌托邦官方）vs 人类再驳熵运动（民间反对组织）</b>。反熵计划最初是救命的，但"救命"慢慢滑向"筛选"，最后连筛选本身都被从历史里抹掉——人类造笼子不是为了关自己，是因为外面已经没法活了。</p>
+<div class="schema">
+<svg viewBox="0 0 880 260" role="img" aria-label="世界观时间线：从远古灾难到废土的八个阶段">
+<g font-family="monospace" font-size="11">
+<line x1="40" y1="120" x2="840" y2="120" stroke="#5b6861" stroke-width="2"/>
+<circle cx="70" cy="120" r="5" fill="#d44b28"/><circle cx="180" cy="120" r="5" fill="#192b28"/><circle cx="290" cy="120" r="5" fill="#192b28"/><circle cx="400" cy="120" r="5" fill="#192b28"/><circle cx="510" cy="120" r="5" fill="#192b28"/><circle cx="620" cy="120" r="5" fill="#d44b28"/><circle cx="730" cy="120" r="5" fill="#192b28"/><circle cx="820" cy="120" r="5" fill="#d44b28"/>
+<g text-anchor="middle" fill="#192b28">
+<rect x="20" y="70" width="100" height="34" fill="#dae8da" stroke="#5b6861"/><text x="70" y="91">远古灾难</text>
+<rect x="570" y="70" width="100" height="34" fill="#dae8da" stroke="#5b6861"/><text x="620" y="91">一代 · 表面稳定</text>
+<rect x="780" y="70" width="80" height="34" fill="#dae8da" stroke="#5b6861"/><text x="820" y="91">废土</text>
+</g>
+<g text-anchor="middle" fill="#192b28">
+<rect x="130" y="136" width="100" height="34" fill="#e9e8e0" stroke="#5b6861"/><text x="180" y="157">反熵 · 救命</text>
+<rect x="240" y="136" width="100" height="34" fill="#e9e8e0" stroke="#5b6861"/><text x="290" y="157">反熵 · 优化</text>
+<rect x="350" y="136" width="100" height="34" fill="#e9e8e0" stroke="#5b6861"/><text x="400" y="157">死寂乌托邦</text>
+<rect x="460" y="136" width="100" height="34" fill="#e9e8e0" stroke="#5b6861"/><text x="510" y="157">再驳熵运动</text>
+<rect x="680" y="136" width="100" height="34" fill="#e9e8e0" stroke="#5b6861"/><text x="730" y="157">二代 · 两败俱伤</text>
+</g>
+<g text-anchor="middle" fill="#5b6861" font-size="10">
+<text x="70" y="52">生态不可逆损伤</text>
+<text x="290" y="200">基因编辑 · 优胜劣汰 · 畸人流放</text>
+<text x="510" y="52">挖到「有人被放弃」的证据</text>
+<text x="730" y="200">天穹裂缝 · 推翻了也没得到</text>
+<text x="820" y="52">天穹熄灭</text>
+<text x="620" y="200">温水煮青蛙，青蛙很开心</text>
+</g>
+</g>
+</svg>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="g2">
+<h2 id="g2">核心设定四件套</h2><p class="block-label">02 / CORE SETTINGS</p>
+<div class="modules">
+<figure><span class="no">SET 01</span><b>天穹</b><small>THE DOME</small><p>覆盖生活区的巨型人造穹顶，调控温度光线气候。抬头就能看到，不需要解释——玩家看到天穹就理解了一切。</p></figure>
+<figure><span class="no">SET 02</span><b>畸人制度</b><small>THE LABELED</small><p>出生随机打标签、本人完全不知情，成年后以"先驱选拔"名义带走，真实任务是维护天穹。被送走者到最后一刻都以为自己是被选拔的。</p></figure>
+<figure><span class="no">SET 03</span><b>智脑</b><small>THE BRAIN</small><p>地下隐藏运算中枢。公开随机打标签 + 暗中微调，单次不可察觉、长期累积出统计效应。性别偏见的来源：训练数据的结构性偏见被算法忠实执行并自我强化。</p></figure>
+<figure><span class="no">SET 04</span><b>信息三层</b><small>INFO LAYERS</small><p>所有人只知道"先驱叙事"；执行层知道标号与维护真相；最高层极少数知道智脑存在。不同身份的人看到不同层面的"真相"。</p></figure>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="g3">
+<h2 id="g3">三世代递进</h2><p class="block-label">03 / THREE GENERATIONS</p>
+<p>三代叙事独立完整、之间没有因果链，串联的载体是<b>玩家自己的记忆</b>——游戏不提示"这是你上一代走过的路"，但玩家自己认得。</p>
+<div class="gen-row">
+<div>世代一<div style="font-size:9px;color:var(--muted)">1995 · 清溪镇</div></div>
+<div>世界表面稳定暗流涌动：示威公开化但未流血，天穹运转正常。人的状态：什么都不缺，但开始感到某种空。</div>
+<div class="gen-feel">"温水煮青蛙，但青蛙很开心。"</div>
+</div>
+<div class="gen-row gen-b">
+<div>世代二<div style="font-size:9px;color:var(--muted)">2010 · 天穹裂缝</div></div>
+<div>战争两败俱伤：设施被打烂，再驳熵运动赢了等于没赢。人的状态：日常被打破，匮乏重新出现，第一次感受到痛苦的可能。</div>
+<div class="gen-feel">"真相来了，但救不了你。"</div>
+</div>
+<div class="gen-row">
+<div>世代三<div style="font-size:9px;color:var(--muted)">2025 · 废土</div></div>
+<div>天穹熄灭，人造的自然死了，真正的自然回不来。人的状态：废土上的人不是绝望的，是忙碌的——忙着活下去。</div>
+<div class="gen-feel">"废土上忙碌，但不绝望。"</div>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="g4">
+<h2 id="g4">叙事结构：外三层 × 内三层</h2><p class="block-label">04 / NARRATIVE STRUCTURE</p>
+<p>两套三层不是平行而是交叉催化：关系的结束和世界的崩坏是同一件事的两面——脆弱的东西留不住。</p>
+<div class="schema">
+<svg viewBox="0 0 880 240" role="img" aria-label="外三层与内三层交叉绑定：世界在塌，关系在走">
+<g font-family="monospace" font-size="11">
+<text x="200" y="30" fill="#192b28" text-anchor="middle" font-weight="bold">外三层 · 世界在塌</text>
+<text x="680" y="30" fill="#192b28" text-anchor="middle" font-weight="bold">内三层 · 关系在走</text>
+<g>
+<rect x="110" y="46" width="180" height="44" fill="#dae8da" stroke="#5b6861"/><text x="200" y="64" text-anchor="middle" fill="#192b28">征兆</text><text x="200" y="80" text-anchor="middle" fill="#5b6861" font-size="9">水质变浑 · 植物枯死</text>
+<rect x="110" y="100" width="180" height="44" fill="#dae8da" stroke="#5b6861"/><text x="200" y="118" text-anchor="middle" fill="#192b28">恶化</text><text x="200" y="134" text-anchor="middle" fill="#5b6861" font-size="9">供水限时 · 划线搬迁</text>
+<rect x="110" y="154" width="180" height="44" fill="#dae8da" stroke="#5b6861"/><text x="200" y="172" text-anchor="middle" fill="#192b28">降临</text><text x="200" y="188" text-anchor="middle" fill="#5b6861" font-size="9">不可逆事件 · 四散</text>
+</g>
+<g>
+<rect x="590" y="46" width="180" height="44" fill="#e9e8e0" stroke="#5b6861"/><text x="680" y="64" text-anchor="middle" fill="#192b28">相遇</text><text x="680" y="80" text-anchor="middle" fill="#5b6861" font-size="9">有人看见了我</text>
+<rect x="590" y="100" width="180" height="44" fill="#e9e8e0" stroke="#5b6861"/><text x="680" y="118" text-anchor="middle" fill="#192b28">相知</text><text x="680" y="134" text-anchor="middle" fill="#5b6861" font-size="9">环境挤压 · 喜欢变成奢侈</text>
+<rect x="590" y="154" width="180" height="44" fill="#e9e8e0" stroke="#5b6861"/><text x="680" y="172" text-anchor="middle" fill="#192b28">离散</text><text x="680" y="188" text-anchor="middle" fill="#5b6861" font-size="9">没有告别 · 来不及说完</text>
+</g>
+<g stroke="#d44b28" fill="none" stroke-dasharray="5 4">
+<path d="M290 68 C 420 60, 460 60, 590 68"/>
+<path d="M290 122 C 420 122, 460 122, 590 122"/>
+<path d="M290 176 C 420 184, 460 184, 590 176"/>
+</g>
+<g fill="#d44b28" font-size="10" text-anchor="middle">
+<text x="440" y="52">余力还在</text>
+<text x="440" y="114">挤占情感空间</text>
+<text x="440" y="205">关系结束 = 世界崩坏</text>
+</g>
+<g fill="#5b6861" font-size="10" text-anchor="middle"><text x="200" y="222">每一层世界塌一寸</text><text x="680" y="222">关系就松一分</text></g>
+</g>
+</svg>
+</div>
+<div class="quote" style="margin-top:22px"><p>跨世代线索机制：女孩在不同片土地上无意间留下痕迹——种草、画墙、放东西。几十年后，草长成唯一活着的树。三代的人发现时不知道是谁的，只是觉得"有人在这里认真地活过"。而三代感受到的美好，恰恰建立在一代的遗憾之上。</p></div>
+</section>
+
+<section class="detail-block" aria-labelledby="g5">
+<h2 id="g5">交互机制设计</h2><p class="block-label">05 / INTERACTION DESIGN</p>
+<p>交互不服务于"趣味性"，服务于"代入感"和"叙事重量"——让玩家感受到选择的真实代价，而不是掌控叙事的错觉。</p>
+<div class="modules modules-3">
+<figure><span class="no">MECH 01</span><b>沉默选项</b><small>SILENT OPTION</small><p>对话中始终存在"不说"的选项，且有时沉默才是最有分量的表态。打破"玩家必须是行动者"的默认假设。</p></figure>
+<figure><span class="no">MECH 02</span><b>注意力机制</b><small>ATTENTION</small><p>无箭头、无高亮、无感叹号。没注意到的细节永远错过，没有提示没有回放——与现实一致，注意到多少决定理解多深。</p></figure>
+<figure><span class="no">MECH 03</span><b>唯一不可逆选择</b><small>IRREVERSIBLE</small><p>全游戏只有一次，选完无法回退、后果延迟浮现。选择时无法判断对错，选择本身看起来普通——做了就是做了。</p></figure>
+<figure><span class="no">MECH 04</span><b>无反馈选择</b><small>NO FEEDBACK</small><p>不做"选 A 奖励、选 B 惩罚"的行为主义设计，直到很久以后才看到后果。</p></figure>
+<figure><span class="no">MECH 05</span><b>步频与路径</b><small>PACE & PATH</small><p>慢走触发更多环境细节与内心独白；绕远路暗示回避，直走暗示果断——路径即性格。</p></figure>
+<figure><span class="no">MECH 06</span><b>物件交互</b><small>OBJECTS</small><p>环境元素是理解世界的途径而非收集品：告示栏、日记、广播碎片。不看也能通关，看了对决策感受更深。</p></figure>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="g6">
+<h2 id="g6">里世界与 Boss 设计</h2><p class="block-label">06 / INNER WORLD & BOSSES</p>
+<p>表里世界双系统：表世界是天穹日常（正常、有序、微妙压抑），里世界是林雾的心理空间（扭曲、隐喻化）。Boss 不是"敌人"，是情绪的具象化——击败 Boss 只代表暂时消化了一种情绪，不代表解决问题。</p>
+<div class="modules modules-3" style="grid-template-columns:repeat(4,1fr)">
+<figure><span class="no">BOSS 01</span><b>空</b><small>硬触发 · 麻木期</small><p>静 / 重 / 散。第一章后必经。</p></figure>
+<figure><span class="no">BOSS 02</span><b>萌芽</b><small>软触发 · 被触动</small><p>根 / 藤 / 苞。错过则里世界侵蚀度升高。</p></figure>
+<figure><span class="no">BOSS 03</span><b>错过</b><small>软触发 · 挤压期</small><p>远 / 近 / 错。错过是叙事层面的代价，不是游戏失败。</p></figure>
+<figure><span class="no">BOSS 04</span><b>崩坏</b><small>硬触发 · 失去后重建</small><p>镜 / 网 / 空位 / 崩。第七章必经。</p></figure>
+</div>
+<p style="margin-top:14px">弹幕小游戏（天穹模拟终端）3 次穿插表世界：第一次弹幕流畅生态正常 → 第二次卡顿断裂数据异常 → 第三次弹幕停止只剩雪花噪点。系统从运转到崩溃，纯氛围设计，不给成绩不给奖励。</p>
+</section>
+
+<section class="detail-block" aria-labelledby="g7">
+<h2 id="g7">主要角色</h2><p class="block-label">07 / CHARACTERS</p>
+<div class="char-card">
+<div class="char-side"><b>林雾</b><small>PROTAGONIST · 17 岁</small><span class="status">可玩角色</span></div>
+<div class="char-body">
+<p>重度社恐高中生，无特殊能力，不会觉醒不会逆袭。情绪底色是麻木——不是不开心，是没什么好开心的。家里不是没人关心他，是那份关心他接不住。</p>
+<p>显性需求：无。隐性需求：被真实地"看见"。情绪弧线：空 → 被触动 → 打开 → 挤压 → 失去 → 寻找。</p>
+</div>
+</div>
+<div class="char-card">
+<div class="char-side"><b>女孩</b><small>核心 NPC · 名字待定</small><span class="status">被标号的畸人</span></div>
+<div class="char-body">
+<p>被标号但本人完全不知情，清醒地走在自己不知道的倒计时里。种草、找水、照顾活着的东西——是天性不是预感。有一只白蹄黑身的猫，形影不离；消失后猫的项圈夹层里有张纸条。</p>
+<p>主人公被她吸引不是因为她好看温柔，而是她让他觉得"活着好像值得一试"。她有自己的行动线，不围绕主人公转，时间也跨不过代际。</p>
+</div>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="g8" style="padding-bottom:10px">
+<h2 id="g8">美术与技术方向</h2><p class="block-label">08 / ART & TECH</p>
+<div class="modules" style="grid-template-columns:repeat(3,1fr)">
+<figure><span class="no">ART 01</span><b>表世界</b><small>DOME DAILY</small><p>冷蓝灰色调，人造感，干净但没有温度。Q 版二次元 2D 手绘立绘。</p></figure>
+<figure><span class="no">ART 02</span><b>里世界</b><small>INNER WORLD</small><p>高对比度、局部饱和色，压迫感参考《寂静岭 F》的里世界系统。</p></figure>
+<figure><span class="no">ART 03</span><b>暖色节点</b><small>WARM NODES</small><p>废墟与女孩相关场景用相对暖色——全游戏最接近"真实"的颜色。</p></figure>
+</div>
+<p style="margin-top:14px">引擎 UE5.5.4，立绘与场景主力 CSP，目标路径：毕业设计答辩 → 求职作品集 → Steam 上架。策划、美术、叙事全案独立完成，程序实现协作推进。</p>
+</section>
+
+<a class="text-link backlink" href="../works.html">← 返回作品档案</a>
+</main>
+<footer><div class="wrap footer-inner"><span>个人作品集 · 持续更新</span><small>DESIGNED TO EXPLORE. BUILT TO LEARN.</small><a href="#main">回到顶部 ↑</a></div></footer>
+</body></html>
