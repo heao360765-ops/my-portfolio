@@ -1,0 +1,48 @@
+{
+ "ikea": [
+  "01.webp",
+  "02.webp",
+  "03.webp",
+  "04.webp",
+  "05.webp"
+ ],
+ "md": [
+  "01.webp",
+  "02.webp",
+  "03.webp",
+  "04.webp"
+ ],
+ "processing": [
+  "01.webp",
+  "02.webp",
+  "03.webp",
+  "04.webp",
+  "05.webp",
+  "06.webp"
+ ],
+ "illustration": [
+  "01.webp",
+  "02.webp",
+  "03.webp"
+ ],
+ "fox": [
+  "01.webp",
+  "02.webp",
+  "03.webp",
+  "04.webp"
+ ],
+ "layout": [
+  "01.webp",
+  "02.webp",
+  "03.webp",
+  "04.webp"
+ ],
+ "charging": [
+  "01.svg",
+  "02.svg",
+  "03.svg",
+  "04.svg",
+  "05.svg",
+  "06.svg"
+ ]
+}
