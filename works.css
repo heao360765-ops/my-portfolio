@@ -42,6 +42,66 @@
 .work-card-art .glyph{font:600 clamp(56px,7vw,96px)/1 Inter,sans-serif;letter-spacing:-.06em;color:#405944}
 .work-card-art .art-note{position:absolute;left:20px;bottom:14px;font:10px/1.5 monospace;letter-spacing:.1em;color:#506554}
 
+/* ---------- grouping ---------- */
+
+.group-nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.group-nav a{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;color:var(--muted);
+  border:1px solid var(--line);padding:8px 13px;background:var(--paper);
+  transition:border-color .25s var(--ease),color .25s var(--ease),background .25s var(--ease);
+}
+.group-nav a b{
+  font-weight:400;font-size:9px;letter-spacing:0;color:var(--accent);
+  border-right:1px solid var(--line);padding-right:9px;
+}
+.group-nav a:hover{border-color:var(--steel);color:var(--ink);background:var(--paper-2)}
+
+.group{padding-top:6px}
+.group + .group{margin-top:58px;border-top:1px solid var(--line-2);padding-top:28px}
+.group-head{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding-bottom:12px;border-bottom:1px solid var(--line-2);
+}
+.group-key{
+  width:30px;height:30px;flex:none;display:grid;place-items:center;
+  background:var(--ink);color:var(--paper);
+  font-family:var(--font-disp);font-size:17px;font-weight:700;
+}
+.group-head h2{
+  font-size:24px;font-weight:600;margin:0;letter-spacing:-.02em;
+  display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;
+}
+.group-head h2 span{
+  font-family:var(--font-mono);font-size:9.5px;font-weight:400;letter-spacing:.18em;
+  color:var(--muted);text-transform:uppercase;
+}
+.group-count{
+  margin-left:auto;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.16em;
+  color:var(--muted);text-transform:uppercase;white-space:nowrap;
+}
+.group-desc{font-size:12.5px;line-height:1.85;color:var(--muted);margin:12px 0 0;max-width:640px}
+.group .work{padding-top:34px}
+
+@media(max-width:600px){
+  .group-head{gap:10px}
+  .group-count{margin-left:0;width:100%}
+  .group-head h2{font-size:20px}
+}
+
+/* ---------- deck pages (PPT originals) ---------- */
+
+.deck{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.deck figure{margin:0;border:1px solid var(--line);background:var(--paper-2);overflow:hidden}
+.deck button{all:unset;cursor:zoom-in;display:block;width:100%}
+.deck img{display:block;width:100%;height:auto;aspect-ratio:1400/788;object-fit:cover;transition:opacity .3s var(--ease)}
+.deck button:hover img{opacity:.9}
+.deck figcaption{
+  font-family:var(--font-mono);font-size:9px;line-height:1.6;letter-spacing:.1em;
+  color:var(--muted);padding:8px 11px;border-top:1px solid var(--line);text-transform:uppercase;
+}
+@media(max-width:600px){.deck{grid-template-columns:1fr}}
+
 /* lightbox */
 .lightbox{border:none;padding:0;background:transparent;max-width:96vw;max-height:96vh}
 .lightbox::backdrop{background:#101c1ae6}
