@@ -7,3 +7,4 @@ __pycache__/
 
 # Local workbench documents and deliveries stay off the public website.
 _ai_teamwork/
+.playwright-cli/
