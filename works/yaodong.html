@@ -28,8 +28,21 @@
 .schema{border:1px solid var(--line);background:#e9e8e0;padding:18px;display:grid;place-items:center}
 .schema svg{width:min(100%,860px);height:auto}
 .backlink{display:inline-block;margin:56px 0 64px}
+/* real-machine plate */
+.machine-plate{position:relative;margin:0 0 6px;border:1px solid var(--line-2);background:#fff;overflow:hidden}
+.machine-plate img{display:block;width:100%;height:auto;aspect-ratio:1910/728;object-fit:cover}
+.plate-tag{position:absolute;left:22px;bottom:20px;display:flex;flex-direction:column;gap:3px;background:#0d1512db;color:#e9ece4;padding:8px 13px;border-left:2px solid var(--accent);font:10px/1.5 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
+.plate-tag i{font-style:normal;font-size:9px;letter-spacing:.1em;color:#9fb0a3}
+.plate-no{position:absolute;right:20px;top:16px;font:9px/1.5 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:#3b4a42;background:#f2f1eade;padding:4px 9px}
+/* reel */
+.reel{margin-top:10px;border:1px solid var(--line-2);background:var(--panel)}
+.reel-head,.reel-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:11px 16px;font:9.5px/1.6 var(--font-mono);letter-spacing:.15em;text-transform:uppercase}
+.reel-head{color:#cdd6cc;border-bottom:1px solid #33463c}
+.reel-head b{color:#fff;font-weight:400}
+.reel-foot{color:#8b9a8f;border-top:1px solid #33463c}
+.reel video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#120f0e}
 @media(max-width:900px){.modules{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.detail-hero{grid-template-columns:1fr;padding:40px 0 26px}.detail-hero h1{font-size:42px}.modules{grid-template-columns:1fr}}
+@media(max-width:600px){.detail-hero{grid-template-columns:1fr;padding:40px 0 26px}.detail-hero h1{font-size:42px}.modules{grid-template-columns:1fr}.plate-tag{left:12px;bottom:12px;font-size:9px}}
 </style>
 </head>
 <body>
@@ -41,7 +54,13 @@
 <div><p class="eyebrow">FILE 05 / DIGITAL TWIN · IN PROGRESS</p><h1 id="y-title">尧东机械<br><span>让机器在屏幕里转起来。</span></h1></div>
 <div class="detail-hero-copy"><p>大三小组课题：把一套机械设备的展示搬进 UE5，做成可以走、可以拆、可以看的数字孪生展馆。</p><a class="text-link" href="../works.html">← 返回作品档案</a></div>
 </section>
-<div class="detail-meta wrap"><span>UE 5.5 · BLUEPRINT · TEAM OF GROUP</span><span>方案落地阶段 · 截图待补</span></div>
+<div class="detail-meta wrap"><span>UE 5.5 · BLUEPRINT · TEAM OF GROUP</span><span>合作企业 · 尧东机械 YD-STS-412</span></div>
+
+<div class="machine-plate">
+<img src="../assets/twin/yd-sts-line-wide.webp" alt="尧东机械 YD-STS-412 真机产线：铝型材导轨、印刷工位与整机机柜" width="1910" height="728" loading="lazy">
+<span class="plate-no">FIG. 00 / REAL MACHINE</span>
+<span class="plate-tag">YD-STS-412<i>全伺服转盘式丝印贴标烫金机 · 真机影像</i></span>
+</div>
 
 <section class="detail-block" aria-labelledby="y1">
 <h2 id="y1">四大展厅模块</h2><p class="block-label">01 / EXHIBITION MODULES</p>
@@ -78,8 +97,20 @@
 <div class="work-card-art"><span class="glyph" aria-hidden="true">1→4</span><span class="art-note">KEY-PRESS CAMERA SWITCH · 2026 春季学期</span></div>
 <div class="work-card-copy"><h3 style="margin:0;font-size:20px;font-weight:500">相机系统 + 设备巡检交互</h3>
 <p>除相机蓝图外，同时负责设备巡检交互：点击设备进入巡检模式，逐项核对巡检点并在面板记录状态。团队 16 周课题，目前处于方案落地阶段，展厅截图完成后会替换到本页。</p>
-<span class="status" style="margin-top:10px;display:inline-block">进行中 · 截图待补</span>
+<span class="status" style="margin-top:10px;display:inline-block">进行中 · 真机影像已归档 · 展厅截图待补</span>
 </div>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="y4">
+<h2 id="y4">设备影像</h2><p class="block-label">04 / MACHINE REEL · 60S</p>
+<p>立项时拿到的一段产线影像：铝型材导轨、印刷工位、整机机柜的实拍，穿插生成式镜头。它既是展厅场景的参考，也是理解这台机器怎么跑起来的第一手材料。</p>
+<div class="reel">
+<div class="reel-head"><b>YD-STS-412 · 设备影像</b><span>1080P / 60S / 1920×1080</span></div>
+<video controls playsinline preload="none" poster="../assets/video/yaodong-yd-sts-poster.webp" aria-label="尧东机械 YD-STS-412 全伺服转盘式丝印贴标烫金机设备影像">
+<source src="../assets/video/yaodong-yd-sts-1080p.mp4" type="video/mp4">你的浏览器暂不支持视频播放，请使用下方链接观看。
+</video>
+<div class="reel-foot"><span>产线实拍与生成式镜头混合剪辑</span><a class="text-link" href="../assets/video/yaodong-yd-sts-1080p.mp4">单独打开视频 ↗</a></div>
 </div>
 </section>
 
