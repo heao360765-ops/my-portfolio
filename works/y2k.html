@@ -38,9 +38,13 @@
 .g-wide figcaption{flex:0 0 130px;display:flex;align-items:center;border-top:none;border-left:1px solid var(--line)}
 .quote{border-left:3px solid var(--accent);padding:14px 20px;background:#e9e8e0;max-width:640px;margin:0 0 22px}
 .quote p{font-size:14px;line-height:1.8;color:var(--ink);margin:0}
+.motion-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.motion-row figure{margin:0;border:1px solid var(--line);background:#e9e8e0;overflow:hidden}
+.motion-row video{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+.motion-row figcaption{font:9px/1.6 monospace;letter-spacing:.12em;color:var(--muted);padding:8px 10px;border-top:1px solid var(--line)}
 .backlink{display:inline-block;margin:56px 0 64px}
-@media(max-width:900px){.modules{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.g-wide{grid-column:span 2}}
-@media(max-width:600px){.detail-hero{grid-template-columns:1fr;padding:40px 0 26px}.detail-hero h1{font-size:42px}.modules{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.g-poster,.g-map{grid-row:auto}.g-wide{grid-column:span 1;flex-direction:column}.g-wide img{width:100%;height:auto}}
+@media(max-width:900px){.modules{grid-template-columns:1fr 1fr}.gallery{grid-template-columns:1fr 1fr}.g-wide{grid-column:span 2}.motion-row{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.detail-hero{grid-template-columns:1fr;padding:40px 0 26px}.detail-hero h1{font-size:42px}.modules{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.g-poster,.g-map{grid-row:auto}.g-wide{grid-column:span 1;flex-direction:column}.g-wide img{width:100%;height:auto}.motion-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -104,7 +108,17 @@
 </section>
 
 <section class="detail-block" aria-labelledby="k5">
-<h2 id="k5">推广与预算</h2><p class="block-label">05 / PROMOTION & BUDGET</p>
+<h2 id="k5">动效素材</h2><p class="block-label">05 / MOTION ASSETS</p>
+<p>全案配套的复古拼贴动效：纸片拼贴质感 + 千禧年通讯符号（电脑、信号塔、电视机），用于现场大屏循环与线上宣传物料，以 GIF 原件交付、此处转为视频演示。</p>
+<div class="motion-row">
+<figure><video src="../assets/works/y2k/motion-laptop.mp4" autoplay muted loop playsinline aria-label="复古电脑拼贴动效"></video><figcaption>MOTION · 复古电脑</figcaption></figure>
+<figure><video src="../assets/works/y2k/motion-tower.mp4" autoplay muted loop playsinline aria-label="信号塔拼贴动效"></video><figcaption>MOTION · 信号塔</figcaption></figure>
+<figure><video src="../assets/works/y2k/motion-tv.mp4" autoplay muted loop playsinline aria-label="复古电视机拼贴动效"></video><figcaption>MOTION · 复古电视机</figcaption></figure>
+</div>
+</section>
+
+<section class="detail-block" aria-labelledby="k6">
+<h2 id="k6">推广与预算</h2><p class="block-label">06 / PROMOTION & BUDGET</p>
 <div class="modules" style="grid-template-columns:1fr 1fr">
 <figure><span class="no">PROMO 01</span><b>线上推广</b><small>ONLINE</small><p>平台矩阵：哔哩哔哩、抖音、小红书、快手；社群运营：贴吧、微博、微信。</p></figure>
 <figure><span class="no">PROMO 02</span><b>线下推广</b><small>OFFLINE</small><p>青年群体走商场商圈海报地推；城市泛消费人群走大众点评、美团、地铁与城市广告。</p></figure>
