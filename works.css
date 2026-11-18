@@ -1,0 +1,69 @@
+/* works.css — 作品档案页，延续 portfolio.css 的纸墨构成体系 */
+.works-hero{padding:70px 0 46px;display:grid;grid-template-columns:1.6fr 1fr;gap:56px;align-items:end}
+.works-hero h1{font-size:clamp(40px,5vw,68px);font-weight:600;line-height:1.25;letter-spacing:-.05em;margin:0}
+.works-hero h1 span{color:var(--accent)}
+.works-hero-copy{max-width:330px;padding-bottom:4px}
+.works-hero-copy p{font-size:14px;color:var(--muted);margin:0 0 18px}
+.works-meta{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font:10px/1.7 monospace;letter-spacing:.12em;color:var(--muted)}
+
+.work{padding:56px 0 0}
+.work-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px 22px;margin-bottom:6px}
+.work-no{font:11px/1 monospace;letter-spacing:.18em;color:var(--accent);border:1px solid var(--accent);padding:6px 9px}
+.work-head h2{font-size:26px;font-weight:500;letter-spacing:-.02em;margin:0}
+.work-tags{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+.work-tags span{font:10px/1.5 monospace;letter-spacing:.08em;color:var(--muted);border-top:1px solid var(--line);padding-top:5px}
+.work-desc{font-size:13px;line-height:1.9;color:var(--muted);max-width:640px;margin:10px 0 22px}
+
+.work-grid{display:grid;gap:10px}
+.work-grid.cols-2{grid-template-columns:1fr 1fr}
+.work-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.work-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.work-grid figure{margin:0;position:relative;border:1px solid var(--line);background:#e9e8e0;overflow:hidden}
+.work-grid img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.work-grid .tall{aspect-ratio:9/14}
+.work-grid .wide{aspect-ratio:16/9}
+.work-grid .square{aspect-ratio:1/1}
+.work-grid figure:hover img{transform:scale(1.02)}
+.work-grid figcaption{position:absolute;left:12px;bottom:12px;background:#142420db;color:#fff;font:9px/1.5 monospace;letter-spacing:.1em;padding:5px 8px}
+.work-grid button{all:unset;cursor:zoom-in;display:block;width:100%;height:100%}
+.work-grid.cols-2 figure:first-child{grid-column:1/-1}
+
+.ui-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.ui-row figure{margin:0;border:1px solid var(--line);background:#fff;aspect-ratio:9/19.5;overflow:hidden}
+.ui-row img{width:100%;height:100%;object-fit:cover}
+.ui-row figure:hover img{transform:scale(1.02)}
+.ui-row figcaption{order:2;font:9px/1.6 monospace;letter-spacing:.1em;color:var(--muted);text-align:center;padding:6px 0}
+
+.work-card{display:grid;grid-template-columns:1fr 1.3fr;gap:0;border:1px solid var(--line);background:var(--mint);margin-top:24px}
+.work-card-copy{padding:40px 34px;align-self:center}
+.work-card-copy h2{font-size:24px;font-weight:500;margin:14px 0 14px}
+.work-card-copy p{font-size:13px;color:#425b48;line-height:1.9;margin:0 0 14px;max-width:430px}
+.work-card-art{position:relative;display:grid;place-items:center;min-height:230px;background:linear-gradient(#a8bca533 1px,transparent 1px),linear-gradient(90deg,#a8bca533 1px,transparent 1px);background-size:28px 28px;border-right:1px solid var(--line)}
+.work-card-art .glyph{font:600 clamp(56px,7vw,96px)/1 Inter,sans-serif;letter-spacing:-.06em;color:#405944}
+.work-card-art .art-note{position:absolute;left:20px;bottom:14px;font:10px/1.5 monospace;letter-spacing:.1em;color:#506554}
+
+/* lightbox */
+.lightbox{border:none;padding:0;background:transparent;max-width:96vw;max-height:96vh}
+.lightbox::backdrop{background:#101c1ae6}
+.lightbox img{width:auto;max-width:92vw;max-height:88vh;margin:auto}
+.lightbox figcaption{color:#c3cfc5;font:11px/1.8 monospace;letter-spacing:.1em;padding:10px 4px;text-align:center}
+.lightbox-close{position:fixed;top:14px;right:18px;background:none;border:1px solid #72887b;color:#fff;font-size:15px;padding:8px 14px;cursor:pointer}
+
+@media(max-width:900px){
+.works-hero{grid-template-columns:1.5fr 1fr;gap:32px;padding-top:50px}
+.work-grid.cols-3,.work-grid.cols-4{grid-template-columns:1fr 1fr}
+.ui-row{grid-template-columns:repeat(3,1fr)}
+.work-card{grid-template-columns:1fr}
+.work-card-art{border-right:none;border-bottom:1px solid var(--line);min-height:190px}
+}
+@media(max-width:600px){
+.works-hero{grid-template-columns:1fr;padding:40px 0 30px}
+.works-hero h1{font-size:44px}
+.works-meta{font-size:8px}
+.work{padding-top:40px}
+.work-head h2{font-size:21px}
+.work-tags{margin-left:0}
+.work-grid.cols-2,.work-grid.cols-3,.work-grid.cols-4{grid-template-columns:1fr}
+.ui-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){.work-grid img,.work-grid svg{transition:none}}

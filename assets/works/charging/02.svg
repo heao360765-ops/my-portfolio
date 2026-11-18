@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <defs><style>text{font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;}</style></defs>
+  <rect width="390" height="844" fill="#ffffff"/>
+  <rect x="0" y="0" width="390" height="44" fill="#ffffff"/>
+  <text x="24" y="28" font-size="15" font-weight="600" fill="#111111">9:41</text>
+  <text x="366" y="28" font-size="12" fill="#111111" text-anchor="end">●●● WiFi ▮▮</text>
+  <rect x="0" y="44" width="390" height="52" fill="#ffffff"/>
+  <text x="20" y="78" font-size="22" fill="#888"></text>
+  <text x="195" y="78" font-size="17" font-weight="600" fill="#111111" text-anchor="middle">附近找桩</text>
+  <text x="370" y="78" font-size="13" fill="#888" text-anchor="end">≡</text>
+  <line x1="0" y1="96" x2="390" y2="96" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="0" y="96" width="390" height="40" fill="#fff"/>
+  <rect x="16" y="102" width="64" height="26" rx="13" fill="#111"/>
+  <text x="48" y="119" font-size="11" fill="white" text-anchor="middle">全部</text>
+  <rect x="88" y="102" width="64" height="26" rx="13" fill="#f5f5f5"/>
+  <text x="120" y="119" font-size="11" fill="#666" text-anchor="middle">快充</text>
+  <rect x="160" y="102" width="64" height="26" rx="13" fill="#f5f5f5"/>
+  <text x="192" y="119" font-size="11" fill="#666" text-anchor="middle">慢充</text>
+  <rect x="232" y="102" width="64" height="26" rx="13" fill="#f5f5f5"/>
+  <text x="264" y="119" font-size="11" fill="#666" text-anchor="middle">空闲</text>
+  <rect x="304" y="102" width="64" height="26" rx="13" fill="#f5f5f5"/>
+  <text x="336" y="119" font-size="11" fill="#666" text-anchor="middle">可预约</text>
+  <line x1="0" y1="136" x2="390" y2="136" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="0" y="136" width="390" height="420" fill="#f2f3ee"/>
+  <line x1="0" y1="136" x2="390" y2="136" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="172" x2="390" y2="172" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="208" x2="390" y2="208" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="244" x2="390" y2="244" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="280" x2="390" y2="280" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="316" x2="390" y2="316" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="352" x2="390" y2="352" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="388" x2="390" y2="388" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="424" x2="390" y2="424" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="460" x2="390" y2="460" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="496" x2="390" y2="496" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="532" x2="390" y2="532" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="0" y1="136" x2="0" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="36" y1="136" x2="36" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="72" y1="136" x2="72" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="108" y1="136" x2="108" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="144" y1="136" x2="144" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="180" y1="136" x2="180" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="216" y1="136" x2="216" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="252" y1="136" x2="252" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="288" y1="136" x2="288" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="324" y1="136" x2="324" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="360" y1="136" x2="360" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <line x1="396" y1="136" x2="396" y2="556" stroke="#e8e9e4" stroke-width="1"/>
+  <rect x="0" y="337" width="390" height="18" fill="rgba(255,255,255,0.8)"/>
+  <rect x="186" y="136" width="18" height="420" fill="rgba(255,255,255,0.8)"/>
+  <rect x="72" y="224" width="56" height="26" rx="13" fill="#111"/>
+  <polygon points="100,252 95,249 105,249" fill="#111"/>
+  <text x="100" y="242" font-size="10" fill="white" text-anchor="middle" font-weight="500">快充·5空</text>
+  <rect x="212" y="184" width="56" height="26" rx="13" fill="#111"/>
+  <polygon points="240,212 235,209 245,209" fill="#111"/>
+  <text x="240" y="202" font-size="10" fill="white" text-anchor="middle" font-weight="500">快充·3空</text>
+  <rect x="282" y="294" width="56" height="26" rx="13" fill="#cccccc"/>
+  <polygon points="310,322 305,319 315,319" fill="#cccccc"/>
+  <text x="310" y="312" font-size="10" fill="white" text-anchor="middle" font-weight="500">慢充·满</text>
+  <rect x="132" y="344" width="56" height="26" rx="13" fill="#111"/>
+  <polygon points="160,372 155,369 165,369" fill="#111"/>
+  <text x="160" y="362" font-size="10" fill="white" text-anchor="middle" font-weight="500">快充·8空</text>
+  <circle cx="195" cy="310" r="8" fill="#111" stroke="white" stroke-width="2"/>
+  <circle cx="195" cy="310" r="20" fill="#111" fill-opacity="0.1"/>
+  <circle cx="352" cy="520" r="22" fill="white" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="352" y="527" font-size="16" text-anchor="middle">📍</text>
+  <rect x="0" y="556" width="390" height="228" fill="white"/>
+  <line x1="0" y1="556" x2="390" y2="556" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="163" y="564" width="64" height="4" rx="2" fill="#e0e0e0"/>
+  <text x="24" y="590" font-size="13" font-weight="600" fill="#111">附近充电站 (12)</text>
+  <rect x="20" y="600" width="350" height="68" rx="12" fill="#fafafa" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="40" y="622" font-size="13" font-weight="500" fill="#111">⚡ 星巴克·快充站</text>
+  <text x="40" y="640" font-size="11" fill="#888">0.3km · 12/16空闲</text>
+  <rect x="40" y="648" width="60" height="22" rx="11" fill="#f0f0f0"/>
+  <text x="70" y="663" font-size="10" fill="#666" text-anchor="middle">可预约</text>
+  <text x="356" y="628" font-size="14" fill="#111" text-anchor="end" font-weight="600">0.92元/kWh</text>
+  <text x="356" y="648" font-size="18" fill="#ccc" text-anchor="end">›</text>
+  <rect x="20" y="680" width="350" height="68" rx="12" fill="#fafafa" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="40" y="702" font-size="13" font-weight="500" fill="#111">⚡ 万象城停车场</text>
+  <text x="40" y="720" font-size="11" fill="#888">0.8km · 5/8空闲</text>
+  <rect x="40" y="728" width="60" height="22" rx="11" fill="#f0f0f0"/>
+  <text x="70" y="743" font-size="10" fill="#666" text-anchor="middle">快充60kW</text>
+  <text x="356" y="708" font-size="14" fill="#111" text-anchor="end" font-weight="600">0.88元/kWh</text>
+  <text x="356" y="728" font-size="18" fill="#ccc" text-anchor="end">›</text>
+  <rect x="0" y="784" width="390" height="60" fill="#ffffff"/>
+  <line x1="0" y1="784" x2="390" y2="784" stroke="#ebebeb" stroke-width="1"/>
+  <text x="39" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">🏠</text>
+  <text x="39" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">首页</text>
+  <text x="117" y="808" font-size="20" fill="#111111" text-anchor="middle">🗺</text>
+  <text x="117" y="828" font-size="10" fill="#111111" text-anchor="middle">找桩</text>
+  <rect x="103" y="784" width="28" height="3" rx="1.5" fill="#111"/>
+  <text x="195" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">⚡</text>
+  <text x="195" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">充电</text>
+  <text x="273" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">📋</text>
+  <text x="273" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">订单</text>
+  <text x="351" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">👤</text>
+  <text x="351" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">我的</text>
+
+</svg>

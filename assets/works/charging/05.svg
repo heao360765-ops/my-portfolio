@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <defs><style>text{font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;}</style></defs>
+  <rect width="390" height="844" fill="#ffffff"/>
+  <rect x="0" y="0" width="390" height="44" fill="#ffffff"/>
+  <text x="24" y="28" font-size="15" font-weight="600" fill="#111111">9:41</text>
+  <text x="366" y="28" font-size="12" fill="#111111" text-anchor="end">●●● WiFi ▮▮</text>
+  <rect x="0" y="44" width="390" height="52" fill="#ffffff"/>
+  <text x="20" y="78" font-size="22" fill="#888">‹</text>
+  <text x="195" y="78" font-size="17" font-weight="600" fill="#111111" text-anchor="middle">充电中</text>
+  <text x="370" y="78" font-size="13" fill="#888" text-anchor="end">帮助</text>
+  <line x1="0" y1="96" x2="390" y2="96" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="0" y="96" width="390" height="316" fill="#111"/>
+  <line x1="0" y1="96" x2="390" y2="96" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="124" x2="390" y2="124" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="152" x2="390" y2="152" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="180" x2="390" y2="180" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="208" x2="390" y2="208" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="236" x2="390" y2="236" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="264" x2="390" y2="264" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="292" x2="390" y2="292" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="320" x2="390" y2="320" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="348" x2="390" y2="348" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="376" x2="390" y2="376" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="404" x2="390" y2="404" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="0" y1="96" x2="0" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="28" y1="96" x2="28" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="56" y1="96" x2="56" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="84" y1="96" x2="84" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="112" y1="96" x2="112" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="140" y1="96" x2="140" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="168" y1="96" x2="168" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="196" y1="96" x2="196" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="224" y1="96" x2="224" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="252" y1="96" x2="252" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="280" y1="96" x2="280" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="308" y1="96" x2="308" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="336" y1="96" x2="336" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="364" y1="96" x2="364" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <line x1="392" y1="96" x2="392" y2="412" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+  <rect x="130" y="112" width="130" height="26" rx="13" fill="#1a1a1a" stroke="#333" stroke-width="1"/>
+  <circle cx="148" cy="125" r="4" fill="white"/>
+  <text x="198" y="130" font-size="10" fill="#aaa" text-anchor="middle" letter-spacing="1">FAST CHARGING · A03</text>
+  <circle cx="195" cy="248" r="80" fill="none" stroke="#2a2a2a" stroke-width="10"/>
+  <circle cx="195" cy="248" r="80" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" stroke-dasharray="502.7" stroke-dashoffset="130.7" transform="rotate(-90 195 248)"/>
+  <text x="195" y="262" font-size="44" font-weight="200" fill="white" text-anchor="middle">74<tspan font-size="20" fill="#666">%</tspan></text>
+  <text x="195" y="278" font-size="11" fill="#666" text-anchor="middle" letter-spacing="2">SOC</text>
+  <rect x="20" y="344" width="350" height="60" rx="14" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="78" y="364" font-size="18" font-weight="300" fill="white" text-anchor="middle">60</text>
+  <text x="78" y="376" font-size="10" fill="#555" text-anchor="middle">kW</text>
+  <text x="78" y="394" font-size="10" fill="#666" text-anchor="middle">充电功率</text>
+  <line x1="136" y1="354" x2="136" y2="396" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="194" y="364" font-size="18" font-weight="300" fill="white" text-anchor="middle">32.5</text>
+  <text x="194" y="376" font-size="10" fill="#555" text-anchor="middle">kWh</text>
+  <text x="194" y="394" font-size="10" fill="#666" text-anchor="middle">已充电量</text>
+  <line x1="252" y1="354" x2="252" y2="396" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="310" y="364" font-size="18" font-weight="300" fill="white" text-anchor="middle">23</text>
+  <text x="310" y="376" font-size="10" fill="#555" text-anchor="middle">min</text>
+  <text x="310" y="394" font-size="10" fill="#666" text-anchor="middle">剩余时间</text>
+  <rect x="20" y="418" width="350" height="88" rx="14" fill="#fafafa" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="36" y="436" font-size="11" fill="#aaa" letter-spacing="1.5">实时功率曲线</text>
+  <path d="M28,478 Q46,465 63,472 Q80,479 98,466 Q115,454 133,463 Q150,472 168,460 Q185,448 203,458 Q220,468 238,456 Q255,444 272,454 Q290,464 308,454 Q325,444 343,456 Q355,463 362,460" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="28" y="498" font-size="10" fill="#ccc">-30min</text>
+  <text x="362" y="498" font-size="10" fill="#ccc" text-anchor="end">现在</text>
+  <rect x="20" y="516" width="350" height="108" rx="14" fill="#fafafa" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="36" y="534" font-size="11" fill="#aaa" letter-spacing="1.5">费用明细</text>
+  <text x="36" y="550" font-size="12" fill="#888">电费</text>
+  <text x="354" y="550" font-size="13" fill="#111" text-anchor="end" font-weight="400">¥ 29.90</text>
+  <line x1="36" y1="554" x2="354" y2="554" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="568" font-size="12" fill="#888">服务费</text>
+  <text x="354" y="568" font-size="13" fill="#111" text-anchor="end" font-weight="400">¥ 10.40</text>
+  <line x1="36" y1="572" x2="354" y2="572" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="586" font-size="12" fill="#888">优惠抵扣</text>
+  <text x="354" y="586" font-size="13" fill="#111" text-anchor="end" font-weight="400">- ¥ 5.00</text>
+  <line x1="36" y1="590" x2="354" y2="590" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="604" font-size="12" fill="#888">预计总费用</text>
+  <text x="354" y="604" font-size="14" fill="#111" text-anchor="end" font-weight="600">¥ 40.50</text>
+  <rect x="0" y="636" width="390" height="72" fill="#fff"/>
+  <line x1="0" y1="636" x2="390" y2="636" stroke="#ebebeb" stroke-width="1"/>
+  <rect x="20" y="648" width="163" height="48" rx="24" fill="none" stroke="#222" stroke-width="1.5"/>
+  <text x="101" y="678" font-size="15" font-weight="500" fill="#222" text-anchor="middle">停止充电</text>
+  <rect x="205" y="648" width="165" height="48" rx="24" fill="#111" stroke="none" stroke-width="1.5"/>
+  <text x="287" y="678" font-size="15" font-weight="500" fill="#fff" text-anchor="middle">查看详情</text>
+  <rect x="0" y="784" width="390" height="60" fill="#ffffff"/>
+  <line x1="0" y1="784" x2="390" y2="784" stroke="#ebebeb" stroke-width="1"/>
+  <text x="39" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">🏠</text>
+  <text x="39" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">首页</text>
+  <text x="117" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">🗺</text>
+  <text x="117" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">找桩</text>
+  <text x="195" y="808" font-size="20" fill="#111111" text-anchor="middle">⚡</text>
+  <text x="195" y="828" font-size="10" fill="#111111" text-anchor="middle">充电</text>
+  <rect x="181" y="784" width="28" height="3" rx="1.5" fill="#111"/>
+  <text x="273" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">📋</text>
+  <text x="273" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">订单</text>
+  <text x="351" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">👤</text>
+  <text x="351" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">我的</text>
+
+</svg>

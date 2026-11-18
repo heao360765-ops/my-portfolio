@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844">
+  <defs><style>text{font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;}</style></defs>
+  <rect width="390" height="844" fill="#ffffff"/>
+  <rect x="0" y="0" width="390" height="44" fill="#ffffff"/>
+  <text x="24" y="28" font-size="15" font-weight="600" fill="#111111">9:41</text>
+  <text x="366" y="28" font-size="12" fill="#111111" text-anchor="end">●●● WiFi ▮▮</text>
+  <rect x="0" y="44" width="390" height="52" fill="#ffffff"/>
+  <text x="20" y="78" font-size="22" fill="#888"></text>
+  <text x="195" y="78" font-size="17" font-weight="600" fill="#111111" text-anchor="middle">充电完成</text>
+  <text x="370" y="78" font-size="13" fill="#888" text-anchor="end"></text>
+  <line x1="0" y1="96" x2="390" y2="96" stroke="#ebebeb" stroke-width="1"/>
+  <circle cx="195" cy="216" r="64" fill="#f5f5f5"/>
+  <circle cx="195" cy="216" r="50" fill="#111"/>
+  <text x="195" y="230" font-size="36" fill="white" text-anchor="middle">✓</text>
+  <text x="195" y="304" font-size="20" font-weight="700" fill="#111" text-anchor="middle">充电完成</text>
+  <text x="195" y="326" font-size="13" fill="#888" text-anchor="middle">本次充电时长 46 分钟</text>
+  <rect x="20" y="344" width="350" height="202" rx="16" fill="#f9f9f9" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="195" y="368" font-size="12" fill="#aaa" text-anchor="middle" letter-spacing="2">本次账单</text>
+  <text x="195" y="416" font-size="42" font-weight="200" fill="#111" text-anchor="middle">¥ 40.50</text>
+  <line x1="36" y1="432" x2="354" y2="432" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="452" font-size="12" fill="#888">充电电量</text>
+  <text x="354" y="452" font-size="12" fill="#444" text-anchor="end">42.5 kWh</text>
+  <line x1="36" y1="456" x2="354" y2="456" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="472" font-size="12" fill="#888">电费</text>
+  <text x="354" y="472" font-size="12" fill="#444" text-anchor="end">¥ 39.10</text>
+  <line x1="36" y1="476" x2="354" y2="476" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="492" font-size="12" fill="#888">服务费</text>
+  <text x="354" y="492" font-size="12" fill="#444" text-anchor="end">¥ 13.60</text>
+  <line x1="36" y1="496" x2="354" y2="496" stroke="#f0f0f0" stroke-width="1"/>
+  <text x="36" y="512" font-size="12" fill="#888">优惠抵扣</text>
+  <text x="354" y="512" font-size="12" fill="#444" text-anchor="end">- ¥ 5.00</text>
+  <rect x="20" y="562" width="350" height="48" rx="24" fill="#111" stroke="none" stroke-width="1.5"/>
+  <text x="195" y="592" font-size="15" font-weight="500" fill="#fff" text-anchor="middle">返回首页</text>
+  <rect x="20" y="620" width="350" height="48" rx="24" fill="none" stroke="#222" stroke-width="1.5"/>
+  <text x="195" y="650" font-size="15" font-weight="500" fill="#222" text-anchor="middle">查看订单详情</text>
+  <text x="195" y="692" font-size="12" fill="#bbb" text-anchor="middle">对本次充电评价</text>
+  <text x="148" y="712" font-size="22" fill="#111" text-anchor="middle">★</text>
+  <text x="172" y="712" font-size="22" fill="#111" text-anchor="middle">★</text>
+  <text x="196" y="712" font-size="22" fill="#111" text-anchor="middle">★</text>
+  <text x="220" y="712" font-size="22" fill="#111" text-anchor="middle">★</text>
+  <text x="244" y="712" font-size="22" fill="#ddd" text-anchor="middle">☆</text>
+  <rect x="0" y="784" width="390" height="60" fill="#ffffff"/>
+  <line x1="0" y1="784" x2="390" y2="784" stroke="#ebebeb" stroke-width="1"/>
+  <text x="39" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">🏠</text>
+  <text x="39" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">首页</text>
+  <text x="117" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">🗺</text>
+  <text x="117" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">找桩</text>
+  <text x="195" y="808" font-size="20" fill="#111111" text-anchor="middle">⚡</text>
+  <text x="195" y="828" font-size="10" fill="#111111" text-anchor="middle">充电</text>
+  <rect x="181" y="784" width="28" height="3" rx="1.5" fill="#111"/>
+  <text x="273" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">📋</text>
+  <text x="273" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">订单</text>
+  <text x="351" y="808" font-size="20" fill="#bbbbbb" text-anchor="middle">👤</text>
+  <text x="351" y="828" font-size="10" fill="#bbbbbb" text-anchor="middle">我的</text>
+
+</svg>
