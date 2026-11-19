@@ -29,12 +29,12 @@
   }
 
   const scenes=[
-    {name:'signal',start:0,end:2500,label:'STUDIO IDENTIFICATION'},
-    {name:'confirm',start:2500,end:7000,label:'OPERATOR AUTHENTICATION'},
-    {name:'archive',start:7000,end:9800,label:'CREDENTIAL VERIFICATION'},
-    {name:'read',start:9800,end:12300,label:'PERMISSION READ'},
-    {name:'authorize',start:12300,end:15400,label:'WORKSTATION BOOT'},
-    {name:'welcome',start:15400,end:19000,label:'ARCHIVE ONLINE'},
+    {name:'signal',start:0,end:6000,label:'STUDIO IDENTIFICATION'},
+    {name:'confirm',start:6000,end:10500,label:'OPERATOR AUTHENTICATION'},
+    {name:'archive',start:10500,end:13300,label:'CREDENTIAL VERIFICATION'},
+    {name:'read',start:13300,end:15800,label:'PERMISSION READ'},
+    {name:'authorize',start:15800,end:18900,label:'WORKSTATION BOOT'},
+    {name:'welcome',start:18900,end:22500,label:'ARCHIVE ONLINE'},
   ];
   const duration=scenes.at(-1).end;
   const clamp=v=>Math.min(1,Math.max(0,v));
@@ -67,7 +67,7 @@
     const __S=new URLSearchParams(location.search).get('introseek');const __AT=__S===null?null:Math.max(0,parseInt(__S,10)||0);let width=0,height=0,raf=0,elapsed=__AT!==null?__AT:(reduced.matches?8800:0),last=performance.now(),paused=false,exiting=false;
     const resize=()=>{width=dialog.clientWidth;height=dialog.clientHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx?.setTransform(dpr,0,0,dpr,0,0)};
     const observer=new ResizeObserver(resize);observer.observe(dialog);
-    const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-v11.mp3',document.baseURI).href);
+    const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-v12.mp3',document.baseURI).href);
     soundtrack.preload='auto';soundtrack.volume=.75;
     const sound=dialog.querySelector('[data-sound]');
     let soundWanted=true,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
@@ -161,7 +161,7 @@
       dialog.style.setProperty('--welcome',ease((time-8800)/650));
       dialog.querySelectorAll('[data-scene]').forEach(el=>{const visible=el.dataset.scene===scene.name;el.classList.toggle('is-active',visible);el.setAttribute('aria-hidden',!visible)});
       const confirmed=time>=4000;dialog.classList.toggle('is-confirmed',confirmed);
-      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-3300)/900)*user.length);const dots=Math.floor(clamp((time-4600)/850)*8);
+      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-6800)/900)*user.length);const dots=Math.floor(clamp((time-8100)/850)*8);
       dialog.querySelector('[data-user]').textContent=user.slice(0,typed)+(typed<user.length?'_':'');dialog.querySelector('[data-password]').textContent='●'.repeat(dots);
       dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'IDENTITY KEY MATCHED':'VERIFYING CREDENTIALS';
       const load=Math.round(loadProgress(clamp((time-4700)/1800)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');
