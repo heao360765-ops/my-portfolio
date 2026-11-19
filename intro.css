@@ -191,3 +191,166 @@
     10px 12px 0 rgba(17,18,23,.07);
   border:1px solid rgba(17,18,23,.55);
 }
+
+
+/* ============================================================
+   全流程黑绿统一（对齐开场配色）
+   倾斜：平整 0° → 到位 -15°/2.4°
+   ============================================================ */
+.portfolio-intro{
+  background:#0a0c0a!important;
+  --paper:#0a0c0a;
+  --ink:#ccff00;
+  --signal:#ccff00;
+}
+.portfolio-intro .intro-plate{
+  background:#0a0c0a!important;
+  border-color:rgba(204,255,0,.22)!important;
+}
+.intro-scene{color:#ccff00}
+.intro-top,.intro-bottom{color:rgba(204,255,0,.75)!important}
+.intro-wordmark{color:#ccff00!important}
+.intro-controls button{color:rgba(204,255,0,.8)!important;border-color:rgba(204,255,0,.35)!important}
+
+/* —— 登录卡：黑底绿线，平整转倾斜 —— */
+.portfolio-intro .access-card{
+  background-color:#0b0e09!important;
+  border:1px solid rgba(204,255,0,.9)!important;
+  background-image:
+    linear-gradient(#ccff00,#ccff00),
+    linear-gradient(#ccff00,#ccff00),
+    linear-gradient(#ccff00,#ccff00),
+    linear-gradient(#ccff00,#ccff00)!important;
+  transform:
+    perspective(1400px)
+    rotateY(calc(-15deg * var(--phase,0)))
+    rotateZ(calc(2.4deg * var(--phase,0)))
+    translateY(calc((1 - var(--phase,0)) * 18px))!important;
+  box-shadow:
+    0 0 80px rgba(204,255,0,.16),
+    8px 10px 0 rgba(204,255,0,.10)!important;
+}
+.access-title{border-right-color:rgba(204,255,0,.55)!important}
+.access-title span{color:#ccff00!important}
+.access-title small,.access-field small{color:rgba(204,255,0,.62)!important}
+.access-field p{
+  background:transparent!important;
+  border-color:rgba(204,255,0,.85)!important;
+  color:#ccff00!important;
+}
+.password-dots{color:#ccff00!important}
+.access-state{color:rgba(204,255,0,.7)!important;border-top-color:rgba(204,255,0,.35)!important}
+.access-state i{background:#ccff00!important}
+
+/* —— 验证卡 —— */
+.portfolio-intro .verify-card{
+  background:#0b0e09!important;
+  color:#ccff00!important;
+  border:1px solid rgba(204,255,0,.8)!important;
+  box-shadow:0 0 90px rgba(204,255,0,.18)!important;
+}
+.verify-card h2,.verify-card p,.verify-card small{color:#ccff00!important}
+.verify-line{background:rgba(204,255,0,.25)!important}
+.verify-line i{background:#ccff00!important}
+.verify-mark{filter:drop-shadow(0 0 24px rgba(204,255,0,.4))}
+
+/* —— 启动屏 —— */
+.portfolio-intro .boot-screen,.portfolio-intro .boot-window{
+  background:#0b0e09!important;
+  color:#ccff00!important;
+  border-color:rgba(204,255,0,.5)!important;
+}
+.boot-title,.boot-title b{color:#ccff00!important}
+.boot-window p{color:rgba(204,255,0,.85)!important}
+.boot-window p i{background:#ccff00!important}
+.boot-tab{color:rgba(204,255,0,.55)!important}
+.boot-progress{background:rgba(204,255,0,.18)!important}
+.boot-progress b{background:#ccff00!important}
+.boot-screen>small{color:rgba(204,255,0,.6)!important}
+
+/* —— 欢迎 —— */
+.intro-welcome .workspace-ready h2{color:#ccff00!important}
+.workspace-ready p{color:rgba(204,255,0,.7)!important}
+.workspace-ready .intro-kicker{color:rgba(204,255,0,.6)!important}
+.ready-mark{filter:drop-shadow(0 0 26px rgba(204,255,0,.38))}
+
+@media(max-width:700px){
+  .portfolio-intro .access-card{transform:translateY(calc((1 - var(--phase,0)) * 14px))!important}
+}
+
+
+/* —— 覆盖历史白底规则：所有阶段一律黑绿 —— */
+.portfolio-intro[data-stage],
+.portfolio-intro[data-stage="signal"],
+.portfolio-intro[data-stage="confirm"],
+.portfolio-intro[data-stage="archive"],
+.portfolio-intro[data-stage="authorize"],
+.portfolio-intro[data-stage="welcome"]{
+  background:#0a0c0a!important;
+  color:#ccff00!important;
+}
+.portfolio-intro .intro-confirm,
+.portfolio-intro .intro-archive,
+.portfolio-intro .intro-authorize,
+.portfolio-intro .intro-welcome{
+  background:#0a0c0a!important;
+}
+.portfolio-intro .intro-plate{background:#0a0c0a!important}
+.portfolio-intro .access-card{opacity:1!important}
+
+
+/* —— 输入框彻底透明，斜框改绿 —— */
+.portfolio-intro .access-field p,
+.portfolio-intro .access-field p::before,
+.portfolio-intro .password-dots,
+.portfolio-intro .password-dots::before{
+  background:transparent!important;
+  color:#ccff00!important;
+}
+.portfolio-intro .access-field p::before{
+  border-color:rgba(204,255,0,.85)!important;
+  box-shadow:3px 3px 0 rgba(204,255,0,.10)!important;
+}
+/* 头像换成荧光绿版，黑底才看得见 */
+.portfolio-intro .access-title::before{
+  background-image:url("assets/brand/seedlab-glyph.png")!important;
+  filter:drop-shadow(0 0 12px rgba(204,255,0,.45))!important;
+}
+
+
+/* —— 欢迎页排版修正：字号收小、文字竖排、图标去黑底 —— */
+.portfolio-intro .workspace-ready{
+  display:flex!important;
+  align-items:center!important;
+  gap:clamp(18px,2.4vw,34px)!important;
+  padding:0 clamp(20px,6vw,90px)!important;
+}
+.portfolio-intro .workspace-ready>div{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:6px!important;
+  min-width:0;
+}
+.portfolio-intro .workspace-ready .intro-kicker{
+  font-size:8px!important;letter-spacing:.28em!important;
+  color:rgba(204,255,0,.6)!important;
+}
+.portfolio-intro .workspace-ready h2{
+  font-size:clamp(26px,3.4vw,48px)!important;
+  line-height:1.05!important;
+  letter-spacing:-.02em!important;
+  margin:2px 0 0!important;
+  color:#ccff00!important;
+  white-space:nowrap;
+}
+.portfolio-intro .workspace-ready p{
+  font-size:9px!important;
+  letter-spacing:.24em!important;
+  color:rgba(204,255,0,.65)!important;
+  margin:4px 0 0!important;
+}
+.portfolio-intro .workspace-ready .ready-mark{
+  width:clamp(56px,6vw,86px)!important;height:auto!important;
+  filter:drop-shadow(0 0 22px rgba(204,255,0,.5))!important;
+}

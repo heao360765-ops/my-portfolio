@@ -29,12 +29,12 @@
     dialog.setAttribute('aria-label','作品集系统启动动画');
     dialog.innerHTML=`
       <canvas class="intro-field" aria-hidden="true"></canvas><div class="intro-texture" aria-hidden="true"></div>
-      <header class="intro-top"><div class="intro-wordmark">SEEDLAB<small>CREATIVE WORKSTATION / 2026</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false" hidden>开启播报</button><button type="button" data-pause aria-pressed="false">暂停</button><button type="button" data-skip>跳过 ↗</button></div></header>
+      <header class="intro-top"><div class="intro-wordmark">SEEDLAB<small>CREATIVE WORKSTATION / 2026</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false" hidden>AUDIO</button><button type="button" data-pause aria-pressed="false">PAUSE</button><button type="button" data-skip>SKIP ↗</button></div></header>
       <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="studio-ident"><span class="scan-rule"></span><img src="assets/brand/seedlab-mark@2x.png" alt="" class="studio-mark"><p>SEEDLAB / STUDIO INTERFACE</p><small>IDENTITY MODULE · 01</small><i class="corner corner-a"></i><i class="corner corner-b"></i></div></section>
-      <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="access-card"><div class="access-title"><span>SEEDLAB</span><small>PRIVATE WORKSTATION ACCESS</small></div><div class="access-form"><div class="access-field"><small>OPERATOR ID</small><p data-user></p></div><div class="access-field"><small>PASSWORD</small><p class="password-dots" data-password aria-label="密码输入中"></p></div></div><div class="access-state"><i></i><span data-id-status>正在核验访问凭据</span></div></div></section>
-      <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="verify-card"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="verify-mark"><h2 data-id-title>ACCESS VERIFIED</h2><p>身份密钥匹配 · 系统授权确认</p><div class="verify-line"><i></i></div><small data-load-number>00</small></div></section>
-      <section class="intro-scene intro-authorize" data-scene="authorize" aria-hidden="true"><div class="boot-screen"><div class="boot-title">SEEDLAB<br><b>CREATIVE OS</b></div><div class="boot-window"><span class="boot-tab">WORKSPACE / 01</span><p><i></i>ESTABLISHING SECURE CHANNEL</p><p><i></i>LOADING SELECTED WORKS</p><p><i></i>INITIALIZING INTERACTION SYSTEM</p><div class="boot-progress"><b></b></div></div><small>按 Enter / Space 可跳过进入</small></div></section>
-      <section class="intro-scene intro-welcome" data-scene="welcome" aria-hidden="true"><div class="workspace-ready"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="ready-mark"><div><span class="intro-kicker">CREATIVE WORKSTATION</span><h2>进入作品档案</h2><p>ARCHIVE ONLINE · WELCOME</p></div></div></section>
+      <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="access-card"><div class="access-title"><span>SEEDLAB</span><small>PRIVATE WORKSTATION ACCESS</small></div><div class="access-form"><div class="access-field"><small>OPERATOR ID</small><p data-user></p></div><div class="access-field"><small>PASSWORD</small><p class="password-dots" data-password aria-label="密码输入中"></p></div></div><div class="access-state"><i></i><span data-id-status>VERIFYING CREDENTIALS</span></div></div></section>
+      <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="verify-card"><img src="assets/brand/seedlab-glyph.png" alt="" class="verify-mark"><h2 data-id-title>ACCESS VERIFIED</h2><p>IDENTITY KEY MATCHED · ACCESS GRANTED</p><div class="verify-line"><i></i></div><small data-load-number>00</small></div></section>
+      <section class="intro-scene intro-authorize" data-scene="authorize" aria-hidden="true"><div class="boot-screen"><div class="boot-title">SEEDLAB<br><b>CREATIVE OS</b></div><div class="boot-window"><span class="boot-tab">WORKSPACE / 01</span><p><i></i>ESTABLISHING SECURE CHANNEL</p><p><i></i>LOADING SELECTED WORKS</p><p><i></i>INITIALIZING INTERACTION SYSTEM</p><div class="boot-progress"><b></b></div></div><small>PRESS ENTER / SPACE TO SKIP</small></div></section>
+      <section class="intro-scene intro-welcome" data-scene="welcome" aria-hidden="true"><div class="workspace-ready"><img src="assets/brand/seedlab-glyph.png" alt="" class="ready-mark"><div><span class="intro-kicker">CREATIVE WORKSTATION</span><h2>WELCOME BACK</h2><p>SEEDLAB STUDIO · 2026</p></div></div></section>
       <footer class="intro-bottom"><span>SEEDLAB / 2026</span><span data-stage-label></span><span class="intro-bottom-note">SYSTEM READY</span></footer>`;
     document.body.append(dialog);document.body.classList.add('intro-open');active=dialog;
     const canvas=dialog.querySelector('canvas'),ctx=canvas.getContext('2d');
@@ -46,7 +46,7 @@
     const sound=dialog.querySelector('[data-sound]');
     let soundWanted=false,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
     function syncSound(){const target=elapsed/1000;if(soundtrack.seeking||!soundtrack.seekable.length)return;const end=soundtrack.seekable.end(soundtrack.seekable.length-1);if(target<end){try{soundtrack.currentTime=target;lastAudioSync=elapsed}catch{}}}
-    function soundLabel(state){dialog.dataset.voice=state;sound.textContent=state==='on'?'播报已开':state==='loading'?'播报加载中':state==='unavailable'?'播报不可用':'开启播报';sound.setAttribute('aria-pressed',String(state==='on'))}
+    function soundLabel(state){dialog.dataset.voice=state;sound.textContent=state==='on'?'AUDIO ON':state==='loading'?'AUDIO LOADING':state==='unavailable'?'AUDIO N/A':'AUDIO';sound.setAttribute('aria-pressed',String(state==='on'))}
     function stopSound(){playRequest++;soundtrack.pause()}
     function startSound(){
       if(!soundWanted||!soundAvailable||paused||document.hidden||exiting)return;
@@ -70,7 +70,7 @@
     };
     dialog.addEventListener('cancel',e=>{e.preventDefault();finish()});dialog.querySelector('[data-skip]').onclick=finish;dialog.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&elapsed>=6500){event.preventDefault();finish()}});
     const pause=dialog.querySelector('[data-pause]');
-    pause.onclick=()=>{paused=!paused;pause.textContent=paused?'继续':'暂停';pause.setAttribute('aria-pressed',String(paused));if(paused)stopSound();else startSound()};
+    pause.onclick=()=>{paused=!paused;pause.textContent=paused?'RESUME':'PAUSE';pause.setAttribute('aria-pressed',String(paused));if(paused)stopSound();else startSound()};
     // All motion shares the same clock, so pause freezes geometry as well as text.
     function field(time){
       if(!ctx||!width)return;
@@ -135,9 +135,9 @@
       dialog.style.setProperty('--welcome',ease((time-8800)/650));
       dialog.querySelectorAll('[data-scene]').forEach(el=>{const visible=el.dataset.scene===scene.name;el.classList.toggle('is-active',visible);el.setAttribute('aria-hidden',!visible)});
       const confirmed=time>=4000;dialog.classList.toggle('is-confirmed',confirmed);
-      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2050)/900)*user.length);const dots=Math.floor(clamp((time-3000)/850)*8);
+      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2050)/900)*user.length);const dots=Math.floor(clamp((time-3700)/780)*8);
       dialog.querySelector('[data-user]').textContent=user.slice(0,typed)+(typed<user.length?'_':'');dialog.querySelector('[data-password]').textContent='●'.repeat(dots);
-      dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'身份密钥已匹配':'正在核验访问凭据';
+      dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'IDENTITY KEY MATCHED':'VERIFYING CREDENTIALS';
       const load=Math.round(loadProgress(clamp((time-4700)/1800)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');
       // Frame bursts become a perspective paper plate, not five fixed UI screens.
       const small=Math.min(width*.58,300),largeW=Math.min(width*.84,1100),largeH=Math.min(height*.62,510);
