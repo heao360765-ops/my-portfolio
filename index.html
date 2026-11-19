@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
-html.sb-pending,html.sb-pending body{background:#0a0c0a}
-html.sb-pending body>:not(#seedlab-boot){visibility:hidden}
-html.sb-pending::before{content:"SEEDLAB / INITIALIZING";position:fixed;inset:0;display:grid;place-items:center;background:#0a0c0a;color:#ccff00;font:10px monospace;letter-spacing:.3em;z-index:9999}
+html.intro-pending,html.intro-pending body{background:#eef0f2}
+html.intro-pending body>:not(.portfolio-intro){visibility:hidden}
+html.intro-pending::before{content:"SHOWREEL / INITIALIZING";position:fixed;inset:0;display:grid;place-items:center;background:#eef0f2;color:#15181d;font:10px monospace;letter-spacing:.3em;z-index:9999}
 </style>
 <script>
-(()=>{try{const seen=sessionStorage.getItem('seedlab-boot-v1')==='1';const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const forced=new URLSearchParams(location.search).has('sbseek');if((!seen&&!reduced&&!location.hash)||forced)document.documentElement.classList.add('sb-pending')}catch(e){}})();
+(()=>{try{const seen=sessionStorage.getItem('portfolio-prologue-v8')==='1';const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const forced=new URLSearchParams(location.search).has('intro');if((!seen&&!reduced&&!location.hash)||forced){document.documentElement.classList.add('intro-pending');window.__portfolioBoot={expired:false,timer:setTimeout(()=>{window.__portfolioBoot.expired=true;document.documentElement.classList.remove('intro-pending')},4000)}}}catch(e){}})();
 </script>
 <title>个人作品集 · 交互 / 三维 / 系统设计</title>
 <meta name="description" content="个人创作与开发记录：游戏开发、工业数字孪生、卡牌系统、IP 设计、活动策划与硬件原型。">
 <meta name="theme-color" content="#eef0f2">
 <meta property="og:title" content="个人作品集 · 交互 / 三维 / 系统设计"><meta property="og:description" content="游戏、数字孪生、卡牌系统、IP 设计与活动策划的创作档案。"><meta property="og:type" content="website"><meta property="og:image" content="https://heao360765-ops.github.io/my-portfolio/assets/screens/town-day.webp"><meta property="og:url" content="https://heao360765-ops.github.io/my-portfolio/">
 <link rel="canonical" href="https://heao360765-ops.github.io/my-portfolio/"><link rel="stylesheet" href="portfolio.css"><link rel="icon" href="assets/lantern.svg" type="image/svg+xml">
-<link rel="stylesheet" href="boot.css?v=20261119-1"><script src="boot.js?v=20261119-1" defer></script></head>
+<link rel="stylesheet" href="intro.css?v=20261119-1"><script src="intro.js?v=20261119-1" defer></script></head>
 <body data-page="index">
 <a class="skip" href="#main">跳到正文</a>
 
