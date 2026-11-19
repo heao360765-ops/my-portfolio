@@ -20,10 +20,10 @@
     
     
     
-    SFX.once('tilt',    ()=>{if(t>=2280)SFX.tone(920,.16,.032,'sine')});
-    SFX.once('verified',()=>{if(t>=4720){SFX.tone(660,.2,.028);setTimeout(()=>SFX.tone(990,.26,.026),110)}});
+
+
     
-    SFX.once('welcome', ()=>{if(t>=7920){SFX.tone(784,.2,.028);setTimeout(()=>SFX.tone(1175,.3,.024),120)}});
+
     if(typed>lastTyped){lastTyped=typed}
     if(dots>lastDots){lastDots=dots}
   }
@@ -67,7 +67,7 @@
     const __S=new URLSearchParams(location.search).get('introseek');const __AT=__S===null?null:Math.max(0,parseInt(__S,10)||0);let width=0,height=0,raf=0,elapsed=__AT!==null?__AT:(reduced.matches?8800:0),last=performance.now(),paused=false,exiting=false;
     const resize=()=>{width=dialog.clientWidth;height=dialog.clientHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx?.setTransform(dpr,0,0,dpr,0,0)};
     const observer=new ResizeObserver(resize);observer.observe(dialog);
-    const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-v9.mp3',document.baseURI).href);
+    const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-v10.mp3',document.baseURI).href);
     soundtrack.preload='auto';soundtrack.volume=.75;
     const sound=dialog.querySelector('[data-sound]');
     let soundWanted=true,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
