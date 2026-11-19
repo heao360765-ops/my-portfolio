@@ -171,3 +171,23 @@
   }
   .access-field p::before{inset:-1px -6px 1px -6px;transform:skewX(-8deg)}
 }
+
+
+/* ============================================================
+   原版登录卡：3D 飞入转场（由 --phase 驱动）
+   ============================================================ */
+.portfolio-intro .access-card{
+  background-color:#ffffff;
+  transform:
+    perspective(1400px)
+    rotateY(calc(-27deg + 12deg * var(--phase, 0)))
+    rotateZ(calc(4.8deg - 2.2deg * var(--phase, 0)))
+    translateZ(calc(-170px + 170px * var(--phase, 0)))
+    translateY(calc((1 - var(--phase, 0)) * 24px));
+  transform-origin:50% 50%;
+  opacity:calc(.12 + .88 * var(--phase, 0));
+  box-shadow:
+    calc(8px + 18px * var(--phase, 0)) calc(12px + 22px * var(--phase, 0)) 64px rgba(17,18,23,.16),
+    10px 12px 0 rgba(17,18,23,.07);
+  border:1px solid rgba(17,18,23,.55);
+}

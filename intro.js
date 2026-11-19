@@ -38,7 +38,7 @@
       <footer class="intro-bottom"><span>SEEDLAB / 2026</span><span data-stage-label></span><span class="intro-bottom-note">SYSTEM READY</span></footer>`;
     document.body.append(dialog);document.body.classList.add('intro-open');active=dialog;
     const canvas=dialog.querySelector('canvas'),ctx=canvas.getContext('2d');
-    let width=0,height=0,raf=0,elapsed=reduced.matches?8800:0,last=performance.now(),paused=false,exiting=false;
+    const __S=new URLSearchParams(location.search).get('introseek');const __AT=__S===null?null:Math.max(0,parseInt(__S,10)||0);let width=0,height=0,raf=0,elapsed=__AT!==null?__AT:(reduced.matches?8800:0),last=performance.now(),paused=false,exiting=false;
     const resize=()=>{width=dialog.clientWidth;height=dialog.clientHeight;const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=Math.round(width*dpr);canvas.height=Math.round(height*dpr);ctx?.setTransform(dpr,0,0,dpr,0,0)};
     const observer=new ResizeObserver(resize);observer.observe(dialog);
     const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-zh-v7.mp3',document.baseURI).href);
@@ -150,7 +150,7 @@
       field(time);
     }
     function tick(now){if(active!==dialog||exiting)return;if(!paused&&!document.hidden)elapsed+=Math.max(0,now-last);last=now;if(soundWanted&&!soundtrack.paused&&soundtrack.readyState>=3&&elapsed-lastAudioSync>1200&&Math.abs(soundtrack.currentTime-elapsed/1000)>.35)syncSound();render(elapsed);if(elapsed>=duration)finish();else raf=requestAnimationFrame(tick)}
-    dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});raf=requestAnimationFrame(tick);
+    dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});if(__AT!==null){render(elapsed);}else{raf=requestAnimationFrame(tick);}
     dialog._release=release;
   }
   replay.addEventListener('click',open);
