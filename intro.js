@@ -176,7 +176,7 @@
       field(time);
     }
     function tick(now){if(active!==dialog||exiting)return;if(!paused&&!document.hidden)elapsed+=Math.max(0,now-last);last=now;if(soundWanted&&!soundtrack.paused&&soundtrack.readyState>=3&&elapsed-lastAudioSync>1200&&Math.abs(soundtrack.currentTime-elapsed/1000)>.35)syncSound();render(elapsed);if(elapsed>=duration)finish();else raf=requestAnimationFrame(tick)}
-    dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});if(__AT!==null){render(elapsed);}else{document.addEventListener('pointerdown',()=>{if(soundWanted&&!paused&&!exiting){startSound()}},{once:true,capture:true});document.addEventListener('keydown',()=>{if(soundWanted&&!paused&&!exiting){startSound()}},{once:true,capture:true});raf=requestAnimationFrame(tick);}
+    dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});if(__AT!==null){render(elapsed);}else{document.addEventListener('pointerdown',()=>{if(soundWanted&&!paused&&!exiting){if(elapsed>1200){elapsed=0;last=performance.now();}startSound()}},{once:true,capture:true});document.addEventListener('keydown',()=>{if(soundWanted&&!paused&&!exiting){if(elapsed>1200){elapsed=0;last=performance.now();}startSound()}},{once:true,capture:true});raf=requestAnimationFrame(tick);}
     dialog._release=release;
   }
   replay.addEventListener('click',open);
