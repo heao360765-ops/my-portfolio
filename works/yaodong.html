@@ -50,6 +50,13 @@
 .cam-rig svg{display:block;width:100%;height:auto}
 .cam-rig figcaption{margin-top:10px;font:9.5px/1.7 var(--font-mono);letter-spacing:.08em;color:var(--muted)}
 </style>
+<style>
+.bp-shots{display:grid;gap:14px;margin:26px 0 8px}
+.bp-shots figure{margin:0;border:1px solid var(--line);background:var(--paper-2);padding:10px}
+.bp-shots img{display:block;width:100%;height:auto}
+.bp-shots button{all:unset;cursor:zoom-in;display:block}
+.bp-shots figcaption{margin-top:9px;font:9px/1.6 var(--font-mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -137,6 +144,11 @@
 </section>
 
 <section class="detail-block" aria-labelledby="y3" style="padding-bottom:10px">
+<div class="bp-shots">
+<figure><button type="button" data-lb data-cap="UE5 · 相机组件与机位布置"><img src="../assets/twin/bp-01.webp" alt="UE5 编辑器中的 BP_CameraManager 相机组件与场景布置" loading="lazy"></button><figcaption>SCENE / 相机组件与机位布置</figcaption></figure>
+<figure><button type="button" data-lb data-cap="UE5 · BP_CameraManager 事件图表"><img src="../assets/twin/bp-02.webp" alt="BP_CameraManager 事件图表：1 到 4 键写入 CurrentIndex 并调用 SwitchToCamera" loading="lazy"></button><figcaption>EVENT GRAPH / 1–4 键 → CurrentIndex → SwitchToCamera</figcaption></figure>
+<figure><button type="button" data-lb data-cap="UE5 · 蓝图函数与变量"><img src="../assets/twin/bp-03.webp" alt="BP_CameraManager 蓝图函数与相机变量" loading="lazy"></button><figcaption>FUNCTIONS / 切换函数与四个电影摄像机变量</figcaption></figure>
+</div>
 <h2 id="y3">我的分工</h2><p class="block-label">03 / RESPONSIBILITY</p>
 <div class="work-card" style="margin-top:0">
 <div class="work-card-art"><span class="glyph" aria-hidden="true">1→4</span><span class="art-note">KEY-PRESS CAMERA SWITCH · 2026 春季学期</span></div>
