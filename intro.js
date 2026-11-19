@@ -51,7 +51,7 @@
     dialog.setAttribute('aria-label','作品集系统启动动画');
     dialog.innerHTML=`
       <canvas class="intro-field" aria-hidden="true"></canvas><div class="intro-texture" aria-hidden="true"></div>
-      <header class="intro-top"><div class="intro-wordmark">SEEDLAB<small>CREATIVE WORKSTATION / 2026</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false" hidden>AUDIO</button><button type="button" data-pause aria-pressed="false">PAUSE</button><button type="button" data-skip>SKIP ↗</button></div></header>
+      <header class="intro-top"><div class="intro-wordmark">SEEDLAB<small>CREATIVE WORKSTATION / 2026</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false" title="声音开关">AUDIO</button><button type="button" data-pause aria-pressed="false">PAUSE</button><button type="button" data-skip>SKIP ↗</button></div></header>
       <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="studio-ident"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="studio-mark"><p>SEEDLAB / STUDIO INTERFACE</p><div class="load-bar"><i></i></div><small>IDENTITY MODULE · 01</small><i class="corner corner-a"></i><i class="corner corner-b"></i></div></section>
       <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="access-card"><div class="access-title"><span>SEEDLAB</span><small>PRIVATE WORKSTATION ACCESS</small></div><div class="access-form"><div class="access-field"><small>OPERATOR ID</small><p data-user></p></div><div class="access-field"><small>PASSWORD</small><p class="password-dots" data-password aria-label="密码输入中"></p></div></div><div class="access-state"><i></i><span data-id-status>VERIFYING CREDENTIALS</span></div></div></section>
       <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="verify-card"><img src="assets/brand/seedlab-glyph.png" alt="" class="verify-mark"><h2 data-id-title>ACCESS VERIFIED</h2><p>IDENTITY KEY MATCHED · ACCESS GRANTED</p><div class="verify-line"><i></i></div><small data-load-number>00</small></div></section>
@@ -70,7 +70,7 @@
     const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-zh-v7.mp3',document.baseURI).href);
     soundtrack.preload='auto';soundtrack.volume=.75;
     const sound=dialog.querySelector('[data-sound]');
-    let soundWanted=false,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
+    let soundWanted=true,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
     function syncSound(){const target=elapsed/1000;if(soundtrack.seeking||!soundtrack.seekable.length)return;const end=soundtrack.seekable.end(soundtrack.seekable.length-1);if(target<end){try{soundtrack.currentTime=target;lastAudioSync=elapsed}catch{}}}
     function soundLabel(state){dialog.dataset.voice=state;sound.textContent=state==='on'?'AUDIO ON':state==='loading'?'AUDIO LOADING':state==='unavailable'?'AUDIO N/A':'AUDIO';sound.setAttribute('aria-pressed',String(state==='on'))}
     function stopSound(){playRequest++;soundtrack.pause()}
@@ -80,7 +80,7 @@
       syncSound();
       soundtrack.play().then(()=>{if(request!==playRequest)return;if(active!==dialog||exiting||paused||!soundWanted){soundtrack.pause();return}soundLabel('on')}).catch(error=>{
         if(request!==playRequest||exiting)return;
-        if(error.name==='NotAllowedError'){soundWanted=false;soundLabel('blocked')}
+        if(error.name==='NotAllowedError'){soundLabel('blocked')}
         else if(error.name!=='AbortError'){soundAvailable=false;sound.disabled=true;soundLabel('unavailable')}
       });
     }
@@ -176,7 +176,7 @@
       field(time);
     }
     function tick(now){if(active!==dialog||exiting)return;if(!paused&&!document.hidden)elapsed+=Math.max(0,now-last);last=now;if(soundWanted&&!soundtrack.paused&&soundtrack.readyState>=3&&elapsed-lastAudioSync>1200&&Math.abs(soundtrack.currentTime-elapsed/1000)>.35)syncSound();render(elapsed);if(elapsed>=duration)finish();else raf=requestAnimationFrame(tick)}
-    dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});if(__AT!==null){render(elapsed);}else{raf=requestAnimationFrame(tick);}
+    dialog.showModal();clearPending();resize();render(elapsed);soundLabel('off');if(soundWanted)startSound();dialog.querySelector('[data-skip]').focus({preventScroll:true});if(__AT!==null){render(elapsed);}else{document.addEventListener('pointerdown',()=>{if(soundWanted&&!paused&&!exiting){startSound()}},{once:true,capture:true});document.addEventListener('keydown',()=>{if(soundWanted&&!paused&&!exiting){startSound()}},{once:true,capture:true});raf=requestAnimationFrame(tick);}
     dialog._release=release;
   }
   replay.addEventListener('click',open);
