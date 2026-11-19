@@ -35,16 +35,21 @@
 @media(prefers-reduced-motion:reduce){.studio-mark,.access-card,.verify-card,.workspace-ready{animation:none;transform:none}}
 
 /* ============================================================
-   v2 · 密码端参考「视频1 PRTS 登录」
-   - 整块向右微倾
-   - 输入框改平行四边形（斜切边框，文字保持正立）
-   - 工作室图标作为头像位
-   - 四角黑色定位方块
+   seedLab 鐧诲綍鍗?v3
+   绾櫧搴?路 鐪?3D 鍙宠浆锛堢埗绾ч€忚 + rotateY锛壜?鍥炬爣浣滃ご鍍?   骞宠鍥涜竟褰㈣緭鍏ユ 路 鍥涜瀹氫綅鏂瑰潡
    ============================================================ */
+
+/* 1 鈥斺€?鐧诲綍骞曟暣鐗囩函鐧斤紝骞剁粰鍑洪€忚鑸炲彴 */
+.portfolio-intro .intro-confirm{
+  background:#ffffff;
+  perspective:1600px;
+  perspective-origin:50% 48%;
+}
+
+/* 2 鈥斺€?鍗＄墖鏈綋 */
 .access-card{
   position:relative;
-  transform:translateY(calc((1 - var(--phase))*24px)) rotate(2.8deg);
-  transform-origin:50% 50%;
+  background-color:#ffffff;
   background-image:
     linear-gradient(#111217,#111217),
     linear-gradient(#111217,#111217),
@@ -57,102 +62,112 @@
     -7px calc(100% + 7px),
     calc(100% + 7px) calc(100% + 7px);
   background-repeat:no-repeat;
+  transform:translateY(calc((1 - var(--phase))*24px));
+  transform-origin:50% 50%;
+  box-shadow:
+    26px 34px 64px rgba(17,18,23,.16),
+    10px 12px 0 rgba(17,18,23,.07);
+  grid-template-columns:minmax(206px,.9fr) minmax(250px,1.15fr);
+  gap:34px;
 }
+.access-title,.access-form,.access-field{min-width:0}
 
-/* 头像：工作室图标压在标题块上方 */
+/* 3 鈥斺€?澶村儚锛氬伐浣滃鍥炬爣 */
 .access-title::before{
   content:"";
   display:block;
-  width:clamp(46px,4.6vw,64px);
-  height:clamp(46px,4.6vw,64px);
-  margin:0 0 16px;
+  width:clamp(46px,4.4vw,62px);
+  height:clamp(46px,4.4vw,62px);
+  margin:0 0 15px;
   background:url("assets/brand/seedlab-glyph-ink.png") center/contain no-repeat;
 }
 
-/* 标题：衬线斜体 + 上下横线，呼应 PRTS */
+/* 4 鈥斺€?鏍囬锛氳‖绾挎枩浣擄紝瀛楀彿鎸変竷瀛楁瘝鏀?*/
+.access-title{padding-right:26px}
 .access-title span{
   font-style:italic;
-  letter-spacing:-.055em;
+  font-size:clamp(28px,3.4vw,44px);
+  letter-spacing:-.07em;
+  white-space:nowrap;
   transform:skewX(-4deg);
   transform-origin:left bottom;
 }
 .access-title small{
-  margin-top:16px!important;
+  margin-top:14px;
   padding-top:10px;
   border-top:1px solid #111217;
+  letter-spacing:.12em;
 }
 
-/* 输入框：平行四边形线框，文字不歪 */
+/* 5 鈥斺€?杈撳叆妗嗭細鏂滄姝ｅ瓧 */
 .access-field p{
   position:relative;
   height:42px;
-  border:0!important;
-  background:transparent!important;
+  border:0;
+  background:transparent;
+  padding:11px 16px;
+  overflow:hidden;
+  isolation:isolate;
 }
 .access-field p::before{
   content:"";
   position:absolute;
   inset:0 -6px;
   border:1px solid #111217;
-  background:#fff;
+  background:#ffffff;
   transform:skewX(-11deg);
-  box-shadow:4px 4px 0 #11121712;
+  box-shadow:3px 3px 0 rgba(17,18,23,.08);
   z-index:-1;
 }
-.access-field p{
-  padding:11px 16px;
-  isolation:isolate;
-}
-
-/* 状态行加一条细横线，靠近 PRTS 的分隔语法 */
 .access-state{
-  border-top:1px solid #111217!important;
-  padding-top:14px!important;
+  border-top:1px solid #111217;
+  padding-top:13px;
 }
 
+/* 6 鈥斺€?鎵嬫満绔細涓嶅€炬枩锛屽崟鍒楋紝鐣欑櫧瓒冲 */
 @media(max-width:700px){
-  .access-card{transform:translateY(calc((1 - var(--phase))*24px)) rotate(1.6deg)}
-  .access-title::before{width:42px;height:42px;margin-bottom:12px}
-}
-
-/* —— v2 修正：SEEDLAB 七个字母比 PRTS 长，字号要按比例收 —— */
-.access-card{
-  grid-template-columns:minmax(210px,.92fr) minmax(250px,1.15fr);
-  gap:34px;
-}
-.access-title span{
-  font-size:clamp(28px,3.5vw,46px)!important;
-  letter-spacing:-.07em!important;
-  white-space:nowrap;
-}
-.access-title{padding-right:28px}
-
-/* —— v2 修正：手机上卡片必须回到单列，否则两列最小宽撑破视口 —— */
-@media(max-width:700px){
-  .access-card{grid-template-columns:1fr!important;width:min(760px,78vw)}
+  .portfolio-intro .intro-confirm{perspective:none}
+  .access-card{
+    transform:translateY(calc((1 - var(--phase))*24px));
+    grid-template-columns:1fr;
+    width:calc(100vw - 64px);
+    max-width:calc(100vw - 64px);
+    padding:24px 20px 20px;
+    box-shadow:14px 20px 40px rgba(17,18,23,.14);
+  }
   .access-title{padding-right:0;border-right:0}
+  .access-title span{font-size:30px}
+  .access-form{gap:15px}
 }
 
-/* —— v2 修正：手机上按视口算宽，留出倾斜余量 —— */
-@media(max-width:700px){
-  .access-card{
-    width:calc(100vw - 60px)!important;
-    max-width:calc(100vw - 60px)!important;
-    padding:24px 20px 20px!important;
-  }
-  .access-form{gap:15px!important}
+
+/* ============================================================
+   v3 final —— 纯白底 + 3D 右转 + 斜框输入
+   ============================================================ */
+.portfolio-intro{background:#ffffff;background-image:none}
+.portfolio-intro .intro-confirm{background:#ffffff;perspective:1600px;perspective-origin:50% 48%}
+
+.access-card{
+  background-color:#ffffff;
+  transform:rotateY(-15deg) rotateZ(2.4deg) translateY(calc((1 - var(--phase))*24px));
+  transform-origin:50% 50%;
+  box-shadow:
+    26px 34px 64px rgba(17,18,23,.16),
+    10px 12px 0 rgba(17,18,23,.07);
 }
 
-/* —— v2 修正：grid 子项允许收缩，手机端不倾斜，彻底杜绝溢出 —— */
-.access-title,.access-form,.access-field{min-width:0}
-.access-field p{overflow:hidden}
+/* 斜框不要被裁 */
+.access-field p{overflow:visible}
+.access-field p::before{
+  inset:-1px -10px 1px -10px;
+  transform:skewX(-11deg);
+}
+
 @media(max-width:700px){
+  .portfolio-intro .intro-confirm{perspective:none}
   .access-card{
-    width:calc(100vw - 64px)!important;
-    max-width:calc(100vw - 64px)!important;
-    transform:translateY(calc((1 - var(--phase))*24px)) rotate(0deg)!important;
-    grid-template-columns:1fr!important;
+    transform:translateY(calc((1 - var(--phase))*24px));
+    box-shadow:14px 20px 40px rgba(17,18,23,.14);
   }
-  .access-title span{font-size:30px!important}
-  .access-title small{letter-spacing:.1em!important}
+  .access-field p::before{inset:-1px -6px 1px -6px;transform:skewX(-8deg)}
 }
