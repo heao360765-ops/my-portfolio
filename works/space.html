@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FILE 07 · 下一站：平衡 · 个人作品集</title>
+<meta name="description" content="下一站：平衡，一款围绕校园日常选择、资源管理和多结局叙事的卡牌策略游戏方案。">
+<meta name="theme-color" content="#eef0f2">
+<link rel="canonical" href="https://heao360765-ops.github.io/my-portfolio/works/cards.html">
+<link rel="icon" href="../assets/lantern.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../portfolio.css"><link rel="stylesheet" href="../works.css">
+<style>
+:root{--card-lime:#d7ff00;--card-black:#101114;--card-gray:#202226}
+.card-hero{padding:64px 0 38px;display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:end}
+.card-hero h1{font-size:clamp(38px,4.8vw,62px);font-weight:600;line-height:1.17;letter-spacing:-.05em;margin:0}.card-hero h1 span{color:var(--accent)}
+.card-hero-copy{max-width:360px;padding-bottom:4px}.card-hero-copy p{font-size:14px;line-height:1.9;color:var(--muted);margin:0 0 18px}
+.card-meta{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font:10px/1.7 var(--font-mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.card-cover{position:relative;margin-top:28px;border:1px solid var(--line-2);overflow:hidden;background:var(--card-lime)}.card-cover img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.card-cover::after{content:"";position:absolute;inset:13px;border:1px solid rgba(0,0,0,.35);pointer-events:none}.card-cover span{position:absolute;right:22px;bottom:20px;background:#101114;color:var(--card-lime);font:10px/1.5 var(--font-mono);letter-spacing:.14em;padding:7px 10px;z-index:1}
+.card-block{padding:56px 0 0}.card-block>h2{font-size:23px;font-weight:600;letter-spacing:-.02em;margin:0 0 6px}.card-block>.block-label{font:10px/1.6 var(--font-mono);letter-spacing:.16em;color:var(--muted);text-transform:uppercase;margin:0 0 18px}.card-block>.desc{font-size:13.5px;line-height:1.95;color:var(--ink-soft);max-width:680px;margin:0 0 24px}
+.card-brief{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line)}.card-brief div{padding:20px;border-right:1px solid var(--line);min-height:120px}.card-brief div:last-child{border-right:0}.card-brief b{display:block;color:var(--accent);font:10px/1.5 var(--font-mono);letter-spacing:.15em;margin-bottom:12px}.card-brief span{font-size:14px;line-height:1.65;color:var(--ink-soft)}
+.flow-plate{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--card-black);padding:1px;border:1px solid var(--card-black)}.flow-plate article{background:#1d1f23;color:#eef0f2;padding:26px 22px;min-height:190px;position:relative}.flow-plate article::after{content:"";position:absolute;right:-7px;top:50%;z-index:2;width:13px;height:13px;background:var(--card-lime);transform:translateY(-50%) rotate(45deg)}.flow-plate article:last-child::after{display:none}.flow-plate b{display:block;width:36px;height:36px;border-radius:50%;background:var(--card-lime);color:var(--card-black);font:700 18px/36px var(--font-disp);text-align:center;margin-bottom:18px}.flow-plate h3{font-size:18px;font-weight:500;margin:0 0 9px}.flow-plate p{font-size:12.5px;line-height:1.8;color:#c3c7cc;margin:0}
+.card-types{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card-type{border-top:3px solid var(--card-lime);background:var(--card-gray);padding:24px;color:#f0f2f3}.card-type h3{font-size:20px;font-weight:500;margin:0 0 8px}.card-type small{display:inline-block;color:var(--card-black);background:var(--card-lime);padding:3px 8px;font:9px/1.5 var(--font-mono);letter-spacing:.1em}.card-type p{font-size:12.5px;line-height:1.9;color:#c7cbd0;margin:18px 0 0}.card-type ul{font-size:12px;line-height:1.9;color:#e6e9eb;margin:14px 0 0;padding-left:17px}
+.cards-page-gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}.cards-page-gallery figure{margin:0;border:1px solid var(--line);background:var(--paper-2);overflow:hidden}.cards-page-gallery figure:first-child{grid-column:1/-1}.cards-page-gallery button{all:unset;display:block;width:100%;cursor:zoom-in}.cards-page-gallery img{display:block;width:100%;height:auto;transition:opacity .25s var(--ease)}.cards-page-gallery button:hover img{opacity:.9}.cards-page-gallery figcaption{font:9px/1.6 var(--font-mono);letter-spacing:.1em;color:var(--muted);padding:8px 11px;border-top:1px solid var(--line);text-transform:uppercase}
+.source-row{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;font-size:13px;color:var(--muted)}.backlink{display:inline-block;margin:58px 0 64px}
+@media(max-width:860px){.card-hero{grid-template-columns:1fr;gap:26px}.card-brief{grid-template-columns:1fr 1fr}.card-brief div:nth-child(2){border-right:0}.card-brief div:nth-child(-n+2){border-bottom:1px solid var(--line)}.flow-plate{grid-template-columns:1fr 1fr}.flow-plate article:nth-child(2)::after{display:none}.card-types{grid-template-columns:1fr}}
+@media(max-width:600px){.card-hero{padding:40px 0 26px}.card-hero h1{font-size:40px}.card-brief,.flow-plate,.cards-page-gallery{grid-template-columns:1fr}.card-brief div{border-right:0;border-bottom:1px solid var(--line)}.card-brief div:last-child{border-bottom:0}.flow-plate article::after{right:50%;top:auto;bottom:-7px;transform:translateX(50%) rotate(45deg)}.flow-plate article:nth-child(2)::after{display:block}.flow-plate article:last-child::after{display:none}.cards-page-gallery figure:first-child{grid-column:auto}}
+</style>
+<style>
+.ui-grid{display:grid;gap:14px;margin-top:18px}
+.ui-grid figure{margin:0;border:1px solid var(--line);background:var(--card-gray);padding:8px}
+.ui-grid img{display:block;width:100%;height:auto}
+.ui-grid button{all:unset;cursor:zoom-in;display:block}
+.ui-grid figcaption{margin-top:8px;font:9px/1.6 var(--font-mono);letter-spacing:.1em;color:#9fb0a3;text-transform:uppercase}
+</style>
+<style>
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.char-grid figure{margin:0;border:1px solid var(--line);background:var(--card-gray);padding:8px}
+.char-grid img{display:block;width:100%;height:auto}
+.char-grid button{all:unset;cursor:zoom-in;display:block}
+.char-grid figcaption{margin-top:8px;font:9px/1.6 var(--font-mono);letter-spacing:.1em;color:#9fb0a3;text-transform:uppercase}
+@media(max-width:760px){.char-grid{grid-template-columns:1fr}}
+</style>
+<style>
+.deck-head{position:relative;margin-top:28px;border:1px solid var(--line-2);background:#d6ff00;padding:clamp(28px,4vw,52px);color:#0a0c0a}
+.dh-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:clamp(18px,2.4vw,30px)}
+.dh-brand{display:inline-flex;align-items:center;gap:9px;font:600 15px/1 var(--font-mono);letter-spacing:.02em}
+.dh-brand img{display:block;width:20px;height:20px;object-fit:contain}
+.dh-school{font:11px/1.4 var(--font-mono);letter-spacing:.06em;text-align:right;opacity:.75}
+.dh-kicker{margin:0;font-size:clamp(14px,1.5vw,20px);font-weight:700;letter-spacing:.02em}
+.dh-title{margin:6px 0 clamp(24px,3vw,40px);font-size:clamp(52px,8.4vw,116px);line-height:.92;letter-spacing:-.03em;font-weight:800}
+.dh-meta{margin:0;padding-left:14px;border-left:3px solid #0a0c0a;font:clamp(11px,1.05vw,14px)/1.75 var(--font-mono);letter-spacing:.02em}
+</style>
+<style>
+.huibo-cover{margin:24px 0 0;border:1px solid var(--line-2);background:var(--paper-2)}
+.huibo-cover img{display:block;width:100%;height:auto}
+.huibo-cover figcaption{padding:10px 14px;font:9px/1.5 var(--font-mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;border-top:1px solid var(--line)}
+.huibo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.huibo-grid figure{margin:0;border:1px solid var(--line);background:var(--paper-2);overflow:hidden}
+.huibo-grid img{display:block;width:100%;height:auto}
+.huibo-grid figcaption{padding:9px 11px;font:8.5px/1.5 var(--font-mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.cards-grid.three{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.cards-grid.three h3{margin:0 0 8px;font-size:15px}
+.cards-grid.three p{margin:0;font-size:12.5px;line-height:1.85;color:var(--muted)}
+@media(max-width:760px){.huibo-grid,.cards-grid.three{grid-template-columns:1fr}}
+</style>
+<style>
+.model-tabs{display:flex;gap:10px;margin:26px 0 18px;flex-wrap:wrap}
+.model-tab{background:transparent;border:1px solid var(--line-2);color:var(--muted);padding:11px 18px;font:10px/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .25s}
+.model-tab.is-on,.model-tab:hover{border-color:#ccff00;color:#ccff00;background:#0f140d}
+.model-panel{display:none}
+.model-panel.is-on{display:block}
+.model-main{margin:0 0 12px;border:1px solid var(--line);background:var(--paper-2)}
+.model-main img{display:block;width:100%;height:auto}
+.model-main figcaption{padding:10px 14px;font:9px/1.5 var(--font-mono);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;border-top:1px solid var(--line)}
+.model-thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.model-thumbs button{all:unset;cursor:pointer;display:block;border:1px solid var(--line);background:var(--paper-2);padding:4px;transition:border-color .25s}
+.model-thumbs button.is-on{border-color:#ccff00}
+.model-thumbs img{display:block;width:100%;height:auto}
+.model-note{margin:0 0 10px;font-size:12.5px;line-height:1.9;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="wrap header-inner"><a class="brand" href="../" aria-label="个人作品集首页"><span class="brand-mark" aria-hidden="true"></span><span>个人作品集<small>DESIGN / BUILD / EXPLORE</small></span></a><nav class="main-nav" aria-label="作品集导航"><a href="../">首页</a><a href="../works.html">作品档案</a><a href="../#space">空间建模</a></nav></div></header>
+<main id="main">
+<div class="wrap">
+
+<section class="card-hero" aria-labelledby="space-title">
+<div><p class="kicker">FILE 08 / 3D SPACE <b>·</b> BLENDER + MAYA</p>
+<h1 id="space-title">3D 空间<br><span>两组模型</span></h1></div>
+<div class="hero-copy-inline"><p>Blender 室内场景与 Maya 航天器两组建模，均由自动机位渲染三视角：45° 全景、正视 / 侧视、俯视 / 端盖。白模状态保留结构与体块关系。</p><a class="text-link" href="../#space">← 返回首页</a></div>
+</section>
+
+<div class="model-tabs" role="tablist">
+<button type="button" class="model-tab is-on" data-model="room" role="tab" aria-selected="true">室内场景 · BLENDER</button>
+<button type="button" class="model-tab" data-model="htq" role="tab" aria-selected="false">航天器 · MAYA</button>
+</div>
+
+<section class="model-panel is-on" data-panel="room">
+<figure class="model-main"><img src="../assets/works/space/changjing_iso.webp" alt="Blender 室内场景白模 45 度全景" loading="eager"><figcaption>ISO / 45° 全景</figcaption></figure>
+<div class="model-thumbs">
+<button type="button" data-src="../assets/works/space/changjing_iso.webp" data-cap="ISO / 45° 全景" class="is-on"><img src="../assets/works/space/changjing_iso.webp" alt="45 度全景"></button>
+<button type="button" data-src="../assets/works/space/changjing_front.webp" data-cap="FRONT / 正视"><img src="../assets/works/space/changjing_front.webp" alt="正视"></button>
+<button type="button" data-src="../assets/works/space/changjing_top.webp" data-cap="TOP / 俯视"><img src="../assets/works/space/changjing_top.webp" alt="俯视"></button>
+</div>
+<p class="model-note">室内场景：L 形工作台、云朵挂饰、书架与窗格。94 个网格，白模验证空间比例与家具尺度。</p>
+</section>
+
+<section class="model-panel" data-panel="htq">
+<figure class="model-main"><img src="../assets/works/space/htq_iso.webp" alt="Maya 航天器白模 45 度" loading="lazy"><figcaption>ISO / 舱体全景</figcaption></figure>
+<div class="model-thumbs">
+<button type="button" data-src="../assets/works/space/htq_iso.webp" data-cap="ISO / 舱体全景" class="is-on"><img src="../assets/works/space/htq_iso.webp" alt="舱体全景"></button>
+<button type="button" data-src="../assets/works/space/htq_side.webp" data-cap="SIDE / 侧视"><img src="../assets/works/space/htq_side.webp" alt="侧视"></button>
+<button type="button" data-src="../assets/works/space/htq_end.webp" data-cap="END / 端盖"><img src="../assets/works/space/htq_end.webp" alt="端盖"></button>
+</div>
+<p class="model-note">航天器：圆柱舱体、多道加强环、端盖六角孔阵列。Maya 建模，249 个 mesh。</p>
+</section>
+
+<a class="text-link backlink" href="../works.html" onclick="var r=document.referrer||'';if(r.indexOf('works.html')<0){location.href='../index.html';return false}">← 返回</a>
+</div>
+</main>
+<footer><div class="wrap footer-inner"><span>个人作品集 · 持续更新</span><small>DESIGNED TO EXPLORE. BUILT TO LEARN.</small><a href="#main">回到顶部 ↑</a></div></footer>
+<script>
+(()=>{const tabs=document.querySelectorAll('.model-tab');const panels=document.querySelectorAll('.model-panel');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>{x.classList.toggle('is-on',x===t);x.setAttribute('aria-selected',String(x===t))});
+  panels.forEach(p=>p.classList.toggle('is-on',p.dataset.panel===t.dataset.model));
+}));
+document.querySelectorAll('.model-thumbs button').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const panel=btn.closest('.model-panel');
+    const main=panel.querySelector('.model-main img');
+    const cap=panel.querySelector('.model-main figcaption');
+    main.src=btn.dataset.src; cap.textContent=btn.dataset.cap;
+    panel.querySelectorAll('.model-thumbs button').forEach(b=>b.classList.toggle('is-on',b===btn));
+  });
+});})();
+</script>
+</body></html>
