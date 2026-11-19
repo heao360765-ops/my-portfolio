@@ -78,7 +78,7 @@
       if(!soundWanted||!soundAvailable||paused||document.hidden||exiting)return;
       const request=++playRequest;soundLabel('loading');
       syncSound();
-      soundtrack.play().then(()=>{if(request!==playRequest)return;if(active!==dialog||exiting||paused||!soundWanted){soundtrack.pause();return}soundLabel('on')}).catch(error=>{
+      soundtrack.play().then(()=>{if(request!==playRequest)return;if(exiting||!soundWanted){soundtrack.pause();return}soundLabel('on')}).catch(error=>{
         if(request!==playRequest||exiting)return;
         if(error.name==='NotAllowedError'){soundLabel('blocked')}
         else if(error.name!=='AbortError'){soundAvailable=false;sound.disabled=true;soundLabel('unavailable')}
