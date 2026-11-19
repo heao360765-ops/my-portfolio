@@ -280,7 +280,7 @@ img{width:100%;height:auto}
   overflow:hidden;margin-bottom:16px;
 }
 .twin-plate img{
-  width:100%;height:auto;aspect-ratio:1910/728;object-fit:cover;
+  display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;
   filter:saturate(.92) contrast(1.02);
 }
 .plate-tag{
