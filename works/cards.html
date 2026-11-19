@@ -39,6 +39,16 @@
 .char-grid figcaption{margin-top:8px;font:9px/1.6 var(--font-mono);letter-spacing:.1em;color:#9fb0a3;text-transform:uppercase}
 @media(max-width:760px){.char-grid{grid-template-columns:1fr}}
 </style>
+<style>
+.deck-head{position:relative;margin-top:28px;border:1px solid var(--line-2);background:#d6ff00;padding:clamp(28px,4vw,52px);color:#0a0c0a}
+.dh-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:clamp(18px,2.4vw,30px)}
+.dh-brand{display:inline-flex;align-items:center;gap:9px;font:600 15px/1 var(--font-mono);letter-spacing:.02em}
+.dh-brand img{display:block;width:20px;height:20px;object-fit:contain}
+.dh-school{font:11px/1.4 var(--font-mono);letter-spacing:.06em;text-align:right;opacity:.75}
+.dh-kicker{margin:0;font-size:clamp(14px,1.5vw,20px);font-weight:700;letter-spacing:.02em}
+.dh-title{margin:6px 0 clamp(24px,3vw,40px);font-size:clamp(52px,8.4vw,116px);line-height:.92;letter-spacing:-.03em;font-weight:800}
+.dh-meta{margin:0;padding-left:14px;border-left:3px solid #0a0c0a;font:clamp(11px,1.05vw,14px)/1.75 var(--font-mono);letter-spacing:.02em}
+</style>
 </head>
 <body>
 <a class="skip" href="#main">跳到正文</a>
@@ -46,7 +56,12 @@
 <main id="main" class="wrap">
 <section class="card-hero" aria-labelledby="card-title"><div><p class="kicker">FILE 07 / CARD GAME DESIGN <b>·</b> PROJECT DECK</p><h1 id="card-title">下一站：<br><span>平衡</span></h1></div><div class="card-hero-copy"><p>一款以校园日常为场景的卡牌策略游戏方案。玩家在有限行动里安排学习、社交、休息与绿色行动，让每次选择同时影响个人状态和周围的人。</p><a class="text-link" href="../index.html">← 返回首页</a></div></section>
 <div class="card-meta"><span>卡牌构筑 · 多结局叙事 · 校园生活</span><span>YACC 青年绿色发展项目方案</span></div>
-<figure class="card-cover"><img src="../assets/works/cards/cover-deck-head.webp" alt="下一站平衡项目方案封面"><span>PROJECT DECK / 14 PAGES</span></figure>
+<div class="deck-head" aria-label="项目方案封面">
+<div class="dh-row"><span class="dh-brand"><img src="../assets/brand/seedlab-glyph-ink.png" alt="" width="22" height="22">seedLab</span><span class="dh-school">西安欧亚学院</span></div>
+<p class="dh-kicker">独立游戏策划案：</p>
+<h2 class="dh-title">Next stop:<br>Balance</h2>
+<p class="dh-meta">卡牌构筑 × 多结局叙事 &nbsp;|&nbsp; 气候 · 性别 · 青年<br>YACC 青年绿色发展项目 · 互动游戏开发方案<br>智能产品交互工作室 &nbsp;|&nbsp; 西安欧亚学院</p>
+</div>
 
 <section class="card-block" aria-labelledby="card-brief-title"><h2 id="card-brief-title">项目定位</h2><p class="block-label">01 / GAME OVERVIEW</p><p class="desc">项目将气候变化、性别平等和青年参与放进普通大学生的校园生活里。游戏不设置唯一正确答案，玩家通过卡牌和事件自己感受选择带来的连锁结果。</p><div class="card-brief"><div><b>类型</b><span>卡牌构筑<br>多结局叙事</span></div><div><b>目标人群</b><span>18–22 岁<br>大学生群体</span></div><div><b>单局时长</b><span>30–45 分钟<br>可重复游玩</span></div><div><b>方案平台</b><span>微信小程序优先<br>兼顾其他平台</span></div></div></section>
 
