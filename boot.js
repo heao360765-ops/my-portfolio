@@ -4,24 +4,29 @@
    Self-contained: builds its own DOM + WebAudio cues.
    ============================================================ */
 (() => {
-  const KEY = 'seedlab-boot-v2';
+  const KEY = 'seedlab-boot-v3';
   const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const MARK = 'assets/brand/seedlab-mark@2x.png';
+  // alpha-stripped glyphs: no black plate, so they sit on paper like the reference did
+  const MARK_GLOW = 'assets/brand/seedlab-glyph.png';      // dark act
+  const MARK_INK = 'assets/brand/seedlab-glyph-ink.png';   // paper acts
 
   /* ---------- timeline (ms) ---------- */
   const T = {
     lit: 250,
-    iris: 2400,
-    irisEnd: 3300,
-    screenOn: 3250,
-    ring: 3700,
-    copy: 4100,
-    foot: 4900,
-    swap: 6200,
-    progress: 6600,
-    out: 8700,
-    welcome: 8800,
-    end: 12300,
+    iris: 2300,
+    irisEnd: 3200,
+    screenOn: 3150,
+    access: 3300,
+    ring: 4000,
+    copy: 4400,
+    request: 4900,
+    foot: 5300,
+    identity: 6600,
+    swap: 8300,
+    progress: 8600,
+    out: 9900,
+    welcome: 10000,
+    end: 12800,
     hardStop: 30000
   };
 
@@ -34,7 +39,7 @@
     <div class="sb-dark">
       <div class="sb-glow" aria-hidden="true"></div>
       <div class="sb-dark-inner">
-        <img class="sb-dark-mark" src="${MARK}" alt="seedLab 标志" width="884" height="840">
+        <img class="sb-dark-mark" src="${MARK_GLOW}" alt="seedLab 标志" width="356" height="356">
         <p class="sb-dark-cap">seedlab terminal · initializing</p>
       </div>
     </div>
@@ -79,18 +84,18 @@
         <p>接收访问需求，建立会话通道…</p>
         <span>handshake established</span>
       </div>
+
+      <div class="sb-welcome">
+        <div class="sb-wc">
+          <p class="sb-wc-top">Welcome to</p>
+          <p class="sb-wc-block">SEEDLAB</p>
+          <img class="sb-wc-mark" src="${MARK_INK}" alt="" width="356" height="356">
+          <p class="sb-wc-sub">seedlab studio · 2026</p>
+        </div>
+      </div>
     </div>
 
     <div class="sb-iris" aria-hidden="true"></div>
-
-    <div class="sb-welcome">
-      <div class="sb-wc">
-        <p class="sb-wc-top">Welcome to</p>
-        <p class="sb-wc-block">SEEDLAB</p>
-        <img class="sb-wc-mark" src="${MARK}" alt="" width="442" height="420">
-        <p class="sb-wc-sub">seedlab studio · 2026</p>
-      </div>
-    </div>
 
     <div class="sb-ctrl">
       <button type="button" class="sb-sound" aria-pressed="false">声音 OFF</button>
@@ -199,7 +204,9 @@
     const p1 = easeOut(clamp01((t - 250) / 1600));
     darkMark.style.opacity = String(p1);
     darkMark.style.transform = `scale(${lerp(0.94, 1, p1)})`;
-    darkMark.style.filter = `blur(${lerp(10, 0, p1)}px) brightness(${lerp(0.8, 1, p1)})`;
+    darkMark.style.filter =
+      `blur(${lerp(10, 0, p1)}px) brightness(${lerp(0.8, 1, p1)}) ` +
+      `drop-shadow(0 0 ${lerp(30, 12, p1).toFixed(1)}px rgba(204,255,0,${(0.30 * p1).toFixed(3)}))`;
     darkCap.style.opacity = String(easeOut(clamp01((t - 900) / 900)));
 
     // white circle wipe (2400 → 3350ms)
@@ -251,23 +258,38 @@
       iris.style.display = 'none';
     });
 
+    function setCounter(no, label) {
+      counter.innerHTML = '[ 0' + no + ' / 06 ] <b>' + label + '</b>';
+    }
+
+    once('access', elapsed, T.access, () => {
+      setCounter(2, 'access');
+      topbarFill.style.width = '18%';
+    });
+
     once('ring', elapsed, T.ring, () => {
       screen.classList.add('is-ring');
       blip(660, 0.05, 0.3);
+      topbarFill.style.width = '32%';
     });
 
     once('copy', elapsed, T.copy, () => {
-      topbarFill.style.width = '26%';
+      topbarFill.style.width = '40%';
+    });
+
+    once('request', elapsed, T.request, () => {
+      setCounter(3, 'request');
+      topbarFill.style.width = '50%';
     });
 
     once('foot', elapsed, T.foot, () => {
       screen.classList.add('is-foot');
-      topbarFill.style.width = '48%';
+      topbarFill.style.width = '58%';
     });
 
     // tick the dotted progress row
     if (elapsed >= T.foot && tickIndex < ticks.length) {
-      const step = T.swap - T.foot;
+      const step = T.identity - T.foot;
       const want = Math.min(ticks.length, Math.floor(((elapsed - T.foot) / step) * ticks.length) + 1);
       while (tickIndex < want) {
         ticks[tickIndex].classList.add('on');
@@ -275,6 +297,19 @@
         blip(1400, 0.02, 0.05, 'square');
       }
     }
+
+    once('identity', elapsed, T.identity, () => {
+      centerH1.textContent = '核对访问权限';
+      centerP.textContent = 'Verifying credentials';
+      copy.classList.remove('is-swap');
+      void copy.offsetWidth;
+      copy.classList.add('is-swap');
+      footP.textContent = '正在核对访问权限，请稍候…';
+      footSpan.textContent = 'verifying credentials';
+      setCounter(4, 'identity');
+      topbarFill.style.width = '72%';
+      blip(720, 0.04, 0.22);
+    });
 
     once('swap', elapsed, T.swap, () => {
       centerH1.textContent = '读取完毕 · 核验通过';
@@ -284,22 +319,20 @@
       copy.classList.add('is-swap');
       footP.textContent = '读取完毕，核验通过，权限已授予';
       footSpan.textContent = 'permission authorized';
-      counter.innerHTML = '[ 05 / 06 ] <b>verify</b>';
-      topbarFill.style.width = '82%';
+      setCounter(5, 'verify');
+      topbarFill.style.width = '88%';
       blip(660, 0.05, 0.25);
       setTimeout(() => blip(990, 0.045, 0.3), 110);
     });
 
-    once('out', elapsed, T.out, () => {
-      topbarFill.style.width = '100%';
-      screen.classList.remove('is-on');
-    });
-
     once('welcome', elapsed, T.welcome, () => {
+      topbarFill.style.width = '100%';
+      screen.classList.add('is-welcome');
       welcome.classList.add('is-on');
+      setCounter(6, 'welcome');
       blip(880, 0.05, 0.2);
       setTimeout(() => blip(1320, 0.04, 0.28), 130);
-      if (!FORCED) finishSoon(3000);
+      if (!FORCED) finishSoon(3200);
     });
 
     if (!FORCED && (elapsed >= T.end || elapsed >= T.hardStop)) { finish(); return; }
@@ -342,7 +375,7 @@
     document.documentElement.classList.remove('sb-pending');
     // reset for replay
     dark.classList.remove('is-lit', 'is-off');
-    screen.classList.remove('is-on', 'is-ring', 'is-foot');
+    screen.classList.remove('is-on', 'is-ring', 'is-foot', 'is-welcome');
     welcome.classList.remove('is-on');
     root.classList.remove('on-paper', 'sb-leaving');
     iris.style.display = '';
@@ -354,7 +387,7 @@
     centerP.textContent = 'Access request received';
     footP.textContent = '接收访问需求，建立会话通道…';
     footSpan.textContent = 'handshake established';
-    counter.innerHTML = '[ 01 / 04 ] <b>access</b>';
+    counter.innerHTML = '[ 01 / 06 ] <b>boot</b>';
     copy.classList.remove('is-swap');
 
     requestAnimationFrame((t) => {
