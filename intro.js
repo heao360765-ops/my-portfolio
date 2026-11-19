@@ -12,8 +12,9 @@
     function ac(){try{if(!ctx){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;ctx=new A()}if(ctx.state==='suspended')ctx.resume();return ctx}catch(e){return null}}
     function tone(f,d,g,type,f2){const c=ac();if(!c||!on)return;try{const o=c.createOscillator(),gn=c.createGain();o.type=type||'sine';o.frequency.value=f;if(f2)o.frequency.exponentialRampToValueAtTime(f2,c.currentTime+d);o.connect(gn);gn.connect(c.destination);const t0=c.currentTime;gn.gain.setValueAtTime(.0001,t0);gn.gain.exponentialRampToValueAtTime(g,t0+.008);gn.gain.exponentialRampToValueAtTime(.0001,t0+d);o.start();o.stop(t0+d+.03)}catch(e){}}
     function noise(d,freq,g){const c=ac();if(!c||!on)return;try{const n=c.createBufferSource(),b=c.createBuffer(1,Math.max(1,Math.floor(c.sampleRate*d)),c.sampleRate),dt=b.getChannelData(0);for(let i=0;i<dt.length;i++)dt[i]=(Math.random()*2-1)*.5;n.buffer=b;const bp=c.createBiquadFilter();bp.type='bandpass';bp.Q.value=1.2;bp.frequency.value=freq;const gn=c.createGain();n.connect(bp);bp.connect(gn);gn.connect(c.destination);const t0=c.currentTime;gn.gain.setValueAtTime(.0001,t0);gn.gain.exponentialRampToValueAtTime(g,t0+.05);gn.gain.exponentialRampToValueAtTime(.0001,t0+d);n.start();n.stop(t0+d)}catch(e){}}
+    function click(gain,pitch){const c=ac();if(!c||!on)return;try{const dur=.05,n=c.createBufferSource(),b=c.createBuffer(1,Math.floor(c.sampleRate*dur),c.sampleRate),dt=b.getChannelData(0);for(let i=0;i<dt.length;i++){const k=i/dt.length;dt[i]=(Math.random()*2-1)*Math.exp(-k*38)}n.buffer=b;const hp=c.createBiquadFilter();hp.type='highpass';hp.frequency.value=pitch||1700;const lp=c.createBiquadFilter();lp.type='lowpass';lp.frequency.value=7000;const gn=c.createGain();gn.gain.value=gain||.16;n.connect(hp);hp.connect(lp);lp.connect(gn);gn.connect(c.destination);n.start()}catch(e){}}
     function once(k,fn){if(fired[k])return;fired[k]=1;fn()}
-    return {tone,noise,once};})();
+    return {tone,noise,click,once};})();
   let lastTyped=-1,lastDots=-1;
   function sfxTick(t,typed,dots){
     SFX.once('boot',    ()=>{if(t>=140){SFX.tone(56,1.4,.028,'sine');SFX.noise(.9,260,.018)}});
@@ -23,8 +24,8 @@
     SFX.once('verified',()=>{if(t>=4720){SFX.tone(660,.2,.028);setTimeout(()=>SFX.tone(990,.26,.026),110)}});
     SFX.once('boot2',   ()=>{if(t>=4950)SFX.noise(.6,1250,.02)});
     SFX.once('welcome', ()=>{if(t>=7920){SFX.tone(784,.2,.028);setTimeout(()=>SFX.tone(1175,.3,.024),120)}});
-    if(typed>lastTyped){lastTyped=typed;if(typed>0)SFX.tone(1550,.035,.011,'square')}
-    if(dots>lastDots){lastDots=dots;if(dots>0)SFX.tone(1250,.035,.011,'square')}
+    if(typed>lastTyped){lastTyped=typed;if(typed>0)SFX.click(.20,1900+Math.random()*700)}
+    if(dots>lastDots){lastDots=dots;if(dots>0)SFX.click(.22,1500+Math.random()*600)}
   }
 
   const scenes=[
