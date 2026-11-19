@@ -18,7 +18,7 @@ fs.mkdirSync(out,{recursive:true});
   release();await p.locator('.portfolio-intro').waitFor();
   check('Guard hands over directly to modal',await p.locator('.portfolio-intro').evaluate(d=>d.open)&&!(await p.locator('html').evaluate(e=>e.classList.contains('intro-pending'))));
   await p.waitForFunction(()=>document.querySelector('.portfolio-intro')?.dataset.stage==='archive');
-  check('Loading scene has a light background',await p.locator('.portfolio-intro').evaluate(d=>getComputedStyle(d).backgroundColor==='rgb(232, 233, 228)'));
+  check('Loading scene has a light background',await p.locator('.portfolio-intro').evaluate(d=>getComputedStyle(d).backgroundColor==='rgb(238, 240, 242)'));
   await p.waitForFunction(()=>document.querySelector('.portfolio-intro')?.dataset.stage==='welcome');
   await p.waitForTimeout(500);
   check('Welcome uses upright condensed type',await p.locator('.intro-welcome h2').evaluate(e=>getComputedStyle(e).fontStyle==='normal'&&getComputedStyle(e).fontFamily.includes('ArchiveDIN')));

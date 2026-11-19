@@ -24,7 +24,7 @@
 .work-grid .wide{aspect-ratio:16/9}
 .work-grid .square{aspect-ratio:1/1}
 .work-grid figure:hover img{transform:scale(1.02)}
-.work-grid figcaption{position:absolute;left:12px;bottom:12px;background:#142420db;color:#fff;font:9px/1.5 monospace;letter-spacing:.1em;padding:5px 8px}
+.work-grid figcaption{position:absolute;left:12px;bottom:12px;background:#111319dc;color:#fff;font:9px/1.5 monospace;letter-spacing:.1em;padding:5px 8px}
 .work-grid button{all:unset;cursor:zoom-in;display:block;width:100%;height:100%}
 .work-grid.cols-2 figure:first-child{grid-column:1/-1}
 
@@ -37,10 +37,11 @@
 .work-card{display:grid;grid-template-columns:1fr 1.3fr;gap:0;border:1px solid var(--line);background:var(--mint);margin-top:24px}
 .work-card-copy{padding:40px 34px;align-self:center}
 .work-card-copy h2{font-size:24px;font-weight:500;margin:14px 0 14px}
-.work-card-copy p{font-size:13px;color:#425b48;line-height:1.9;margin:0 0 14px;max-width:430px}
-.work-card-art{position:relative;display:grid;place-items:center;min-height:230px;background:linear-gradient(#a8bca533 1px,transparent 1px),linear-gradient(90deg,#a8bca533 1px,transparent 1px);background-size:28px 28px;border-right:1px solid var(--line)}
-.work-card-art .glyph{font:600 clamp(56px,7vw,96px)/1 Inter,sans-serif;letter-spacing:-.06em;color:#405944}
-.work-card-art .art-note{position:absolute;left:20px;bottom:14px;font:10px/1.5 monospace;letter-spacing:.1em;color:#506554}
+.work-card-copy p{font-size:13px;color:var(--ink-soft);line-height:1.9;margin:0 0 14px;max-width:430px}
+.work-card-art{position:relative;display:grid;place-items:center;min-height:230px;background:linear-gradient(#7c858e33 1px,transparent 1px),linear-gradient(90deg,#7c858e33 1px,transparent 1px);background-size:28px 28px;border-right:1px solid var(--line)}
+.work-card-art .glyph{font:600 clamp(56px,7vw,96px)/1 Inter,sans-serif;letter-spacing:-.06em;color:var(--ink-soft)}
+.work-card-art .art-note{position:absolute;left:20px;bottom:14px;font:10px/1.5 monospace;letter-spacing:.1em;color:var(--muted)}
+.work-card-art--image{display:block;overflow:hidden;background:#101216}.work-card-art--image img{width:100%;height:100%;min-height:230px;object-fit:cover;transition:transform .6s var(--ease)}.work-card:hover .work-card-art--image img{transform:scale(1.025)}.work-card-art--image .art-note{z-index:1;background:#101216dc;color:#eef0f2;padding:5px 8px}
 
 /* ---------- grouping ---------- */
 
@@ -104,10 +105,10 @@
 
 /* lightbox */
 .lightbox{border:none;padding:0;background:transparent;max-width:96vw;max-height:96vh}
-.lightbox::backdrop{background:#101c1ae6}
+.lightbox::backdrop{background:#0b0d11ea}
 .lightbox img{width:auto;max-width:92vw;max-height:88vh;margin:auto}
-.lightbox figcaption{color:#c3cfc5;font:11px/1.8 monospace;letter-spacing:.1em;padding:10px 4px;text-align:center}
-.lightbox-close{position:fixed;top:14px;right:18px;background:none;border:1px solid #72887b;color:#fff;font-size:15px;padding:8px 14px;cursor:pointer}
+.lightbox figcaption{color:#d0d5db;font:11px/1.8 monospace;letter-spacing:.1em;padding:10px 4px;text-align:center}
+.lightbox-close{position:fixed;top:14px;right:18px;background:none;border:1px solid #7b848f;color:#fff;font-size:15px;padding:8px 14px;cursor:pointer}
 
 @media(max-width:900px){
 .works-hero{grid-template-columns:1.5fr 1fr;gap:32px;padding-top:50px}

@@ -6,7 +6,7 @@ fs.mkdirSync(out,{recursive:true});
 (async()=>{
  const browser=await chromium.launch({headless:true,channel:'msedge'});
  const page=await browser.newPage();
- await page.addInitScript(()=>sessionStorage.setItem('portfolio-prologue-v7','1'));
+ await page.addInitScript(()=>sessionStorage.setItem('portfolio-prologue-v8','1'));
  const errors=[],results=[];
  const check=(name,value)=>{results.push({name,passed:!!value});if(!value)throw Error(name)};
  page.on('pageerror',e=>errors.push(e.message));
@@ -14,11 +14,14 @@ fs.mkdirSync(out,{recursive:true});
  for(const width of [375,768,1440]){
   await page.setViewportSize({width,height:width===375?812:1000});
   await page.goto(base,{waitUntil:'networkidle'});
+  await page.locator('footer').scrollIntoViewIfNeeded();
+  await page.waitForFunction(()=>[...document.images].filter(image=>image.loading!=='lazy').every(image=>image.complete&&image.naturalWidth>0));
+  await page.evaluate(()=>window.scrollTo(0,0));
   check('Portfolio title '+width,(await page.title()).includes('个人作品集'));
   check('Portfolio has one heading '+width,await page.locator('h1').count()===1);
   check('Portfolio has no game arrival dialog '+width,await page.locator('.arrival').count()===0);
   check('Portfolio fits screen '+width,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-  check('Portfolio photograph loads '+width,await page.locator('img').evaluateAll(a=>a.every(i=>i.complete&&i.naturalWidth>0)));
+  check('Portfolio eager photographs load '+width,await page.locator('img:not([loading="lazy"])').evaluateAll(a=>a.every(i=>i.complete&&i.naturalWidth>0)));
   await page.locator('a[href="#hardware"]').click();
   check('Hardware section navigation '+width,new URL(page.url()).hash==='#hardware');
   check('Mono stage is clearly labelled '+width,(await page.locator('.hardware-copy').innerText()).includes('方案设计阶段'));
