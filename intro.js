@@ -1,18 +1,18 @@
 /* A fictional visual boot sequence, isolated from the competition website. */
 (() => {
   'use strict';
-  const key='portfolio-prologue-v8';
+  const key='portfolio-prologue-v9';
   const clearPending=()=>{clearTimeout(window.__portfolioBoot?.timer);document.documentElement.classList.remove('intro-pending')};
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const replay=document.querySelector('[data-replay-intro]');
   if(!replay || typeof HTMLDialogElement==='undefined' || !HTMLDialogElement.prototype.showModal){clearPending();return}
   replay.hidden=false;
   const scenes=[
-    {name:'signal',start:0,end:1800,label:'SIGNAL RECEIVED'},
-    {name:'confirm',start:1800,end:4000,label:'FRAME IDENTIFIED'},
-    {name:'archive',start:4000,end:7600,label:'INDEXING WORKS'},
-    {name:'authorize',start:7600,end:8800,label:'ACCESS GRANTED'},
-    {name:'welcome',start:8800,end:11200,label:'ARCHIVE OPEN'},
+    {name:'signal',start:0,end:1700,label:'STUDIO IDENTIFICATION'},
+    {name:'confirm',start:1700,end:4700,label:'OPERATOR AUTHENTICATION'},
+    {name:'archive',start:4700,end:6500,label:'CREDENTIAL VERIFICATION'},
+    {name:'authorize',start:6500,end:7900,label:'WORKSTATION BOOT'},
+    {name:'welcome',start:7900,end:9900,label:'ARCHIVE ONLINE'},
   ];
   const duration=scenes.at(-1).end;
   const clamp=v=>Math.min(1,Math.max(0,v));
@@ -29,14 +29,13 @@
     dialog.setAttribute('aria-label','作品集系统启动动画');
     dialog.innerHTML=`
       <canvas class="intro-field" aria-hidden="true"></canvas><div class="intro-texture" aria-hidden="true"></div>
-      <header class="intro-top"><div class="intro-wordmark">SHOWREEL<small>SELECTED WORKS / SYSTEM ARCHIVE</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false">开启播报</button><button type="button" data-pause aria-pressed="false">暂停</button><button type="button" data-skip>跳过 ↗</button></div></header>
-      <div class="intro-aperture" aria-hidden="true">${Array.from({length:5},(_,i)=>`<i style="--i:${i}"></i>`).join('')}<span class="intro-aperture-mark">+</span><div class="intro-plate"></div></div>
-      <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="intro-init"><div class="intro-dot"></div><p>SYNCING SHOWREEL</p><span class="intro-orbit-label">001 / SIGNAL</span></div></section>
-      <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="intro-id"><svg class="intro-power" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle class="intro-power-track" cx="50" cy="50" r="43" stroke="currentColor" stroke-width="1" stroke-dasharray="190 80"/><path d="M50 14v35M33 29a28 28 0 1 0 34 0" stroke="currentColor" stroke-width="5"/></svg><div><span class="intro-kicker">FRAME / 01</span><h2 data-id-title>INDEXING</h2><p data-id-status>读取作品档案</p></div><span class="intro-id-dot" aria-hidden="true"></span><div class="intro-id-stamp" aria-hidden="true">ACCESS<br>ACCEPTED<span>+</span></div></div></section>
-      <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="intro-loader"><div class="intro-load-heading"><span class="intro-kicker">CREATIVE<br>ARCHIVE</span><div class="intro-load-number"><span data-load-number>00</span><small>%</small></div></div><div class="intro-load-track" aria-hidden="true"><i></i><b></b></div><p>创作档案接入中</p></div></section>
-      <section class="intro-scene intro-authorize" data-scene="authorize" aria-hidden="true"><div class="intro-connection"><i aria-hidden="true"></i><span>ARCHIVE UNLOCKED<small>档案已就绪</small></span></div></section>
-      <section class="intro-scene intro-welcome" data-scene="welcome" aria-hidden="true"><div class="intro-welcome-copy"><span class="intro-kicker">SELECTED WORKS <b>— 2026</b></span><h2 aria-label="ARCHIVE">${[...'ARCHIVE'].map((s,i)=>`<span aria-hidden="true" style="--letter:${i}">${s}</span>${i===2?'<i class="intro-mobile-break" aria-hidden="true"></i>':''}`).join('')}</h2><p>欢迎进入</p><div class="intro-welcome-rule" aria-hidden="true"><i></i></div><span class="intro-welcome-note">INTERACTION / 3D / SYSTEMS</span><span class="intro-print-mark" aria-hidden="true">+</span></div></section>
-      <footer class="intro-bottom"><span>REEL / 001</span><span data-stage-label></span><span class="intro-bottom-note">SELECTED WORKS</span></footer>`;
+      <header class="intro-top"><div class="intro-wordmark">SEEDLAB<small>CREATIVE WORKSTATION / 2026</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false" hidden>开启播报</button><button type="button" data-pause aria-pressed="false">暂停</button><button type="button" data-skip>跳过 ↗</button></div></header>
+      <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="studio-ident"><span class="scan-rule"></span><img src="assets/brand/seedlab-mark@2x.png" alt="" class="studio-mark"><p>SEEDLAB / STUDIO INTERFACE</p><small>IDENTITY MODULE · 01</small><i class="corner corner-a"></i><i class="corner corner-b"></i></div></section>
+      <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="access-card"><div class="access-title"><span>SEEDLAB</span><small>PRIVATE WORKSTATION ACCESS</small></div><div class="access-form"><div class="access-field"><small>OPERATOR ID</small><p data-user></p></div><div class="access-field"><small>PASSWORD</small><p class="password-dots" data-password aria-label="密码输入中"></p></div></div><div class="access-state"><i></i><span data-id-status>正在核验访问凭据</span></div></div></section>
+      <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="verify-card"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="verify-mark"><h2 data-id-title>ACCESS VERIFIED</h2><p>身份密钥匹配 · 系统授权确认</p><div class="verify-line"><i></i></div><small data-load-number>00</small></div></section>
+      <section class="intro-scene intro-authorize" data-scene="authorize" aria-hidden="true"><div class="boot-screen"><div class="boot-title">SEEDLAB<br><b>CREATIVE OS</b></div><div class="boot-window"><span class="boot-tab">WORKSPACE / 01</span><p><i></i>ESTABLISHING SECURE CHANNEL</p><p><i></i>LOADING SELECTED WORKS</p><p><i></i>INITIALIZING INTERACTION SYSTEM</p><div class="boot-progress"><b></b></div></div><small>按 Enter / Space 可跳过进入</small></div></section>
+      <section class="intro-scene intro-welcome" data-scene="welcome" aria-hidden="true"><div class="workspace-ready"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="ready-mark"><div><span class="intro-kicker">CREATIVE WORKSTATION</span><h2>进入作品档案</h2><p>ARCHIVE ONLINE · WELCOME</p></div></div></section>
+      <footer class="intro-bottom"><span>SEEDLAB / 2026</span><span data-stage-label></span><span class="intro-bottom-note">SYSTEM READY</span></footer>`;
     document.body.append(dialog);document.body.classList.add('intro-open');active=dialog;
     const canvas=dialog.querySelector('canvas'),ctx=canvas.getContext('2d');
     let width=0,height=0,raf=0,elapsed=reduced.matches?8800:0,last=performance.now(),paused=false,exiting=false;
@@ -45,9 +44,8 @@
     const soundtrack=new Audio(new URL('assets/audio/intro/entry-voice-zh-v7.mp3',document.baseURI).href);
     soundtrack.preload='auto';soundtrack.volume=.75;
     const sound=dialog.querySelector('[data-sound]');
-    let soundWanted=true,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
+    let soundWanted=false,soundAvailable=true,playRequest=0,lastAudioSync=-1000;
     function syncSound(){const target=elapsed/1000;if(soundtrack.seeking||!soundtrack.seekable.length)return;const end=soundtrack.seekable.end(soundtrack.seekable.length-1);if(target<end){try{soundtrack.currentTime=target;lastAudioSync=elapsed}catch{}}}
-    try{soundWanted=sessionStorage.getItem('portfolio-voice-muted')!=='1'}catch{}
     function soundLabel(state){dialog.dataset.voice=state;sound.textContent=state==='on'?'播报已开':state==='loading'?'播报加载中':state==='unavailable'?'播报不可用':'开启播报';sound.setAttribute('aria-pressed',String(state==='on'))}
     function stopSound(){playRequest++;soundtrack.pause()}
     function startSound(){
@@ -70,7 +68,7 @@
       const cleanup=()=>{if(active!==dialog)return;release();const target=previous===replay?replay:document.querySelector('#intro-title');if(target){if(!target.matches('button,a'))target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}};
       if(reduced.matches)cleanup();else setTimeout(cleanup,850);
     };
-    dialog.addEventListener('cancel',e=>{e.preventDefault();finish()});dialog.querySelector('[data-skip]').onclick=finish;
+    dialog.addEventListener('cancel',e=>{e.preventDefault();finish()});dialog.querySelector('[data-skip]').onclick=finish;dialog.addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&elapsed>=6500){event.preventDefault();finish()}});
     const pause=dialog.querySelector('[data-pause]');
     pause.onclick=()=>{paused=!paused;pause.textContent=paused?'继续':'暂停';pause.setAttribute('aria-pressed',String(paused));if(paused)stopSound();else startSound()};
     // All motion shares the same clock, so pause freezes geometry as well as text.
@@ -136,9 +134,11 @@
       dialog.style.setProperty('--camera',ease((time-7600)/1050));
       dialog.style.setProperty('--welcome',ease((time-8800)/650));
       dialog.querySelectorAll('[data-scene]').forEach(el=>{const visible=el.dataset.scene===scene.name;el.classList.toggle('is-active',visible);el.setAttribute('aria-hidden',!visible)});
-      const confirmed=time>=2680;dialog.classList.toggle('is-confirmed',confirmed);
-      dialog.querySelector('[data-id-title]').textContent=confirmed?'FRAME READY':'INDEXING';dialog.querySelector('[data-id-status]').textContent=confirmed?'作品档案已就绪':'读取作品档案';
-      const load=Math.round(loadProgress(clamp((time-4000)/3600)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');
+      const confirmed=time>=4000;dialog.classList.toggle('is-confirmed',confirmed);
+      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2050)/900)*user.length);const dots=Math.floor(clamp((time-3000)/850)*8);
+      dialog.querySelector('[data-user]').textContent=user.slice(0,typed)+(typed<user.length?'_':'');dialog.querySelector('[data-password]').textContent='●'.repeat(dots);
+      dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'身份密钥已匹配':'正在核验访问凭据';
+      const load=Math.round(loadProgress(clamp((time-4700)/1800)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');
       // Frame bursts become a perspective paper plate, not five fixed UI screens.
       const small=Math.min(width*.58,300),largeW=Math.min(width*.84,1100),largeH=Math.min(height*.62,510);
       let fw=small,fh=small,spread=0,angle=0,alpha=0,tilt=0,scale=1;
