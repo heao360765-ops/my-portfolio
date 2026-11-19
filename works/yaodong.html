@@ -86,6 +86,14 @@
 <span class="plate-tag">YD-STS-412<i>全伺服转盘式丝印贴标烫金机 · 真机影像</i></span>
 </div>
 
+<div class="demo-reel">
+<div class="reel-head"><b>设备影像 · MACHINE REEL</b><span>60S / 1920×1080 / YD-STS-412</span></div>
+<video controls playsinline preload="none" poster="../assets/twin/yaodong-cover.webp" aria-label="尧东机械 YD-STS-412 全伺服转盘式丝印贴标烫金机 设备影像">
+<source src="../assets/video/yaodong-yd-sts-1080p.mp4" type="video/mp4">你的浏览器暂不支持视频播放，请使用下方链接观看。
+</video>
+<div class="reel-foot"><span>产线实拍与生成式镜头混合剪辑</span><a class="text-link" href="../assets/video/yaodong-yd-sts-1080p.mp4">单独打开视频 ↗</a></div>
+</div>
+
 <section class="detail-block" aria-labelledby="y1">
 <h2 id="y1">四大展厅模块</h2><p class="block-label">01 / EXHIBITION MODULES</p>
 <p>展馆按参观动线拆成四个展厅，每个展厅对应一种"理解机器"的方式：看外形、看结构、看原理、看数据。</p>
@@ -98,77 +106,6 @@
 </section>
 
 <section class="detail-block" aria-labelledby="y2">
-<h2 id="y2">相机蓝图架构</h2>
-<figure class="cam-rig" aria-label="四个机位在虚拟厂房中的俯视布置示意">
-<svg viewBox="0 0 900 380" role="img">
-  <defs>
-    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
-    </marker>
-  </defs>
-  <rect x="40" y="30" width="820" height="300" fill="none" stroke="var(--line-2)" stroke-dasharray="6 6"/>
-  <text x="52" y="22" fill="var(--muted)" font-size="9" letter-spacing="2">VIRTUAL WORKSHOP — FLOOR PLAN</text>
-  <circle cx="450" cy="70" r="5" fill="var(--accent)"/>
-  <text x="464" y="66" fill="var(--muted)" font-size="9">C01 总览 / 60°</text>
-  <line x1="450" y1="70" x2="255" y2="190" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
-  <line x1="450" y1="70" x2="645" y2="190" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
-  <circle cx="170" cy="150" r="5" fill="var(--accent)"/>
-  <text x="182" y="146" fill="var(--muted)" font-size="9">C02 结构 45°</text>
-  <line x1="170" y1="150" x2="330" y2="250" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
-  <circle cx="730" cy="170" r="5" fill="var(--accent)"/>
-  <text x="610" y="166" fill="var(--muted)" font-size="9">C04 包材 35°</text>
-  <line x1="730" y1="170" x2="570" y2="250" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
-  <circle cx="450" cy="320" r="5" fill="var(--accent)"/>
-  <text x="470" y="336" fill="var(--muted)" font-size="9">C03 工况 50°</text>
-  <line x1="450" y1="320" x2="450" y2="255" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
-  <g fill="var(--paper-2)" stroke="var(--line-2)">
-    <rect x="230" y="240" width="110" height="70"/><rect x="348" y="240" width="110" height="70"/>
-    <rect x="466" y="240" width="110" height="70"/><rect x="584" y="240" width="110" height="70"/>
-  </g>
-  <g fill="none" stroke="var(--muted)" opacity=".7">
-    <circle cx="285" cy="275" r="26"/><circle cx="403" cy="275" r="26"/>
-    <circle cx="521" cy="275" r="26"/><circle cx="639" cy="275" r="26"/>
-  </g>
-  <g fill="var(--muted)" font-size="8" letter-spacing="1">
-    <text x="238" y="324">D01</text><text x="356" y="324">D02</text>
-    <text x="474" y="324">D03</text><text x="592" y="324">D04</text>
-  </g>
-  <text x="380" y="352" fill="var(--muted)" font-size="8" letter-spacing="3">PRODUCTION LINE / 4 UNITS</text>
-  <text x="700" y="352" fill="var(--muted)" font-size="8" letter-spacing="2">SCALE NTS</text>
-</svg>
-<figcaption>示意图 · 非实机截图：四个机位沿产线布置，1–4 键在展厅内直切，缓动插值保证不断片。</figcaption>
-</figure><p class="block-label">02 / BP_CAMERA_MANAGER · MY PART</p>
-<p>我负责的相机管理系统：一台 BP_CameraManager 管全部机位，1–4 号键直切四个展厅，滚轮/按键在展厅内做子机位切换。切换带缓动插值，保证漫游不断片；每台相机独立挂 PostProcess，切换展厅时灯光氛围随之过渡。</p>
-<div class="schema">
-<svg viewBox="0 0 860 300" role="img" aria-label="相机蓝图架构示意：BP_CameraManager 下挂四个展厅相机">
-<g font-family="monospace" font-size="12" letter-spacing="1">
-<rect x="330" y="24" width="200" height="44" fill="#192b28"/><text x="430" y="51" fill="#f4f3ed" text-anchor="middle">BP_CameraManager</text>
-<rect x="330" y="92" width="200" height="30" fill="none" stroke="#5b6861"/><text x="430" y="112" fill="#5b6861" text-anchor="middle">1–4 键直切 · 滚轮子机位 · 缓动插值</text>
-<g stroke="#5b6861" fill="none"><path d="M430 68v24"/><path d="M430 122v26"/><path d="M140 148v40M280 148v40M580 148v40M720 148v40"/></g>
-<g stroke="#5b6861" fill="none"><path d="M140 148h580"/></g>
-<g><rect x="70" y="188" width="140" height="46" fill="#dae8da" stroke="#5b6861"/><text x="140" y="216" fill="#192b28" text-anchor="middle">CAM_01 全景</text><rect x="210" y="188" width="140" height="46" fill="#dae8da" stroke="#5b6861"/><text x="280" y="216" fill="#192b28" text-anchor="middle">CAM_02 透视</text><rect x="510" y="188" width="140" height="46" fill="#dae8da" stroke="#5b6861"/><text x="580" y="216" fill="#192b28" text-anchor="middle">CAM_03 工况</text><rect x="650" y="188" width="140" height="46" fill="#dae8da" stroke="#5b6861"/><text x="720" y="216" fill="#192b28" text-anchor="middle">CAM_04 漫游</text></g>
-<g stroke="#d44b28" fill="none" stroke-dasharray="4 4"><path d="M140 234v34h580v-34"/><path d="M280 234v24M580 234v24M720 234v24"/></g>
-<text x="430" y="288" fill="#d44b28" text-anchor="middle">PostProcess 氛围过渡 · 展厅独立灯光</text>
-</g>
-</svg>
-</div>
-</section>
-
-<section class="detail-block" aria-labelledby="y3" style="padding-bottom:10px">
-<p class="bp-note">以下三张为相机模块在演示场景（ConceptCar 摄影棚）中的实拍；控制逻辑与本项目的四展厅切换同源，正式场景截图待补。</p>
-<div class="bp-shots">
-<figure><button type="button" data-lb data-cap="相机模块 · 演示场景 / 机位布置"><img src="../assets/twin/bp-01.webp" alt="UE5 编辑器中的 BP_CameraManager 相机组件与场景布置" loading="lazy"></button><figcaption>相机模块 · 演示场景 / 机位布置</figcaption></figure>
-<figure><button type="button" data-lb data-cap="相机模块 · 演示场景 / BP_CameraManager 事件图表"><img src="../assets/twin/bp-02.webp" alt="BP_CameraManager 事件图表：1 到 4 键写入 CurrentIndex 并调用 SwitchToCamera" loading="lazy"></button><figcaption>相机模块 · 演示场景 / 1–4 键 → CurrentIndex → SwitchToCamera</figcaption></figure>
-<figure><button type="button" data-lb data-cap="相机模块 · 演示场景 / 函数与变量"><img src="../assets/twin/bp-03.webp" alt="BP_CameraManager 蓝图函数与相机变量" loading="lazy"></button><figcaption>相机模块 · 演示场景 / 切换函数与四个电影摄像机变量</figcaption></figure>
-</div>
-<div class="demo-reel">
-<div class="reel-head"><b>设备影像 · MACHINE REEL</b><span>60S / 1920×1080 / YD-STS-412</span></div>
-<video controls playsinline preload="none" poster="../assets/twin/yaodong-cover.webp" aria-label="尧东机械 YD-STS-412 全伺服转盘式丝印贴标烫金机 设备影像">
-<source src="../assets/video/yaodong-yd-sts-1080p.mp4" type="video/mp4">你的浏览器暂不支持视频播放，请使用下方链接观看。
-</video>
-<div class="reel-foot"><span>产线实拍与生成式镜头混合剪辑</span><a class="text-link" href="../assets/video/yaodong-yd-sts-1080p.mp4">单独打开视频 ↗</a></div>
-</div>
-
 <h2 id="y3">我的分工</h2><p class="block-label">03 / RESPONSIBILITY</p>
 <div class="work-card" style="margin-top:0">
 <div class="work-card-art"><span class="glyph" aria-hidden="true">1→4</span><span class="art-note">KEY-PRESS CAMERA SWITCH · 2026 春季学期</span></div>
