@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>seedLab 启动序列 · 预览</title>
+<style>
+html.sb-pending,html.sb-pending body{background:#0a0c0a}
+html.sb-pending body>:not(#seedlab-boot){visibility:hidden}
+</style>
+<script>
+(()=>{try{if(!location.hash||new URLSearchParams(location.search).has('sbseek'))document.documentElement.classList.add('sb-pending')}catch(e){}})();
+</script>
+<link rel="stylesheet" href="boot.css">
+<script src="boot.js" defer></script>
+</head>
+<body>
+<main id="main" style="min-height:100vh;display:grid;place-items:center;font-family:Inter,'Microsoft YaHei',sans-serif;background:#f4f3ee;color:#17251f">
+  <div style="text-align:center;padding:40px">
+    <p style="font:10px/1.6 ui-monospace,monospace;letter-spacing:.3em;color:#8a938a;text-transform:uppercase">preview page</p>
+    <h1 style="font-size:26px;font-weight:600;margin:10px 0 6px">启动序列预览</h1>
+    <p style="font-size:13px;color:#5f6b63;margin:0 0 22px">刷新页面重播；加 <code>?sbseek=6000</code> 可跳到指定时刻。</p>
+    <button type="button" data-replay-intro style="border:1px solid #17251f;background:none;padding:10px 18px;font:11px/1 ui-monospace,monospace;letter-spacing:.2em;text-transform:uppercase;cursor:pointer">重播 REPLAY</button>
+  </div>
+</main>
+</body></html>
