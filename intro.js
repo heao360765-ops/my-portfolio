@@ -85,7 +85,7 @@
       });
     }
     soundtrack.addEventListener('error',()=>{soundAvailable=false;sound.disabled=true;soundLabel('unavailable')});
-    sound.onclick=()=>{soundWanted=!soundWanted;try{sessionStorage.setItem('portfolio-voice-muted',soundWanted?'0':'1')}catch{}if(soundWanted){if(paused)soundLabel('on');else startSound()}else{stopSound();soundLabel('off')}};
+    sound.onclick=()=>{const playing=!soundtrack.paused&&soundtrack.currentTime>0;if(playing){soundWanted=false;stopSound();soundLabel('off');try{sessionStorage.setItem('portfolio-voice-muted','1')}catch{}}else{soundWanted=true;try{sessionStorage.setItem('portfolio-voice-muted','0')}catch{};startSound()}};
     const visibility=()=>{last=performance.now();if(document.hidden)stopSound();else startSound()};
     document.addEventListener('visibilitychange',visibility);
     const release=()=>{stopSound();soundtrack.removeAttribute('src');soundtrack.load();document.removeEventListener('visibilitychange',visibility);cancelAnimationFrame(raf);observer.disconnect();dialog.close();dialog.remove();clearPending();if(active===dialog){active=null;document.body.classList.remove('intro-open')}};
