@@ -30,7 +30,7 @@
     dialog.innerHTML=`
       <canvas class="intro-field" aria-hidden="true"></canvas><div class="intro-texture" aria-hidden="true"></div>
       <header class="intro-top"><div class="intro-wordmark">SEEDLAB<small>CREATIVE WORKSTATION / 2026</small></div><div class="intro-controls"><button type="button" data-sound aria-pressed="false" hidden>AUDIO</button><button type="button" data-pause aria-pressed="false">PAUSE</button><button type="button" data-skip>SKIP ↗</button></div></header>
-      <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="studio-ident"><span class="scan-rule"></span><img src="assets/brand/seedlab-mark@2x.png" alt="" class="studio-mark"><p>SEEDLAB / STUDIO INTERFACE</p><small>IDENTITY MODULE · 01</small><i class="corner corner-a"></i><i class="corner corner-b"></i></div></section>
+      <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="studio-ident"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="studio-mark"><p>SEEDLAB / STUDIO INTERFACE</p><div class="load-bar"><i></i></div><small>IDENTITY MODULE · 01</small><i class="corner corner-a"></i><i class="corner corner-b"></i></div></section>
       <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="access-card"><div class="access-title"><span>SEEDLAB</span><small>PRIVATE WORKSTATION ACCESS</small></div><div class="access-form"><div class="access-field"><small>OPERATOR ID</small><p data-user></p></div><div class="access-field"><small>PASSWORD</small><p class="password-dots" data-password aria-label="密码输入中"></p></div></div><div class="access-state"><i></i><span data-id-status>VERIFYING CREDENTIALS</span></div></div></section>
       <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="verify-card"><img src="assets/brand/seedlab-glyph.png" alt="" class="verify-mark"><h2 data-id-title>ACCESS VERIFIED</h2><p>IDENTITY KEY MATCHED · ACCESS GRANTED</p><div class="verify-line"><i></i></div><small data-load-number>00</small></div></section>
       <section class="intro-scene intro-authorize" data-scene="authorize" aria-hidden="true"><div class="boot-screen"><div class="boot-title">SEEDLAB<br><b>CREATIVE OS</b></div><div class="boot-window"><span class="boot-tab">WORKSPACE / 01</span><p><i></i>ESTABLISHING SECURE CHANNEL</p><p><i></i>LOADING SELECTED WORKS</p><p><i></i>INITIALIZING INTERACTION SYSTEM</p><div class="boot-progress"><b></b></div></div><small>PRESS ENTER / SPACE TO SKIP</small></div></section>
@@ -126,7 +126,7 @@
     }
     function render(time){
       const scene=scenes.find(s=>time<s.end)||scenes.at(-1),phase=clamp((time-scene.start)/(scene.end-scene.start));
-      dialog.dataset.stage=scene.name;
+      dialog.dataset.stage=scene.name;if(scene.name==='confirm'){dialog.style.setProperty('--tilt',String(clamp((time-scene.start)/900)))}else{dialog.style.setProperty('--tilt','0')}
       dialog.style.setProperty('--phase',phase);dialog.style.setProperty('--reveal',ease(phase*3));dialog.style.setProperty('--progress',clamp(time/duration));
       dialog.style.setProperty('--scene-opacity',1);
       dialog.style.setProperty('--cut',ease((time-scene.start)/300));
@@ -135,7 +135,7 @@
       dialog.style.setProperty('--welcome',ease((time-8800)/650));
       dialog.querySelectorAll('[data-scene]').forEach(el=>{const visible=el.dataset.scene===scene.name;el.classList.toggle('is-active',visible);el.setAttribute('aria-hidden',!visible)});
       const confirmed=time>=4000;dialog.classList.toggle('is-confirmed',confirmed);
-      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2050)/900)*user.length);const dots=Math.floor(clamp((time-3700)/780)*8);
+      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2700)/700)*user.length);const dots=Math.floor(clamp((time-3550)/780)*8);
       dialog.querySelector('[data-user]').textContent=user.slice(0,typed)+(typed<user.length?'_':'');dialog.querySelector('[data-password]').textContent='●'.repeat(dots);
       dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'IDENTITY KEY MATCHED':'VERIFYING CREDENTIALS';
       const load=Math.round(loadProgress(clamp((time-4700)/1800)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');

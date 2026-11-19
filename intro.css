@@ -354,3 +354,48 @@
   width:clamp(56px,6vw,86px)!important;height:auto!important;
   filter:drop-shadow(0 0 22px rgba(204,255,0,.5))!important;
 }
+
+
+/* ============================================================
+   加载条（替代单根扫描线）+ 倾斜独立进度
+   ============================================================ */
+.portfolio-intro .studio-ident{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  gap:11px!important;
+}
+.portfolio-intro .scan-rule{display:none!important}
+
+.portfolio-intro .load-bar{
+  position:relative;
+  width:min(300px,46vw);
+  height:3px;
+  margin:4px 0 1px;
+  background:rgba(204,255,0,.16);
+  border-radius:2px;
+  overflow:hidden;
+}
+.portfolio-intro .load-bar i{
+  position:absolute;left:0;top:0;bottom:0;
+  width:calc(var(--phase,0) * 100%);
+  background:#ccff00;
+  box-shadow:0 0 14px rgba(204,255,0,.75);
+  overflow:hidden;
+}
+.portfolio-intro .load-bar i::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+  transform:translateX(-120%);
+  animation:sb-shine 1.05s linear infinite;
+}
+@keyframes sb-shine{to{transform:translateX(160%)}}
+
+/* 倾斜只跟 --tilt（0→1，900ms 完成），与输入解耦 */
+.portfolio-intro .access-card{
+  transform:
+    perspective(1400px)
+    rotateY(calc(-15deg * var(--tilt,0)))
+    rotateZ(calc(2.4deg * var(--tilt,0)))!important;
+  opacity:1!important;
+}
