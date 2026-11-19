@@ -722,3 +722,5 @@ footer{background:var(--panel);color:#d9dde1;padding:28px 0 26px;margin-top:4px}
 .space-gallery img{display:block;width:100%;height:auto}
 .space-gallery figcaption{padding:9px 11px;font:8.5px/1.5 var(--font-mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
 @media(max-width:760px){.space-gallery{grid-template-columns:1fr}}
+
+.space-sub{margin:26px 0 12px;font:11px/1.4 var(--font-mono);letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase}
