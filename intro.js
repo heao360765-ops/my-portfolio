@@ -29,12 +29,12 @@
   }
 
   const scenes=[
-    {name:'signal',start:0,end:1600,label:'STUDIO IDENTIFICATION'},
-    {name:'confirm',start:1600,end:4400,label:'OPERATOR AUTHENTICATION'},
-    {name:'archive',start:4400,end:5900,label:'CREDENTIAL VERIFICATION'},
-    {name:'read',start:5900,end:7200,label:'PERMISSION READ'},
-    {name:'authorize',start:7200,end:8400,label:'WORKSTATION BOOT'},
-    {name:'welcome',start:8400,end:9900,label:'ARCHIVE ONLINE'},
+    {name:'signal',start:0,end:2500,label:'STUDIO IDENTIFICATION'},
+    {name:'confirm',start:2500,end:7000,label:'OPERATOR AUTHENTICATION'},
+    {name:'archive',start:7000,end:9800,label:'CREDENTIAL VERIFICATION'},
+    {name:'read',start:9800,end:12300,label:'PERMISSION READ'},
+    {name:'authorize',start:12300,end:15400,label:'WORKSTATION BOOT'},
+    {name:'welcome',start:15400,end:19000,label:'ARCHIVE ONLINE'},
   ];
   const duration=scenes.at(-1).end;
   const clamp=v=>Math.min(1,Math.max(0,v));
@@ -161,7 +161,7 @@
       dialog.style.setProperty('--welcome',ease((time-8800)/650));
       dialog.querySelectorAll('[data-scene]').forEach(el=>{const visible=el.dataset.scene===scene.name;el.classList.toggle('is-active',visible);el.setAttribute('aria-hidden',!visible)});
       const confirmed=time>=4000;dialog.classList.toggle('is-confirmed',confirmed);
-      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2300)/700)*user.length);const dots=Math.floor(clamp((time-3150)/760)*8);
+      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-3300)/900)*user.length);const dots=Math.floor(clamp((time-4600)/850)*8);
       dialog.querySelector('[data-user]').textContent=user.slice(0,typed)+(typed<user.length?'_':'');dialog.querySelector('[data-password]').textContent='●'.repeat(dots);
       dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'IDENTITY KEY MATCHED':'VERIFYING CREDENTIALS';
       const load=Math.round(loadProgress(clamp((time-4700)/1800)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');
