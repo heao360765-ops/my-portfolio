@@ -16,19 +16,19 @@
 }
 
 :root{
-  --paper:#eef0f2;
-  --paper-2:#e3e6e9;
-  --paper-3:#d5d9dd;
-  --ink:#15181d;
-  --ink-soft:#363d46;
+  --paper:#0a0c0a;
+  --paper-2:#101410;
+  --paper-3:#161b16;
+  --ink:#dfff5e;
+  --ink-soft:#9fc23f;
   --muted:#5d6671;
   --muted-2:#7c858f;
-  --line:#c7ccd2;
-  --line-2:#aab1b9;
-  --accent:#b30b13;
+  --line:#2b3522;
+  --line-2:#414f2d;
+  --accent:#ccff00;
   --steel:#7c858e;
-  --mint:#e4e8eb;
-  --panel:#121419;
+  --mint:#0f140d;
+  --panel:#050706;
   --grid:rgba(21,24,29,.055);
   --font-ui:"Inter","Segoe UI","Microsoft YaHei",sans-serif;
   --font-mono:ui-monospace,"SFMono-Regular","Consolas","Liberation Mono",monospace;
@@ -276,7 +276,7 @@ img{width:100%;height:auto}
 
 /* real-machine plate above the schematic */
 .twin-plate{
-  position:relative;border:1px solid var(--line-2);background:#fff;
+  position:relative;border:1px solid var(--line-2);background:var(--paper-2);
   overflow:hidden;margin-bottom:16px;
 }
 .twin-plate img{
