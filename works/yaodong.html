@@ -20,7 +20,7 @@
 .detail-block>.block-label{font:10px/1.6 monospace;letter-spacing:.16em;color:var(--muted);margin:0 0 18px}
 .detail-block>p{font-size:13px;line-height:1.9;color:var(--muted);max-width:640px;margin:0 0 22px}
 .modules{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 10px}
-.modules figure{margin:0;border:1px solid var(--line);background:#e9e8e0;min-height:150px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.modules figure{margin:0;border:1px solid var(--line);background:var(--paper-2);min-height:150px;padding:16px;display:flex;flex-direction:column;gap:10px}
 .modules figure b{font-size:14px;font-weight:600}
 .modules figure small{font:9px/1.7 monospace;letter-spacing:.1em;color:var(--muted)}
 .modules figure p{font-size:11px;line-height:1.7;color:var(--muted);margin:0}
@@ -30,7 +30,7 @@
 .backlink{display:inline-block;margin:56px 0 64px}
 /* real-machine plate */
 .machine-plate{position:relative;margin:0 0 6px;border:1px solid var(--line-2);background:#fff;overflow:hidden}
-.machine-plate img{display:block;width:100%;height:auto;aspect-ratio:1910/728;object-fit:cover}
+.machine-plate img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 .plate-tag{position:absolute;left:22px;bottom:20px;display:flex;flex-direction:column;gap:3px;background:#0d1512db;color:#e9ece4;padding:8px 13px;border-left:2px solid var(--accent);font:10px/1.5 var(--font-mono);letter-spacing:.16em;text-transform:uppercase}
 .plate-tag i{font-style:normal;font-size:9px;letter-spacing:.1em;color:#9fb0a3}
 .plate-no{position:absolute;right:20px;top:16px;font:9px/1.5 var(--font-mono);letter-spacing:.16em;text-transform:uppercase;color:#3b4a42;background:#f2f1eade;padding:4px 9px}
@@ -43,6 +43,12 @@
 .reel video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#120f0e}
 @media(max-width:900px){.modules{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.detail-hero{grid-template-columns:1fr;padding:40px 0 26px}.detail-hero h1{font-size:42px}.modules{grid-template-columns:1fr}.plate-tag{left:12px;bottom:12px;font-size:9px}}
+</style>
+
+<style>
+.cam-rig{margin:22px 0 8px;border:1px solid var(--line);background:var(--paper-2);padding:18px}
+.cam-rig svg{display:block;width:100%;height:auto}
+.cam-rig figcaption{margin-top:10px;font:9.5px/1.7 var(--font-mono);letter-spacing:.08em;color:var(--muted)}
 </style>
 </head>
 <body>
@@ -74,7 +80,46 @@
 </section>
 
 <section class="detail-block" aria-labelledby="y2">
-<h2 id="y2">相机蓝图架构</h2><p class="block-label">02 / BP_CAMERA_MANAGER · MY PART</p>
+<h2 id="y2">相机蓝图架构</h2>
+<figure class="cam-rig" aria-label="四个机位在虚拟厂房中的俯视布置示意">
+<svg viewBox="0 0 900 380" role="img">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="var(--accent)"/>
+    </marker>
+  </defs>
+  <rect x="40" y="30" width="820" height="300" fill="none" stroke="var(--line-2)" stroke-dasharray="6 6"/>
+  <text x="52" y="22" fill="var(--muted)" font-size="9" letter-spacing="2">VIRTUAL WORKSHOP — FLOOR PLAN</text>
+  <circle cx="450" cy="70" r="5" fill="var(--accent)"/>
+  <text x="464" y="66" fill="var(--muted)" font-size="9">C01 总览 / 60°</text>
+  <line x1="450" y1="70" x2="255" y2="190" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
+  <line x1="450" y1="70" x2="645" y2="190" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
+  <circle cx="170" cy="150" r="5" fill="var(--accent)"/>
+  <text x="182" y="146" fill="var(--muted)" font-size="9">C02 结构 45°</text>
+  <line x1="170" y1="150" x2="330" y2="250" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
+  <circle cx="730" cy="170" r="5" fill="var(--accent)"/>
+  <text x="610" y="166" fill="var(--muted)" font-size="9">C04 包材 35°</text>
+  <line x1="730" y1="170" x2="570" y2="250" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
+  <circle cx="450" cy="320" r="5" fill="var(--accent)"/>
+  <text x="470" y="336" fill="var(--muted)" font-size="9">C03 工况 50°</text>
+  <line x1="450" y1="320" x2="450" y2="255" stroke="var(--accent)" stroke-dasharray="4 5" marker-end="url(#ar)"/>
+  <g fill="var(--paper-2)" stroke="var(--line-2)">
+    <rect x="230" y="240" width="110" height="70"/><rect x="348" y="240" width="110" height="70"/>
+    <rect x="466" y="240" width="110" height="70"/><rect x="584" y="240" width="110" height="70"/>
+  </g>
+  <g fill="none" stroke="var(--muted)" opacity=".7">
+    <circle cx="285" cy="275" r="26"/><circle cx="403" cy="275" r="26"/>
+    <circle cx="521" cy="275" r="26"/><circle cx="639" cy="275" r="26"/>
+  </g>
+  <g fill="var(--muted)" font-size="8" letter-spacing="1">
+    <text x="238" y="324">D01</text><text x="356" y="324">D02</text>
+    <text x="474" y="324">D03</text><text x="592" y="324">D04</text>
+  </g>
+  <text x="380" y="352" fill="var(--muted)" font-size="8" letter-spacing="3">PRODUCTION LINE / 4 UNITS</text>
+  <text x="700" y="352" fill="var(--muted)" font-size="8" letter-spacing="2">SCALE NTS</text>
+</svg>
+<figcaption>示意图 · 非实机截图：四个机位沿产线布置，1–4 键在展厅内直切，缓动插值保证不断片。</figcaption>
+</figure><p class="block-label">02 / BP_CAMERA_MANAGER · MY PART</p>
 <p>我负责的相机管理系统：一台 BP_CameraManager 管全部机位，1–4 号键直切四个展厅，滚轮/按键在展厅内做子机位切换。切换带缓动插值，保证漫游不断片；每台相机独立挂 PostProcess，切换展厅时灯光氛围随之过渡。</p>
 <div class="schema">
 <svg viewBox="0 0 860 300" role="img" aria-label="相机蓝图架构示意：BP_CameraManager 下挂四个展厅相机">
