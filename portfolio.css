@@ -714,3 +714,11 @@ footer{background:var(--panel);color:#d9dde1;padding:28px 0 26px;margin-top:4px}
 .hero-ghost{display:none!important}
 .hero-name{color:#dfff5e!important;opacity:1!important;z-index:5}
 .hero-figure::after{display:none}
+
+/* 06 空间建模 */
+.space-note{margin:0 0 16px;font-size:13px;line-height:1.9;color:var(--ink-soft);max-width:640px}
+.space-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.space-gallery figure{margin:0;border:1px solid var(--line);background:var(--paper-2);overflow:hidden}
+.space-gallery img{display:block;width:100%;height:auto}
+.space-gallery figcaption{padding:9px 11px;font:8.5px/1.5 var(--font-mono);letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+@media(max-width:760px){.space-gallery{grid-template-columns:1fr}}
