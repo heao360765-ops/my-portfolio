@@ -1,33 +1,54 @@
 /* ============================================================
-   seedLab boot — minimal white OS, rebuilt from reference reel #2
-   act1 dark handoff → act2 iris → act3 ring verify → act4 welcome
-   Self-contained: builds its own DOM + WebAudio cues.
+   seedLab boot — 1:1 rebuild of reference reel #2
+   19s · six steps · dark plate → paper OS → ring verify → blue welcome
+   State-machine driven so any frame is reproducible via ?sbseek=
    ============================================================ */
 (() => {
-  const KEY = 'seedlab-boot-v3';
+  const KEY = 'seedlab-boot-v4';
   const reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // alpha-stripped glyphs: no black plate, so they sit on paper like the reference did
-  const MARK_GLOW = 'assets/brand/seedlab-glyph.png';      // dark act
-  const MARK_INK = 'assets/brand/seedlab-glyph-ink.png';   // paper acts
+  const GLYPH_GLOW = 'assets/brand/seedlab-glyph.png';
+  const GLYPH_INK = 'assets/brand/seedlab-glyph-ink.png';
 
   /* ---------- timeline (ms) ---------- */
   const T = {
-    lit: 250,
-    iris: 2300,
-    irisEnd: 3200,
-    screenOn: 3150,
-    access: 3300,
-    ring: 4000,
-    copy: 4400,
-    request: 4900,
-    foot: 5300,
-    identity: 6600,
-    swap: 8300,
-    progress: 8600,
-    out: 9900,
-    welcome: 10000,
-    end: 12800,
-    hardStop: 30000
+    irisAt: 2200,
+    irisDur: 700,
+    screenOn: 2150,
+    boot: 2450,
+    identity: 6100,
+    confirm: 8300,
+    request: 10100,
+    read: 11900,
+    verify: 13700,
+    welcome: 16100,
+    end: 19000,
+    hardStop: 40000
+  };
+
+  const STEPS = {
+    boot:     { no: '00', key: 'boot',     h: '系统自检中...',        p: 'SYSTEM SELF-CHECK',                 foot: '系统自检中，加载终端界面...',        footEn: 'system self-check' },
+    identity: { no: '02', key: 'identity', h: '身份资料',             p: 'IDENTITY VERIFICATION',             foot: '核对身份资料...',                    footEn: 'identifying operator record' },
+    confirm:  { no: '02', key: 'identity', h: '身份资料<em>确</em>认', p: 'IDENTITY VERIFICATION <em>ID CONFIRMED · 0009</em>', foot: '核对身份资料...', footEn: 'matching operator record' },
+    request:  { no: '03', key: 'request',  h: '接收访问需求',          p: 'ACCESS REQUEST RECEIVED',           foot: '接收访问需求，建立会话通道...',      footEn: 'handshake established' },
+    read:     { no: '04', key: 'read',     h: '开始读取权限',          p: 'PERMISSION READ STARTED',           foot: '开始读取权限，索引工作区与会话...',  footEn: 'reading permission set' },
+    verify:   { no: '05', key: 'verify',   h: '读取完毕 · 核验通过',   p: 'READ COMPLETE · VERIFIED',          foot: '读取完毕，核验通过，权限已授予',     footEn: 'permission authorized' },
+    welcome:  { no: '06', key: 'welcome',  h: '',                      p: '',                                   foot: '身份验证完成，会话已建立',          footEn: 'identity verified · session established' }
+  };
+
+  const clock = () => {
+    const d = new Date();
+    const p = (n) => String(n).padStart(2, '0');
+    return p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  };
+
+  const hexLines = () => {
+    const rows = [];
+    for (let r = 0; r < 4; r++) {
+      const cells = [];
+      for (let c = 0; c < 12; c++) cells.push(Math.floor(Math.random() * 90 + 10));
+      rows.push(cells.join(' '));
+    }
+    return rows;
   };
 
   const root = document.getElementById('seedlab-boot') || document.createElement('div');
@@ -37,65 +58,84 @@
   root.setAttribute('aria-label', 'seedLab 启动序列，可按 Esc 跳过');
   root.innerHTML = `
     <div class="sb-dark">
-      <div class="sb-glow" aria-hidden="true"></div>
+      <div class="sb-dark-sys">fps n/a · gpu 13% · cpu 19% · latency n/a</div>
       <div class="sb-dark-inner">
-        <img class="sb-dark-mark" src="${MARK_GLOW}" alt="seedLab 标志" width="356" height="356">
-        <p class="sb-dark-cap">seedlab terminal · initializing</p>
+        <img class="sb-dark-mark" src="${GLYPH_GLOW}" alt="seedLab 标志" width="356" height="356">
+        <div class="sb-dark-word">
+          <b>SEEDLAB</b>
+          <span>STUDIO WORKSPACE</span>
+          <small>SEEDLAB HARNESS</small>
+        </div>
       </div>
     </div>
 
     <div class="sb-screen">
-      <div class="sb-topbar" aria-hidden="true"><i></i></div>
-
       <header class="sb-brand">
         <b>SEEDLAB</b>
         <span>STUDIO WORKSPACE</span>
-        <span>TERMINAL</span>
-        <small>web profile · 2026</small>
-        <div class="sb-rev">rev 0.1.0 <i></i></div>
+        <span>TERMINAL OS</span>
+        <div class="sb-rev">rev 0.1.0 · web profile <em data-clock></em></div>
+        <div class="sb-marks"><i></i><i></i><i></i><i></i></div>
       </header>
 
-      <div class="sb-sysinfo" aria-hidden="true">fps 60 · gpu 12% · cpu 8% · latency 4ms</div>
-
-      <div class="sb-center">
-        <svg class="sb-ring" viewBox="0 0 400 400" aria-hidden="true">
-          <circle class="r-ghost" cx="200" cy="200" r="196"></circle>
-          <g class="r-spin">
-            <circle class="r-arc" cx="200" cy="200" r="162" stroke-width="5" transform="rotate(-90 200 200)"></circle>
-          </g>
-          <g class="r-spin-rev">
-            <circle class="r-arc2" cx="200" cy="200" r="118" stroke-width="2" transform="rotate(58 200 200)"></circle>
-          </g>
-          <circle class="dot" cx="200" cy="38" r="2.8"></circle>
-          <circle class="dot" cx="322" cy="286" r="2.8"></circle>
-          <circle class="dot-ink" cx="200" cy="362" r="3"></circle>
-        </svg>
-        <div class="sb-center-copy">
-          <h1>接收访问需求</h1>
-          <p>Access request received</p>
-          <div class="sb-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        </div>
-      </div>
-
-      <div class="sb-counter">[ 01 / 04 ] <b>access</b></div>
+      <div class="sb-sysinfo">fps 60 · gpu 23% · cpu 12% · latency 4ms</div>
+      <div class="sb-counter">[ 00 / 06 ] <b>boot</b></div>
       <div class="sb-powered">powered by seedlab <i></i></div>
+      <div class="sb-wave" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="sb-rule"><i data-rule></i></div>
 
-      <div class="sb-foot">
-        <p>接收访问需求，建立会话通道…</p>
-        <span>handshake established</span>
+      <div class="sb-stage">
+        <svg class="sb-ring" viewBox="0 0 400 400" aria-hidden="true">
+          <circle class="mid-ghost" cx="200" cy="200" r="128" stroke-width="1"></circle>
+          <path class="outer-a" d="M255.6 28.8 A180 180 0 0 1 206.3 379.9"></path>
+          <path class="outer-b" d="M144.4 371.2 A180 180 0 0 1 193.7 20.1"></path>
+          <path class="inner-a" d="M110 200 A90 90 0 0 1 290 200"></path>
+          <path class="inner-b" d="M290 200 A90 90 0 0 1 110 200"></path>
+          <circle class="dot" cx="177.8" cy="74" r="2.8"></circle>
+          <circle class="dot" cx="310.8" cy="136" r="2.8"></circle>
+          <circle class="dot" cx="89.2" cy="264" r="2.8"></circle>
+          <circle class="tip" cx="255.6" cy="28.8" r="3.4"></circle>
+          <circle class="tip" cx="206.3" cy="379.9" r="3.4"></circle>
+        </svg>
+
+        <div class="sb-copy" data-copy>
+          <h1 data-h>系统自检中...</h1>
+          <p data-p>SYSTEM SELF-CHECK</p>
+        </div>
+
+        <div class="sb-dots" data-dots aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+
+        <img class="sb-stage-mark" data-stage-mark src="${GLYPH_INK}" alt="" width="356" height="356">
       </div>
+
+      <div class="sb-form" data-form hidden>
+        <div class="row"><span>姓名称谓</span><b>SEEDLAB</b></div>
+        <div class="row"><span>身份编号</span><b>0009</b></div>
+        <div class="row"><span>权限等级</span><b>9</b></div>
+        <button type="button" data-confirm>确认身份 Confirm identity</button>
+        <div class="hint">按 Enter / Space，或点击按钮继续</div>
+      </div>
+
+      <div class="sb-hex" data-hex hidden></div>
 
       <div class="sb-welcome">
         <div class="sb-wc">
           <p class="sb-wc-top">Welcome to</p>
+          <div class="sb-wc-ruleline"></div>
           <p class="sb-wc-block">SEEDLAB</p>
-          <img class="sb-wc-mark" src="${MARK_INK}" alt="" width="356" height="356">
-          <p class="sb-wc-sub">seedlab studio · 2026</p>
+          <img class="sb-wc-mark" src="${GLYPH_INK}" alt="" width="356" height="356">
+          <p class="sb-wc-en">seedlab harness</p>
+          <p class="sb-wc-cn">欢迎进入 seedLab 工作室</p>
         </div>
       </div>
-    </div>
 
-    <div class="sb-iris" aria-hidden="true"></div>
+      <div class="sb-foot">
+        <p data-foot>系统自检中，加载终端界面...</p>
+        <span data-foot-en>system self-check</span>
+      </div>
+    </div>
 
     <div class="sb-ctrl">
       <button type="button" class="sb-sound" aria-pressed="false">声音 OFF</button>
@@ -106,23 +146,27 @@
 
   const $ = (s) => root.querySelector(s);
   const dark = $('.sb-dark');
-  const iris = $('.sb-iris');
   const screen = $('.sb-screen');
-  const copy = $('.sb-center-copy');
-  const centerH1 = copy.querySelector('h1');
-  const centerP = copy.querySelector('p');
-  const ticks = Array.from(copy.querySelectorAll('.sb-ticks i'));
-  const footP = $('.sb-foot p');
-  const footSpan = $('.sb-foot span');
-  const counter = $('.sb-counter');
-  const topbarFill = $('.sb-topbar i');
+  const stage = $('.sb-stage');
+  const copyEl = $('[data-copy]');
+  const hEl = $('[data-h]');
+  const pEl = $('[data-p]');
+  const dots = Array.from(root.querySelectorAll('[data-dots] i'));
+  const stageMark = $('[data-stage-mark]');
+  const form = $('[data-form]');
+  const hexEl = $('[data-hex]');
   const welcome = $('.sb-welcome');
-  const skipBtn = $('.sb-skip');
+  const footEl = $('[data-foot]');
+  const footEnEl = $('[data-foot-en]');
+  const counterEl = $('.sb-counter');
+  const ruleEl = $('[data-rule]');
+  const clockEl = $('[data-clock]');
+  const marks = Array.from(root.querySelectorAll('.sb-marks i'));
   const soundBtn = $('.sb-sound');
+  const skipBtn = $('.sb-skip');
 
   /* ---------- audio ---------- */
   let actx = null, soundOn = false;
-
   function ensureAudio() {
     if (!actx) {
       const AC = window.AudioContext || window.webkitAudioContext;
@@ -132,12 +176,10 @@
     if (actx.state === 'suspended') actx.resume();
     return true;
   }
-
   function blip(freq, gain, dur, type) {
     if (!soundOn || !actx) return;
     const o = actx.createOscillator(), g = actx.createGain();
-    o.type = type || 'sine';
-    o.frequency.value = freq;
+    o.type = type || 'sine'; o.frequency.value = freq;
     o.connect(g); g.connect(actx.destination);
     const t0 = actx.currentTime;
     g.gain.setValueAtTime(0.0001, t0);
@@ -145,201 +187,117 @@
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
     o.start(); o.stop(t0 + dur + 0.02);
   }
-
-  function whoosh(dur) {
+  function noiseBurst(dur, freq, gain) {
     if (!soundOn || !actx) return;
-    const d = dur || 0.9;
+    const d = dur || 0.5;
     const buf = actx.createBuffer(1, Math.floor(actx.sampleRate * d), actx.sampleRate);
     const data = buf.getChannelData(0);
-    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.5;
+    for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * 0.45;
     const src = actx.createBufferSource(); src.buffer = buf;
-    const bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.2;
-    bp.frequency.setValueAtTime(220, actx.currentTime);
-    bp.frequency.exponentialRampToValueAtTime(2200, actx.currentTime + d);
+    const bp = actx.createBiquadFilter(); bp.type = 'bandpass'; bp.Q.value = 1.4;
+    bp.frequency.value = freq || 900;
     const g = actx.createGain();
     src.connect(bp); bp.connect(g); g.connect(actx.destination);
     const t0 = actx.currentTime;
     g.gain.setValueAtTime(0.0001, t0);
-    g.gain.exponentialRampToValueAtTime(0.06, t0 + 0.15);
+    g.gain.exponentialRampToValueAtTime(gain || 0.05, t0 + 0.08);
     g.gain.exponentialRampToValueAtTime(0.0001, t0 + d);
     src.start(); src.stop(t0 + d);
   }
-
   soundBtn.addEventListener('click', () => {
     soundOn = !soundOn;
     soundBtn.setAttribute('aria-pressed', String(soundOn));
     soundBtn.textContent = soundOn ? '声音 ON' : '声音 OFF';
-    if (soundOn) {
-      if (ensureAudio()) blip(880, 0.05, 0.18);
-    }
+    if (soundOn && ensureAudio()) blip(880, 0.05, 0.18);
   });
 
-  /* ---------- runtime ---------- */
-  let start = 0, raf = 0, done = false, elapsed = 0;
-  const flags = {};
-  let tickIndex = 0;
-
-  const SEEK = Math.max(0, parseInt(new URLSearchParams(location.search).get('sbseek') || '0', 10) || 0);
-  const FORCED = SEEK > 0;
-
-  const darkMark = $('.sb-dark-mark');
-  const darkCap = $('.sb-dark-cap');
-  const arcEl = root.querySelector('.r-arc');
-  const arc2El = root.querySelector('.r-arc2');
-
+  /* ---------- state machine ---------- */
   const clamp01 = (v) => Math.max(0, Math.min(1, v));
   const easeOut = (t) => 1 - Math.pow(1 - t, 3);
   const lerp = (a, b, t) => a + (b - a) * t;
 
-  // rAF-driven visuals so the sequence stays seekable and recordable
-  function paint(t) {
-    if (!paint._init) {
-      paint._init = true;
-      // these elements are driven per-frame; CSS transitions would lag behind
-      [darkMark, darkCap, iris, copy, $('.sb-foot'), arcEl, arc2El].forEach((el) => {
-        if (el) el.style.transition = 'none';
-      });
-    }
-    // icon rises out of the dark (250 → 1850ms)
-    const p1 = easeOut(clamp01((t - 250) / 1600));
-    darkMark.style.opacity = String(p1);
-    darkMark.style.transform = `scale(${lerp(0.94, 1, p1)})`;
-    darkMark.style.filter =
-      `blur(${lerp(10, 0, p1)}px) brightness(${lerp(0.8, 1, p1)}) ` +
-      `drop-shadow(0 0 ${lerp(30, 12, p1).toFixed(1)}px rgba(204,255,0,${(0.30 * p1).toFixed(3)}))`;
-    darkCap.style.opacity = String(easeOut(clamp01((t - 900) / 900)));
+  let currentStep = '';
+  function setStep(name) {
+    if (currentStep === name) return;
+    currentStep = name;
+    const s = STEPS[name];
+    if (!s) return;
+    hEl.innerHTML = s.h;
+    pEl.innerHTML = s.p;
+    footEl.textContent = s.foot;
+    footEnEl.textContent = s.footEn;
+    counterEl.innerHTML = '[ ' + s.no + ' / 06 ] <b>' + s.key + '</b>';
 
-    // white circle wipe (2400 → 3350ms)
-    const p2 = easeOut(clamp01((t - 2400) / 950));
-    iris.style.transform = `scale(${lerp(0, 1, p2)})`;
-    iris.style.opacity = t >= 3420 ? '0' : '1';
+    copyEl.style.display = s.h ? '' : 'none';
 
-    // ring draws itself (3700 → 5000ms / 250ms offset for the inner arc)
-    const p3 = easeOut(clamp01((t - 3700) / 1300));
-    if (arcEl) arcEl.style.strokeDasharray = `${(p3 * 430).toFixed(1)} 4000`;
-    const p4 = easeOut(clamp01((t - 3950) / 1100));
-    if (arc2El) arc2El.style.strokeDasharray = `${(p4 * 250).toFixed(1)} 4000`;
+    // element visibility per step
+    form.hidden = name !== 'identity';
+    hexEl.hidden = name !== 'read';
+    stageMark.style.display = (name === 'read') ? 'block' : 'none';
+    stage.style.display = (name === 'welcome') ? 'none' : 'flex';
+    stage.classList.toggle('is-ring', name === 'verify');
+    welcome.classList.toggle('is-on', name === 'welcome');
 
-    // centre copy fades in with the ring
-    copy.style.opacity = String(easeOut(clamp01((t - 4100) / 700)));
-    copy.style.transform = `translateY(${lerp(8, 0, easeOut(clamp01((t - 4100) / 700)))}px)`;
+    // dot progress
+    const dotMap = { boot: 0, identity: 2, confirm: 2, request: 3, read: 5, verify: 7, welcome: 7 };
+    const n = dotMap[name] || 0;
+    dots.forEach((d, i) => d.classList.toggle('on', i < n));
 
-    // footer line
-    const f = easeOut(clamp01((t - 4900) / 600));
-    const foot = $('.sb-foot');
-    foot.style.opacity = String(f);
-  }
+    // top-left marker strip
+    const markMap = { boot: 1, identity: 2, confirm: 2, request: 3, read: 3, verify: 4, welcome: 4 };
+    const m = markMap[name] || 0;
+    marks.forEach((el, i) => el.classList.toggle('on', i === m - 1));
 
-  function once(name, t, at, fn) {
-    if (!flags[name] && t >= at) { flags[name] = true; fn(); }
-  }
-
-  function frame(now) {
-    if (done) return;
-    elapsed = now - start;
-    paint(elapsed);
-
-    once('lit', elapsed, T.lit, () => dark.classList.add('is-lit'));
-
-    once('iris', elapsed, T.iris, () => {
-      // white circle grows from the centre, covering the dark handoff
-      iris.style.transition = 'transform .95s cubic-bezier(.22,.61,.36,1)';
-      requestAnimationFrame(() => { iris.style.transform = 'scale(1)'; });
-      whoosh(1.0);
-    });
-
-    once('screenOn', elapsed, T.screenOn, () => {
-      screen.classList.add('is-on');
-      root.classList.add('on-paper');
-    });
-
-    once('irisGone', elapsed, T.irisEnd + 120, () => {
-      dark.classList.add('is-off');
-      iris.style.display = 'none';
-    });
-
-    function setCounter(no, label) {
-      counter.innerHTML = '[ 0' + no + ' / 06 ] <b>' + label + '</b>';
+    if (name === 'read' && !hexEl.dataset.filled) {
+      hexEl.dataset.filled = '1';
+      hexEl.innerHTML = hexLines().map((r, i) => '<div>' + (i === 1 ? '<b>' + r + '</b>' : r) + '</div>').join('');
     }
 
-    once('access', elapsed, T.access, () => {
-      setCounter(2, 'access');
-      topbarFill.style.width = '18%';
-    });
-
-    once('ring', elapsed, T.ring, () => {
-      screen.classList.add('is-ring');
-      blip(660, 0.05, 0.3);
-      topbarFill.style.width = '32%';
-    });
-
-    once('copy', elapsed, T.copy, () => {
-      topbarFill.style.width = '40%';
-    });
-
-    once('request', elapsed, T.request, () => {
-      setCounter(3, 'request');
-      topbarFill.style.width = '50%';
-    });
-
-    once('foot', elapsed, T.foot, () => {
-      screen.classList.add('is-foot');
-      topbarFill.style.width = '58%';
-    });
-
-    // tick the dotted progress row
-    if (elapsed >= T.foot && tickIndex < ticks.length) {
-      const step = T.identity - T.foot;
-      const want = Math.min(ticks.length, Math.floor(((elapsed - T.foot) / step) * ticks.length) + 1);
-      while (tickIndex < want) {
-        ticks[tickIndex].classList.add('on');
-        tickIndex++;
-        blip(1400, 0.02, 0.05, 'square');
-      }
-    }
-
-    once('identity', elapsed, T.identity, () => {
-      centerH1.textContent = '核对访问权限';
-      centerP.textContent = 'Verifying credentials';
-      copy.classList.remove('is-swap');
-      void copy.offsetWidth;
-      copy.classList.add('is-swap');
-      footP.textContent = '正在核对访问权限，请稍候…';
-      footSpan.textContent = 'verifying credentials';
-      setCounter(4, 'identity');
-      topbarFill.style.width = '72%';
-      blip(720, 0.04, 0.22);
-    });
-
-    once('swap', elapsed, T.swap, () => {
-      centerH1.textContent = '读取完毕 · 核验通过';
-      centerP.textContent = 'Read complete · Verified';
-      copy.classList.remove('is-swap');
-      void copy.offsetWidth;
-      copy.classList.add('is-swap');
-      footP.textContent = '读取完毕，核验通过，权限已授予';
-      footSpan.textContent = 'permission authorized';
-      setCounter(5, 'verify');
-      topbarFill.style.width = '88%';
-      blip(660, 0.05, 0.25);
-      setTimeout(() => blip(990, 0.045, 0.3), 110);
-    });
-
-    once('welcome', elapsed, T.welcome, () => {
-      topbarFill.style.width = '100%';
-      screen.classList.add('is-welcome');
-      welcome.classList.add('is-on');
-      setCounter(6, 'welcome');
-      blip(880, 0.05, 0.2);
-      setTimeout(() => blip(1320, 0.04, 0.28), 130);
-      if (!FORCED) finishSoon(3200);
-    });
-
-    if (!FORCED && (elapsed >= T.end || elapsed >= T.hardStop)) { finish(); return; }
-    raf = requestAnimationFrame(frame);
+    // sfx
+    if (name === 'identity') blip(620, 0.04, 0.2);
+    if (name === 'confirm') blip(880, 0.045, 0.22);
+    if (name === 'request') { blip(660, 0.045, 0.25); noiseBurst(0.45, 1400, 0.035); }
+    if (name === 'read') { blip(520, 0.04, 0.2); noiseBurst(0.7, 2400, 0.03); }
+    if (name === 'verify') { blip(660, 0.05, 0.25); setTimeout(() => blip(990, 0.045, 0.3), 110); }
+    if (name === 'welcome') { blip(880, 0.05, 0.2); setTimeout(() => blip(1320, 0.04, 0.3), 130); }
   }
 
+  function stepFor(t) {
+    if (t >= T.welcome) return 'welcome';
+    if (t >= T.verify) return 'verify';
+    if (t >= T.read) return 'read';
+    if (t >= T.request) return 'request';
+    if (t >= T.confirm) return 'confirm';
+    if (t >= T.identity) return 'identity';
+    if (t >= T.boot) return 'boot';
+    return '';
+  }
+
+  function applyState(t) {
+    // dark plate + iris
+    const iris = clamp01((t - T.irisAt) / T.irisDur);
+    screen.classList.toggle('is-on', t >= T.screenOn);
+    dark.style.display = t >= T.irisAt + T.irisDur * 0.85 ? 'none' : 'grid';
+    // fade the dark plate out under the white wash
+    if (t >= T.irisAt) {
+      dark.style.opacity = String(1 - easeOut(iris));
+    } else {
+      dark.style.opacity = '1';
+    }
+
+    // clock + rule
+    ruleEl.style.width = (clamp01(t / T.end) * 100).toFixed(1) + '%';
+
+    const s = stepFor(t);
+    if (s) setStep(s);
+  }
+
+  /* ---------- runtime ---------- */
+  let start = 0, raf = 0, done = false, elapsed = 0;
   let finishTimer = 0;
+  const SEEK = Math.max(0, parseInt(new URLSearchParams(location.search).get('sbseek') || '0', 10) || 0);
+  const FORCED = SEEK > 0;
+
   function finishSoon(ms) {
     clearTimeout(finishTimer);
     finishTimer = setTimeout(finish, ms);
@@ -356,43 +314,54 @@
     setTimeout(() => {
       root.remove();
       const target = document.getElementById('main') || document.body;
-      if (target && target.focus) {
-        target.setAttribute('tabindex', '-1');
-        target.focus({ preventScroll: true });
-      }
+      if (target && target.focus) { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
     }, 620);
   }
 
+  function frame(now) {
+    if (done) return;
+    elapsed = now - start;
+    applyState(elapsed);
+    if (!FORCED) {
+      if (elapsed >= T.end) { finish(); return; }
+      if (elapsed >= T.hardStop) { finish(); return; }
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
   skipBtn.addEventListener('click', finish);
+  form.querySelector('[data-confirm]').addEventListener('click', () => {
+    if (elapsed > 0) { start -= Math.max(0, T.confirm - elapsed); }
+  });
   addEventListener('keydown', (e) => {
     if (done) return;
     if (e.key === 'Escape') { e.preventDefault(); finish(); }
     else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); finish(); }
   }, true);
 
+  function reset() {
+    currentStep = '';
+    hexEl.dataset.filled = '';
+    hexEl.innerHTML = '';
+    clockEl.textContent = clock();
+    dark.style.opacity = '1';
+    dark.style.display = 'grid';
+    screen.classList.remove('is-on');
+    stage.classList.remove('is-ring');
+    welcome.classList.remove('is-on');
+    root.classList.remove('sb-leaving');
+    ruleEl.style.width = '0';
+    dots.forEach((d) => d.classList.remove('on'));
+    marks.forEach((m) => m.classList.remove('on'));
+    root.querySelector('.sb-stage .sb-copy h1').innerHTML = '系统自检中...';
+  }
+
   function run() {
     if (FORCED) root.classList.add('sb-fast');
     document.documentElement.classList.remove('sb-pending');
-    // reset for replay
-    dark.classList.remove('is-lit', 'is-off');
-    screen.classList.remove('is-on', 'is-ring', 'is-foot', 'is-welcome');
-    welcome.classList.remove('is-on');
-    root.classList.remove('on-paper', 'sb-leaving');
-    iris.style.display = '';
-    iris.style.transform = 'scale(0)';
-    topbarFill.style.width = '0';
-    ticks.forEach((t) => t.classList.remove('on'));
-    tickIndex = 0;
-    centerH1.textContent = '接收访问需求';
-    centerP.textContent = 'Access request received';
-    footP.textContent = '接收访问需求，建立会话通道…';
-    footSpan.textContent = 'handshake established';
-    counter.innerHTML = '[ 01 / 06 ] <b>boot</b>';
-    copy.classList.remove('is-swap');
-
+    reset();
     requestAnimationFrame((t) => {
       if (FORCED) {
-        // freeze on the requested frame: paint once, then stop the loop
         start = t - SEEK;
         frame(t + 0.5);
         cancelAnimationFrame(raf);
@@ -403,7 +372,6 @@
     });
   }
 
-  // already seen in this tab?
   let seen = false;
   try { seen = sessionStorage.getItem(KEY) === '1'; } catch (e) {}
   if (!FORCED && (seen || reduced || location.hash)) {
@@ -413,7 +381,6 @@
     run();
   }
 
-  // replay hook (footer button)
   const replay = document.querySelector('[data-replay-intro]');
   if (replay) {
     replay.hidden = false;
@@ -421,7 +388,6 @@
       const old = document.getElementById('seedlab-boot');
       if (old) old.remove();
       done = false;
-      Object.keys(flags).forEach((k) => { flags[k] = false; });
       if (!root.parentNode) document.body.append(root);
       run();
     });
