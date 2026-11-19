@@ -29,11 +29,12 @@
   }
 
   const scenes=[
-    {name:'signal',start:0,end:1700,label:'STUDIO IDENTIFICATION'},
-    {name:'confirm',start:1700,end:4700,label:'OPERATOR AUTHENTICATION'},
-    {name:'archive',start:4700,end:6500,label:'CREDENTIAL VERIFICATION'},
-    {name:'authorize',start:6500,end:7900,label:'WORKSTATION BOOT'},
-    {name:'welcome',start:7900,end:9900,label:'ARCHIVE ONLINE'},
+    {name:'signal',start:0,end:1600,label:'STUDIO IDENTIFICATION'},
+    {name:'confirm',start:1600,end:4400,label:'OPERATOR AUTHENTICATION'},
+    {name:'archive',start:4400,end:5900,label:'CREDENTIAL VERIFICATION'},
+    {name:'read',start:5900,end:7200,label:'PERMISSION READ'},
+    {name:'authorize',start:7200,end:8400,label:'WORKSTATION BOOT'},
+    {name:'welcome',start:8400,end:9900,label:'ARCHIVE ONLINE'},
   ];
   const duration=scenes.at(-1).end;
   const clamp=v=>Math.min(1,Math.max(0,v));
@@ -54,6 +55,10 @@
       <section class="intro-scene intro-signal" data-scene="signal" aria-hidden="true"><div class="studio-ident"><img src="assets/brand/seedlab-mark@2x.png" alt="" class="studio-mark"><p>SEEDLAB / STUDIO INTERFACE</p><div class="load-bar"><i></i></div><small>IDENTITY MODULE · 01</small><i class="corner corner-a"></i><i class="corner corner-b"></i></div></section>
       <section class="intro-scene intro-confirm" data-scene="confirm" aria-hidden="true"><div class="access-card"><div class="access-title"><span>SEEDLAB</span><small>PRIVATE WORKSTATION ACCESS</small></div><div class="access-form"><div class="access-field"><small>OPERATOR ID</small><p data-user></p></div><div class="access-field"><small>PASSWORD</small><p class="password-dots" data-password aria-label="密码输入中"></p></div></div><div class="access-state"><i></i><span data-id-status>VERIFYING CREDENTIALS</span></div></div></section>
       <section class="intro-scene intro-archive" data-scene="archive" aria-hidden="true"><div class="verify-card"><img src="assets/brand/seedlab-glyph.png" alt="" class="verify-mark"><h2 data-id-title>ACCESS VERIFIED</h2><p>IDENTITY KEY MATCHED · ACCESS GRANTED</p><div class="verify-line"><i></i></div><small data-load-number>00</small></div></section>
+      <section class="intro-scene intro-read" data-scene="read" aria-hidden="true"><div class="read-wrap"><div class="read-main"><h2 class="read-title">READING ACCESS</h2><p class="read-en">PERMISSION READ STARTED</p><img src="assets/brand/seedlab-glyph.png" alt="" class="read-mark"><div class="read-dots"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="read-hex">        <span>71 13 74 62 32 10 92 45 69</span>
+        <span>90 76 30 30 79 23 35 16 50</span>
+        <span>95 60 73 39 46 61 84 70 10</span>
+        <span>85 49 54 78 14 25 97 33 87</span></div></div><small class="read-foot">INDEXING WORKSPACE · READING PERMISSION SET</small></section>
       <section class="intro-scene intro-authorize" data-scene="authorize" aria-hidden="true"><div class="boot-screen"><div class="boot-title">SEEDLAB<br><b>CREATIVE OS</b></div><div class="boot-window"><span class="boot-tab">WORKSPACE / 01</span><p><i></i>ESTABLISHING SECURE CHANNEL</p><p><i></i>LOADING SELECTED WORKS</p><p><i></i>INITIALIZING INTERACTION SYSTEM</p><div class="boot-progress"><b></b></div></div><small>PRESS ENTER / SPACE TO SKIP</small></div></section>
       <section class="intro-scene intro-welcome" data-scene="welcome" aria-hidden="true"><div class="workspace-ready"><img src="assets/brand/seedlab-glyph.png" alt="" class="ready-mark"><div><span class="intro-kicker">CREATIVE WORKSTATION</span><h2>WELCOME BACK</h2><p>SEEDLAB STUDIO · 2026</p></div></div></section>
       <footer class="intro-bottom"><span>SEEDLAB / 2026</span><span data-stage-label></span><span class="intro-bottom-note">SYSTEM READY</span></footer>`;

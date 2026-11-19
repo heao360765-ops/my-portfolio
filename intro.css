@@ -399,3 +399,87 @@
     rotateZ(calc(2.4deg * var(--tilt,0)))!important;
   opacity:1!important;
 }
+
+
+/* ============================================================
+   READ 页：中央标题 + 图标 + 点阵，右侧 HEX 数据列
+   转场沿用视频2 的淡入 + 轻微上移
+   ============================================================ */
+.portfolio-intro .intro-read{
+  display:grid!important;
+  place-items:center!important;
+  grid-template-rows:auto auto;
+  gap:26px;
+}
+.portfolio-intro .read-wrap{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:clamp(30px,7vw,120px);
+  width:min(1100px,86vw);
+  transform:translateY(calc((1 - var(--phase,0)) * 18px));
+  opacity:calc(.15 + .85 * var(--phase,0));
+}
+.portfolio-intro .read-main{text-align:center}
+.portfolio-intro .read-title{
+  margin:0;
+  font-family:var(--sans);
+  font-size:clamp(24px,2.9vw,40px);
+  font-weight:600;
+  letter-spacing:.22em;
+  color:#ccff00;
+  text-indent:.22em;
+}
+.portfolio-intro .read-en{
+  margin:8px 0 0;
+  font-family:var(--mono);
+  font-size:8px;
+  letter-spacing:.32em;
+  color:rgba(204,255,0,.6);
+  text-indent:.32em;
+}
+.portfolio-intro .read-mark{
+  width:clamp(40px,4.4vw,60px);height:auto;
+  display:block;margin:22px auto 0;
+  filter:drop-shadow(0 0 18px rgba(204,255,0,.45));
+}
+.portfolio-intro .read-dots{
+  display:flex;justify-content:center;gap:6px;margin-top:16px;
+}
+.portfolio-intro .read-dots i{
+  width:2.5px;height:2.5px;border-radius:50%;
+  background:rgba(204,255,0,.55);
+  animation:read-dot 1.2s ease-in-out infinite;
+}
+.portfolio-intro .read-dots i:nth-child(2){animation-delay:.12s}
+.portfolio-intro .read-dots i:nth-child(3){animation-delay:.24s}
+.portfolio-intro .read-dots i:nth-child(4){animation-delay:.36s}
+.portfolio-intro .read-dots i:nth-child(5){animation-delay:.48s}
+.portfolio-intro .read-dots i:nth-child(6){animation-delay:.6s}
+.portfolio-intro .read-dots i:nth-child(7){animation-delay:.72s}
+@keyframes read-dot{
+  0%,100%{opacity:.25;transform:scale(.8)}
+  50%{opacity:1;transform:scale(1.15)}
+}
+.portfolio-intro .read-hex{
+  display:flex;flex-direction:column;gap:6px;
+  font-family:var(--mono);
+  font-size:clamp(7px,.62vw,9px);
+  letter-spacing:.14em;
+  color:rgba(204,255,0,.42);
+  text-align:right;
+  white-space:nowrap;
+}
+.portfolio-intro .read-hex span:nth-child(2){color:rgba(204,255,0,.95)}
+.portfolio-intro .read-foot{
+  grid-row:2;
+  font-family:var(--mono);
+  font-size:7.5px;
+  letter-spacing:.24em;
+  color:rgba(204,255,0,.55);
+  text-transform:uppercase;
+}
+@media(max-width:760px){
+  .portfolio-intro .read-wrap{grid-template-columns:1fr;gap:18px}
+  .portfolio-intro .read-hex{display:none}
+}
