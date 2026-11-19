@@ -7,6 +7,26 @@
   const replay=document.querySelector('[data-replay-intro]');
   if(!replay || typeof HTMLDialogElement==='undefined' || !HTMLDialogElement.prototype.showModal){clearPending();return}
   replay.hidden=false;
+
+  const SFX=(()=>{let ctx=null,on=true;const fired={};
+    function ac(){try{if(!ctx){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;ctx=new A()}if(ctx.state==='suspended')ctx.resume();return ctx}catch(e){return null}}
+    function tone(f,d,g,type,f2){const c=ac();if(!c||!on)return;try{const o=c.createOscillator(),gn=c.createGain();o.type=type||'sine';o.frequency.value=f;if(f2)o.frequency.exponentialRampToValueAtTime(f2,c.currentTime+d);o.connect(gn);gn.connect(c.destination);const t0=c.currentTime;gn.gain.setValueAtTime(.0001,t0);gn.gain.exponentialRampToValueAtTime(g,t0+.008);gn.gain.exponentialRampToValueAtTime(.0001,t0+d);o.start();o.stop(t0+d+.03)}catch(e){}}
+    function noise(d,freq,g){const c=ac();if(!c||!on)return;try{const n=c.createBufferSource(),b=c.createBuffer(1,Math.max(1,Math.floor(c.sampleRate*d)),c.sampleRate),dt=b.getChannelData(0);for(let i=0;i<dt.length;i++)dt[i]=(Math.random()*2-1)*.5;n.buffer=b;const bp=c.createBiquadFilter();bp.type='bandpass';bp.Q.value=1.2;bp.frequency.value=freq;const gn=c.createGain();n.connect(bp);bp.connect(gn);gn.connect(c.destination);const t0=c.currentTime;gn.gain.setValueAtTime(.0001,t0);gn.gain.exponentialRampToValueAtTime(g,t0+.05);gn.gain.exponentialRampToValueAtTime(.0001,t0+d);n.start();n.stop(t0+d)}catch(e){}}
+    function once(k,fn){if(fired[k])return;fired[k]=1;fn()}
+    return {tone,noise,once};})();
+  let lastTyped=-1,lastDots=-1;
+  function sfxTick(t,typed,dots){
+    SFX.once('boot',    ()=>{if(t>=140){SFX.tone(56,1.4,.028,'sine');SFX.noise(.9,260,.018)}});
+    SFX.once('load',    ()=>{if(t>=700){SFX.noise(.7,1500,.012)}});
+    SFX.once('toConfirm',()=>{if(t>=1760){SFX.noise(.45,820,.026);SFX.tone(110,.35,.02,'sine')}});
+    SFX.once('tilt',    ()=>{if(t>=2280)SFX.tone(920,.16,.032,'sine')});
+    SFX.once('verified',()=>{if(t>=4720){SFX.tone(660,.2,.028);setTimeout(()=>SFX.tone(990,.26,.026),110)}});
+    SFX.once('boot2',   ()=>{if(t>=4950)SFX.noise(.6,1250,.02)});
+    SFX.once('welcome', ()=>{if(t>=7920){SFX.tone(784,.2,.028);setTimeout(()=>SFX.tone(1175,.3,.024),120)}});
+    if(typed>lastTyped){lastTyped=typed;if(typed>0)SFX.tone(1550,.035,.011,'square')}
+    if(dots>lastDots){lastDots=dots;if(dots>0)SFX.tone(1250,.035,.011,'square')}
+  }
+
   const scenes=[
     {name:'signal',start:0,end:1700,label:'STUDIO IDENTIFICATION'},
     {name:'confirm',start:1700,end:4700,label:'OPERATOR AUTHENTICATION'},
@@ -124,9 +144,9 @@
       const stops=[[0,0],[.16,26],[.27,29],[.58,72],[.7,75],[.94,100],[1,100]];
       for(let i=1;i<stops.length;i++)if(p<=stops[i][0]){const [a,v]=stops[i-1],[b,w]=stops[i];return mix(v,w,ease((p-a)/(b-a)))}return 100;
     }
-    function render(time){
+    function render(time){if(__AT===null){try{const _u=dialog.querySelector('[data-user]'),_p=dialog.querySelector('[data-password]');sfxTick(time,(_u?(_u.textContent||'').length:0),(_p?(_p.textContent||'').length:0))}catch(e){}}
       const scene=scenes.find(s=>time<s.end)||scenes.at(-1),phase=clamp((time-scene.start)/(scene.end-scene.start));
-      dialog.dataset.stage=scene.name;if(scene.name==='confirm'){dialog.style.setProperty('--tilt',String(clamp((time-scene.start)/900)))}else{dialog.style.setProperty('--tilt','0')}
+      dialog.dataset.stage=scene.name;if(scene.name==='confirm'){dialog.style.setProperty('--tilt',String(clamp((time-scene.start)/520)))}else{dialog.style.setProperty('--tilt','0')}
       dialog.style.setProperty('--phase',phase);dialog.style.setProperty('--reveal',ease(phase*3));dialog.style.setProperty('--progress',clamp(time/duration));
       dialog.style.setProperty('--scene-opacity',1);
       dialog.style.setProperty('--cut',ease((time-scene.start)/300));
@@ -135,7 +155,7 @@
       dialog.style.setProperty('--welcome',ease((time-8800)/650));
       dialog.querySelectorAll('[data-scene]').forEach(el=>{const visible=el.dataset.scene===scene.name;el.classList.toggle('is-active',visible);el.setAttribute('aria-hidden',!visible)});
       const confirmed=time>=4000;dialog.classList.toggle('is-confirmed',confirmed);
-      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2700)/700)*user.length);const dots=Math.floor(clamp((time-3550)/780)*8);
+      const user='SEEDLAB_VISITOR';const typed=Math.floor(clamp((time-2300)/700)*user.length);const dots=Math.floor(clamp((time-3150)/760)*8);
       dialog.querySelector('[data-user]').textContent=user.slice(0,typed)+(typed<user.length?'_':'');dialog.querySelector('[data-password]').textContent='●'.repeat(dots);
       dialog.querySelector('[data-id-title]').textContent=confirmed?'ACCESS VERIFIED':'VERIFYING';dialog.querySelector('[data-id-status]').textContent=confirmed?'IDENTITY KEY MATCHED':'VERIFYING CREDENTIALS';
       const load=Math.round(loadProgress(clamp((time-4700)/1800)));dialog.style.setProperty('--load',load/100);dialog.querySelector('[data-load-number]').textContent=String(load).padStart(2,'0');
