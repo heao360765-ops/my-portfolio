@@ -110,12 +110,19 @@
         <img class="sb-stage-mark" data-stage-mark src="${GLYPH_INK}" alt="" width="356" height="356">
       </div>
 
-      <div class="sb-form" data-form hidden>
-        <div class="row"><span>姓名称谓</span><b>SEEDLAB</b></div>
-        <div class="row"><span>身份编号</span><b>0009</b></div>
-        <div class="row"><span>权限等级</span><b>9</b></div>
-        <button type="button" data-confirm>确认身份 Confirm identity</button>
-        <div class="hint">按 Enter / Space，或点击按钮继续</div>
+      <div class="sb-login3d" data-login>
+        <div class="sb-lcard" data-lcard>
+          <div class="sb-ll">
+            <img class="sb-lavatar" src="${GLYPH_INK}" alt="" width="356" height="356">
+            <b class="sb-lbrand">SEEDLAB</b>
+            <small>private workstation access</small>
+          </div>
+          <div class="sb-lr">
+            <div class="sb-lfield"><span>operator id</span><p data-luser></p></div>
+            <div class="sb-lfield"><span>password</span><p data-lpass></p></div>
+          </div>
+          <div class="sb-lstate"><i></i><span data-lstate>等待身份确认 · authorizing</span></div>
+        </div>
       </div>
 
       <div class="sb-hex" data-hex hidden></div>
@@ -153,7 +160,12 @@
   const pEl = $('[data-p]');
   const dots = Array.from(root.querySelectorAll('[data-dots] i'));
   const stageMark = $('[data-stage-mark]');
-  const form = $('[data-form]');
+  const form = null;
+  const loginWrap = $('[data-login]');
+  const lcard = $('[data-lcard]');
+  const lUser = $('[data-luser]');
+  const lPass = $('[data-lpass]');
+  const lState = $('[data-lstate]');
   const hexEl = $('[data-hex]');
   const welcome = $('.sb-welcome');
   const footEl = $('[data-foot]');
@@ -228,10 +240,10 @@
     footEnEl.textContent = s.footEn;
     counterEl.innerHTML = '[ ' + s.no + ' / 06 ] <b>' + s.key + '</b>';
 
-    copyEl.style.display = s.h ? '' : 'none';
+    copyEl.style.display = (name === 'identity' || name === 'confirm') ? 'none' : (s.h ? '' : 'none');
 
     // element visibility per step
-    form.hidden = name !== 'identity';
+    loginWrap.classList.toggle('is-on', name === 'identity' || name === 'confirm');
     hexEl.hidden = name !== 'read';
     stageMark.style.display = (name === 'read') ? 'block' : 'none';
     stage.style.display = (name === 'welcome') ? 'none' : 'flex';
@@ -273,6 +285,40 @@
     return '';
   }
 
+
+  const USER_ID = 'operator';
+  const PASS_LEN = 8;
+
+  function paintLogin(t) {
+    if (!lcard) return;
+    const on = t >= T.identity && t < T.request + 700;
+    loginWrap.classList.toggle('is-on', on);
+    if (!on) return;
+
+    const pIn = easeOut(clamp01((t - T.identity) / 750));
+    const pConf = easeOut(clamp01((t - T.confirm) / 850));
+    const pOut = easeOut(clamp01((t - T.request) / 550));
+
+    const ry = lerp(lerp(-27, -15, pIn), -4.5, pConf);
+    const rz = lerp(lerp(4.6, 2.6, pIn), 0.6, pConf);
+    const tz = lerp(-200, 0, pIn);
+    const sc = lerp(0.955, 1, pIn) * (1 + 0.014 * Math.sin(pConf * Math.PI));
+
+    lcard.style.transform = 'rotateY(' + ry.toFixed(2) + 'deg) rotateZ(' + rz.toFixed(2) +
+      'deg) translateZ(' + tz.toFixed(1) + 'px) scale(' + sc.toFixed(4) + ')';
+    lcard.style.opacity = String(pIn * (1 - pOut));
+
+    const uStart = T.identity + 720, uEnd = T.identity + 1500;
+    const un = Math.round(clamp01((t - uStart) / (uEnd - uStart)) * USER_ID.length);
+    lUser.textContent = USER_ID.slice(0, un);
+
+    const pStart = T.identity + 1600, pEnd = T.confirm - 260;
+    const pn = Math.round(clamp01((t - pStart) / (pEnd - pStart)) * PASS_LEN);
+    lPass.textContent = new Array(pn + 1).join('·');
+
+    lState.textContent = t >= T.confirm ? '身份已确认 · identified' : '等待身份确认 · authorizing';
+  }
+
   function applyState(t) {
     // dark plate + iris
     const iris = clamp01((t - T.irisAt) / T.irisDur);
@@ -287,6 +333,8 @@
 
     // clock + rule
     ruleEl.style.width = (clamp01(t / T.end) * 100).toFixed(1) + '%';
+
+    paintLogin(t);
 
     const s = stepFor(t);
     if (s) setStep(s);
@@ -330,8 +378,8 @@
   }
 
   skipBtn.addEventListener('click', finish);
-  form.querySelector('[data-confirm]').addEventListener('click', () => {
-    if (elapsed > 0) { start -= Math.max(0, T.confirm - elapsed); }
+  loginWrap.addEventListener('click', () => {
+    if (elapsed > 0 && elapsed < T.confirm) { start -= Math.max(0, T.confirm - elapsed); }
   });
   addEventListener('keydown', (e) => {
     if (done) return;
