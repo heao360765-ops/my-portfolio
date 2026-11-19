@@ -17,12 +17,12 @@
     return {tone,noise,click,once};})();
   let lastTyped=-1,lastDots=-1;
   function sfxTick(t,typed,dots){
-    SFX.once('boot',    ()=>{if(t>=140){SFX.tone(56,1.4,.028,'sine');SFX.noise(.9,260,.018)}});
-    SFX.once('load',    ()=>{if(t>=700){SFX.noise(.7,1500,.012)}});
-    SFX.once('toConfirm',()=>{if(t>=1760){SFX.noise(.45,820,.026);SFX.tone(110,.35,.02,'sine')}});
+    
+    
+    
     SFX.once('tilt',    ()=>{if(t>=2280)SFX.tone(920,.16,.032,'sine')});
     SFX.once('verified',()=>{if(t>=4720){SFX.tone(660,.2,.028);setTimeout(()=>SFX.tone(990,.26,.026),110)}});
-    SFX.once('boot2',   ()=>{if(t>=4950)SFX.noise(.6,1250,.02)});
+    
     SFX.once('welcome', ()=>{if(t>=7920){SFX.tone(784,.2,.028);setTimeout(()=>SFX.tone(1175,.3,.024),120)}});
     if(typed>lastTyped){lastTyped=typed;if(typed>0)SFX.click(.20,1900+Math.random()*700)}
     if(dots>lastDots){lastDots=dots;if(dots>0)SFX.click(.22,1500+Math.random()*600)}
